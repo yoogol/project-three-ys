@@ -8,12 +8,31 @@ import CompletedTL from './CompletedTL';
 import ScoreBoard from './ScoreBoard';
 
 const App = React.createClass ({
+  getInitialState: function() {
+    return {
+      databaseData: [],
+    }
+  },
+  handleAddButton: function() {
+    console.log("add button clicked")
+  },
+  handleAddForm: function() {
+    console.log("add form submitted")
+  },
+  // componentDidMount: function() {
+  //   AjaxHelpers.getAllToDos().then(function(response) {
+  //     this.setState({
+  //       todosFromDB: response.data.todos,
+  //       todosToDisplay: response.data.todos
+  //     })
+  //   }.bind(this));
+  // },
   getData: [
     {
-      name:"hello"
+      headline:"hello"
     },
     {
-      name:"hello2"
+      headline:"hello2"
     }
   ],
   render: function() {

@@ -3,7 +3,7 @@ import TodoList from '../containers/TodoList';
 
 const OneToDo = React.createClass ({
   render: function() {
-    return: (
+    return (
       <div>
         <div className="headline">{this.props.ToDoItem.headline}</div>
         <div className="author">Created by {this.props.ToDoItem.author}</div>
