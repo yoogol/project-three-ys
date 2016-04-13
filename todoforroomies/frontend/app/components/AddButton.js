@@ -1,9 +1,18 @@
 import React from 'react';
 
 const AddButton = React.createClass ({
+  handleClick: function(e) {
+    this.props.nameInput(e);
+  },
+  handleTask: function(e) {
+    this.props.taskInput(e)
+  },
+
   render: function() {
     return (
-      <div>AddButton</div>
+      <div>
+        <button>Add Button</button>
+      </div>
     )
   }
 })
