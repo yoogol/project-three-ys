@@ -1,0 +1,13 @@
+//Please use this to create your database
+
+use todoforroomies
+
+db.todos.insert({"headline" : "create todoforoomies app", "author" : "kykass", "deadline" : ISODate("2016-04-17T17:57:24.736Z"), "timeNeeded" : 2400, "yuckiness" : 0, "roommate" : 1, "claimedStatus" : true, "completedStatus" : false, "timeCompleted" : "", "tymeCreated" : ISODate("2016-04-13T17:59:20.688Z"), "pointsWorth" : 3000 })
+
+db.todos.insert({"headline" : "wash dishes", "author" : "roomie1", "deadline" : ISODate("2016-04-15T17:57:24.736Z"), "timeNeeded" : 40, "yuckiness" : 2, "roommate" : 2, "claimedStatus" : true, "completedStatus" : false, "timeCompleted" : "", "tymeCreated" : new Date(), "pointsWorth" : 2000 })
+
+db.todos.insert({"headline" : "clean toilet", "author" : "roomie2", "deadline" : ISODate("2016-04-14T17:57:24.736Z"), "timeNeeded" : 50, "yuckiness" : 10, "roommate" : 1, "claimedStatus" : true, "completedStatus" : false, "timeCompleted" : "", "tymeCreated" : new Date(), "pointsWorth" : 5000 })
+
+db.todos.insert({"headline" : "walk the dog", "author" : "roomie1", "deadline" : ISODate("2016-04-13T20:57:24.736Z"), "timeNeeded" : 30, "yuckiness" : 3, "roommate" : 1, "claimedStatus" : true, "completedStatus" : false, "timeCompleted" : "", "tymeCreated" : new Date(), "pointsWorth" : 200 })
+
+db.todos.insert({"headline" : "wash windows", "author" : "roomie1", "deadline" : ISODate("2016-04-13T20:57:24.736Z"), "timeNeeded" : 60, "yuckiness" : 5, "roommate" : 1, "claimedStatus" : true, "completedStatus" : false, "timeCompleted" : "", "tymeCreated" : new Date(), "pointsWorth" : 2000 })
