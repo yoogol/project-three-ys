@@ -11,7 +11,10 @@ import AjaxHelpers from '../utils/AjaxHelpers'
 const App = React.createClass ({
   getInitialState: function() {
     return {
-      databaseData: [],
+      incompleteTodos: [],
+      completeTodos: [],
+      claimedTodosR1: [],
+      claimedTodosR2: []
     }
   },
   handleAddButton: function() {
@@ -22,10 +25,47 @@ const App = React.createClass ({
   },
   componentDidMount: function() {
     AjaxHelpers.getAllToDos().then(function(response) {
-      console.log(response.data.todos);
+      console.log(response.data.todos)
+      let incompleteTodos = response.data.todos.filter(function(todo) {
+        if (todo.completedStatus == false) {
+          return true
+        }
+      });
+      console.log("incomplete: ", incompleteTodos );
       this.setState({
-        databaseData: response.data.todos
-      })
+        incompleteTodos: incompleteTodos
+      });
+
+      let completeTodos = response.data.todos.filter(function(todo) {
+        if (todo.completedStatus === true) {
+          return true
+        }
+      });
+      console.log("complete: ", completeTodos );
+      this.setState({
+        completeTodos: completeTodos
+      });
+
+      let claimedTodosR1 = response.data.todos.filter(function(todo) {
+        if (todo.roommate == 1) {
+          return true
+        }
+      });
+      console.log("claimed by R1: ", claimedTodosR1 );
+      this.setState({
+        claimedTodosR1: claimedTodosR1
+      });
+
+      let claimedTodosR2 = response.data.todos.filter(function(todo) {
+        if (todo.roommate == 2) {
+          return true
+        }
+      });
+      console.log("claimed by R2: ", claimedTodosR2 );
+      this.setState({
+        claimedTodosR2: claimedTodosR2
+      });
+
     }.bind(this));
   },
   render: function() {
@@ -34,10 +74,10 @@ const App = React.createClass ({
         <Title />
         <AddButton />
         <AddForm />
-        <TodoList data={this.state.databaseData}/>
-        <ClaimedTL data={this.state.databaseData} roommate="Roomie #1" />
-        <ClaimedTL data={this.state.databaseData} roommate="Roomie #2" />
-        <CompletedTL data={this.state.databaseData} />
+        <TodoList data={this.state.incompleteTodos}/>
+        <ClaimedTL data={this.state.claimedTodosR1} roommate="Roomie #1" />
+        <ClaimedTL data={this.state.claimedTodosR2} roommate="Roomie #2" />
+        <CompletedTL data={this.state.completeTodos} />
         <ScoreBoard />
       </div>
     )

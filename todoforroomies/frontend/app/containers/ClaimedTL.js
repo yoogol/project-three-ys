@@ -7,7 +7,7 @@ const ClaimedTL = React.createClass ({
       console.log("todo",todo);
       return (
         <div key={index}>
-          <OneToDo ToDoItem={todo} parentComponent="claimed"/>
+          <OneToDo ToDoItem={todo} parentComponent="ClaimedTL"/>
         </div>
       )
     });
