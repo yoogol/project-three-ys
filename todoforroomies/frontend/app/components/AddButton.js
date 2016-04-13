@@ -1,9 +1,13 @@
 import React from 'react';
 
 const AddButton = React.createClass ({
+  
+
   render: function() {
     return (
-      <div>AddButton</div>
+      <div>
+        <button>Add Button</button>
+      </div>
     )
   }
 })

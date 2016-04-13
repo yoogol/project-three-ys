@@ -9,6 +9,7 @@ import ScoreBoard from './ScoreBoard';
 import AjaxHelpers from '../utils/AjaxHelpers'
 
 const App = React.createClass ({
+<<<<<<< HEAD
   getInitialState: function() {
     return {
       incompleteTodos: [],
@@ -68,16 +69,72 @@ const App = React.createClass ({
 
     }.bind(this));
   },
+=======
+
+  getInitialState: function() {
+    return {
+      ajaxReturn: [],
+      createdBy: '',
+      task: '',
+      timeToComplete: '',
+      dateDue:''
+    };
+  },
+
+  createdBy: function(e) {
+    this.setState({
+      created: e.target.value
+    })
+  },
+
+  taskName: function(e) {
+    this.setState({
+      task: e.target.value
+    })
+  },
+
+  timeToComplete: function(e) {
+    this.setState({
+      timeToComplete: e.target.value
+    })
+  },
+
+  dateDue: function(e) {
+    this.setState({
+      dateDue: e.target.value
+    })
+  },
+
+  points: function(e) {
+    this.setState({
+      points: e.target.value
+    })
+  },
+
+  handleSubmit: function(e) {
+    e.preventDefault();
+  },
+
   render: function() {
     return (
       <div>
         <Title />
         <AddButton />
-        <AddForm />
+        <AddForm
+          taskName={this.taskName}
+          createdBy={this.created}
+          timeToComplete={this.task}
+          dateDue={this.dateDue}
+          points={this.points}
+          />
         <TodoList data={this.state.incompleteTodos}/>
         <ClaimedTL data={this.state.claimedTodosR1} roommate="Roomie #1" />
         <ClaimedTL data={this.state.claimedTodosR2} roommate="Roomie #2" />
         <CompletedTL data={this.state.completeTodos} />
+        <TodoList />
+        <ClaimedTL />
+        <ClaimedTL />
+        <CompletedTL />
         <ScoreBoard />
       </div>
     )
