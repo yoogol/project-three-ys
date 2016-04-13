@@ -34,7 +34,7 @@ const App = React.createClass ({
         <Title />
         <AddButton />
         <AddForm />
-        <TodoList data={this.getData}/>
+        <TodoList data={this.state.databaseData}/>
         <ClaimedTL />
         <ClaimedTL />
         <CompletedTL />
