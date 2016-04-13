@@ -1,7 +1,7 @@
 import React from 'react';
 import TodoList from '../containers/TodoList';
 
-// this.props.parentComponent 
+// this.props.parentComponent
 
 const OneToDo = React.createClass ({
   displayEditButton: function() {
