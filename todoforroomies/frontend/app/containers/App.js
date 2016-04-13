@@ -6,6 +6,7 @@ import TodoList from './TodoList';
 import ClaimedTL from './ClaimedTL';
 import CompletedTL from './CompletedTL';
 import ScoreBoard from './ScoreBoard';
+import AjaxHelpers from '../utils/AjaxHelpers'
 
 const App = React.createClass ({
   getInitialState: function() {
@@ -19,22 +20,14 @@ const App = React.createClass ({
   handleAddForm: function() {
     console.log("add form submitted")
   },
-  // componentDidMount: function() {
-  //   AjaxHelpers.getAllToDos().then(function(response) {
-  //     this.setState({
-  //       todosFromDB: response.data.todos,
-  //       todosToDisplay: response.data.todos
-  //     })
-  //   }.bind(this));
-  // },
-  getData: [
-    {
-      headline:"hello"
-    },
-    {
-      headline:"hello2"
-    }
-  ],
+  componentDidMount: function() {
+    AjaxHelpers.getAllToDos().then(function(response) {
+      console.log(response.data.todos);
+      this.setState({
+        databaseData: response.data.todos
+      })
+    }.bind(this));
+  },
   render: function() {
     return (
       <div>

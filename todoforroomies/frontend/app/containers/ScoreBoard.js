@@ -3,7 +3,10 @@ import React from 'react';
 const ScoreBoard = React.createClass ({
   render: function() {
     return (
-      <div>ScoreBoard</div>
+      <div>
+        <h1>ScoreBoard</h1>
+        <div></div>
+      </div>
     )
   }
 })
