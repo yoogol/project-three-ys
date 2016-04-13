@@ -1,45 +1,105 @@
 import React from 'react';
 
 const AddForm = React.createClass ({
-  handleClick: function(e) {
-    this.props.clickInput(e);
+  handleCreatedBy: function(e){
+    this.props.createdBy(e);
   },
-  handleTask: function(e) {
-    this.props.taskInput(e)
+  handleTaskName: function(e){
+    this.props.taskName(e)
+  },
+  handleTimeToComplete: function(e){
+    this.props.timeToComplete(e)
+  },
+  handleDateDue: function(e){
+    this.props.dateDue(e)
+  },
+  handlePoints: function(e){
+    this.props.points(e)
   },
 
   render: function() {
     return (
       <div>
-        <p>Add Form</p>
-        <label>Created By: </label>
-        <input onChange={this.handleClick} />
-        <br /><br />
+        <form onSubmit={this.handleSubmit} style={formStyle}><br />
 
-        <label>Task Name: </label>
-        <input onChange={this.handleClick} />
-        <br /><br/>
+          <label>Enter Your Task: </label>
+          <input
+            style={taskStyle}
+            placeholder="laundry etc."
+            value={this.state.taskName}
+            onChange={this.handleTaskName}
 
-        <label>Est. Time to Complete: </label>
-        <input onChange={this.handleTask}/>
-        <br /><br />
+            />
+          <br /><br/>
 
-        <label>Complete By: </label>
-        <input onChange={this.handleTask}/>
-        <br /><br />
+          <label>Created By: </label>
+          <input
+            style={formStyle}
+            type='text'
+            placeholder='Your Name'
+            value={this.state.createdBy}
+            onChange={this.handleCreatedBy}
+            />
+          <br /><br />
 
-        <label>Points: </label>
-        <input onChange={this.handleTask}/>
-        <br /><br />
 
-        <label> Recurring: </label> <button type="checkbox"></button>
-        <br /><br />
+          <label>Est. Time to Complete (mins): </label>
+          <input
+            style={formStyle}
+            type='text'
+            placeholder="Enter # of minutes"
+            value={this.state.timeToComplete}
+            onChange={this.handleTimeToComplete}
+            />
+          <br /><br />
 
-        <button onClick="">Submit</button>
+          <label>Completion Deadline: </label>
+          <input
+            type='date'
+            placeholder="pick a date"
+            style={formStyle}
+            value={this.state.dateDue}
+            onChange={this.handleDateDue}
+            />
+          <br /><br />
 
+          <label>Points: </label>
+          <input
+            type='number'
+            style={pointStyle}
+            onChange={this.handleTask}
+            />
+
+          <br /><br />
+
+          <label> Recurring: </label>
+          <input
+            type="checkbox"
+            defaultChecked
+            />
+          <br /><br />
+
+          <button onClick="">Submit</button>
+        </form>
       </div>
     )
   }
 })
+
+let formStyle = {
+  width: '50%',
+
+}
+
+let taskStyle = {
+  width: '60%',
+  height:'16'
+}
+
+let pointStyle = {
+  width: '8%',
+  height:'18'
+}
+
 
 export default AddForm;
