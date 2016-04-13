@@ -7,7 +7,7 @@ const CompletedTL = React.createClass ({
       console.log("todo",todo);
       return(
         <div key={index}>
-          <OneToDo ToDoItem={todo} parentComponent="completed" />
+          <OneToDo ToDoItem={todo} parentComponent="CompletedTL" />
         </div>
       )
     })

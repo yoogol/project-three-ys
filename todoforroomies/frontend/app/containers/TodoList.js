@@ -7,7 +7,7 @@ const TodoList = React.createClass ({
       console.log("todo",todo);
       return (
         <div key={index}>
-          <OneToDo ToDoItem={todo} parentComponent="todo" />
+          <OneToDo ToDoItem={todo} parentComponent="TodoList" />
         </div>
       )
     });
