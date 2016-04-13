@@ -9,13 +9,17 @@ import ScoreBoard from './ScoreBoard';
 import AjaxHelpers from '../utils/AjaxHelpers'
 
 const App = React.createClass ({
-<<<<<<< HEAD
+
   getInitialState: function() {
     return {
       incompleteTodos: [],
       completeTodos: [],
       claimedTodosR1: [],
-      claimedTodosR2: []
+      claimedTodosR2: [],
+      createdBy: '',
+      task: '',
+      timeToComplete: '',
+      dateDue:''
     }
   },
   handleAddButton: function() {
@@ -68,17 +72,6 @@ const App = React.createClass ({
       });
 
     }.bind(this));
-  },
-=======
-
-  getInitialState: function() {
-    return {
-      ajaxReturn: [],
-      createdBy: '',
-      task: '',
-      timeToComplete: '',
-      dateDue:''
-    };
   },
 
   createdBy: function(e) {
