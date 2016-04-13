@@ -8,13 +8,21 @@ import CompletedTL from './CompletedTL';
 import ScoreBoard from './ScoreBoard';
 
 const App = React.createClass ({
+  getData: [
+    {
+      name:"hello"
+    },
+    {
+      name:"hello2"
+    }
+  ],
   render: function() {
     return (
       <div>
         <Title />
         <AddButton />
         <AddForm />
-        <TodoList />
+        <TodoList data={this.getData}/>
         <ClaimedTL />
         <ClaimedTL />
         <CompletedTL />
