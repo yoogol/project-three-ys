@@ -3,23 +3,23 @@ import OneToDo from "../components/OneToDo"
 
 const TodoList = React.createClass ({
   render: function() {
-    const singleItem = this.props.data.map((todo,index) => {
-      console.log(todo);
+    const singleToDo = this.props.data.map((todo,index) => {
+      console.log("todo",todo);
       return (
         <div key={index}>
-          <OneToDo ToDoItem={todo}/>
+          <OneToDo ToDoItem={todo} parentComponent="todo" />
         </div>
       )
     });
     return (
       <div>
         <h3>To Do List</h3>
-        <div className="todo-container">
-          {singleItem}
+        <div className="unclaimed-todos">
+          {singleToDo}
         </div>
       </div>
     )
   }
-})
+});
 
 export default TodoList;

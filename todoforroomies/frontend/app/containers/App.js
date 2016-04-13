@@ -35,9 +35,9 @@ const App = React.createClass ({
         <AddButton />
         <AddForm />
         <TodoList data={this.state.databaseData}/>
-        <ClaimedTL />
-        <ClaimedTL />
-        <CompletedTL />
+        <ClaimedTL data={this.state.databaseData} roommate="Roomie #1" />
+        <ClaimedTL data={this.state.databaseData} roommate="Roomie #2" />
+        <CompletedTL data={this.state.databaseData} />
         <ScoreBoard />
       </div>
     )
