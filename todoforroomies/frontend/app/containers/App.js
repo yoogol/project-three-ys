@@ -58,7 +58,13 @@ const App = React.createClass ({
       <div>
         <Title />
         <AddButton />
-        <AddForm />
+        <AddForm
+          taskName={this.taskName}
+          createdBy={this.created}
+          timeToComplete={this.task}
+          dateDue={this.dateDue}
+          points={this.points}
+          />
         <TodoList />
         <ClaimedTL />
         <ClaimedTL />

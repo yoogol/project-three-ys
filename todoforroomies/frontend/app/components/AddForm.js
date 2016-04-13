@@ -26,9 +26,8 @@ const AddForm = React.createClass ({
           <input
             style={taskStyle}
             placeholder="laundry etc."
-            value={this.state.taskName}
+            value={this.props.taskName}
             onChange={this.handleTaskName}
-
             />
           <br /><br/>
 
@@ -37,7 +36,7 @@ const AddForm = React.createClass ({
             style={formStyle}
             type='text'
             placeholder='Your Name'
-            value={this.state.createdBy}
+            value={this.props.createdBy}
             onChange={this.handleCreatedBy}
             />
           <br /><br />
@@ -48,7 +47,7 @@ const AddForm = React.createClass ({
             style={formStyle}
             type='text'
             placeholder="Enter # of minutes"
-            value={this.state.timeToComplete}
+            value={this.props.timeToComplete}
             onChange={this.handleTimeToComplete}
             />
           <br /><br />
@@ -58,7 +57,7 @@ const AddForm = React.createClass ({
             type='date'
             placeholder="pick a date"
             style={formStyle}
-            value={this.state.dateDue}
+            value={this.props.dateDue}
             onChange={this.handleDateDue}
             />
           <br /><br />
@@ -67,7 +66,8 @@ const AddForm = React.createClass ({
           <input
             type='number'
             style={pointStyle}
-            onChange={this.handleTask}
+            value={this.props.points}
+            onChange={this.handlePoints}
             />
 
           <br /><br />
