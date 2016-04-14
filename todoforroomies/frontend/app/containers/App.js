@@ -8,6 +8,7 @@ import CompletedTL from './CompletedTL';
 import ScoreBoard from './ScoreBoard';
 import AjaxHelpers from '../utils/AjaxHelpers';
 import LoginForm from '../components/LoginForm';
+import ScoreBoardButton from '../components/ScoreBoardButton'
 import InfoBtn from "../fsc/InfoBtn";
 import ScoreBoardBtn from "../fsc/ScoreBoardBtn";
 require('../style/Styles.css');
@@ -20,12 +21,13 @@ const App = React.createClass ({
       completeTodos: [],
       claimedTodosR1: [],
       claimedTodosR2: [],
-      createdBy: '',
-      task: '',
-      timeToComplete: '',
-      dateDue:'',
       roommate1: "",
-      roommate2: ""
+      roommate2: "",
+      typeOfFormActivated: "",
+      oldtodoid: '',
+      ajaxResponse: '',
+      todoToEdit: ''
+
     }
   },
   handleLoginSubmit: function(e) {
@@ -33,21 +35,85 @@ const App = React.createClass ({
       roommate1: e.target.value
     })
   },
-  handleEditButton: function() {
-    console.log("edit button clicked")
+  handleScoreBoardButton: function() {
+    console.log("scoreboard is called");
+    this.setState ({
+      typeOfFormActivated: "ScoreBoard",
+    })
   },
-  handleDeleteButton: function() {
-    console.log("delete button clicked")
+  displayScoreBoard: function() {
+    if (this.state.typeOfFormActivated == "ScoreBoard") {
+      return (
+        <ScoreBoard roommate1={this.state.roommate1} roommate2={this.state.roommate2}/>
+      )
+    }
+  },
+  handleEditButton: function(e) {
+    console.log("edit button clicked");
+    console.log(e.target.value)
+    this.setState ({
+      typeOfFormActivated: "Edit",
+      oldtodoid: e.target.value
+    })
+  },
+  handleDeleteButton: function(e) {
+    console.log("delete button clicked");
+    console.log(e.target.value);
+    let todoToDeleteId = e.target.value;
+    AjaxHelpers.deleteToDo(todoToDeleteId).then(function(response) {
+      console.log(response);
+      this.setState ({
+        ajaxResponse: response
+      })
+    }.bind(this))
   },
   handleCheckBox: function() {
     console.log("checkbox clicked")
   },
 
   handleAddButton: function() {
-    console.log("add button clicked")
+    console.log("add button clicked");
+    this.setState ({
+      typeOfFormActivated: "Add"
+    });
+  },
+  displayAddForm: function() {
+    if (this.state.typeOfFormActivated == "Add") {
+      console.log("add is called")
+      return (
+        <AddForm
+          userName={this.state.roommate1}
+          typeOfFormActivated={this.state.typeOfFormActivated}
+          todoToEdit={this.state.todoToEdit}
+          />
+      )
+    } else if (this.state.typeOfFormActivated == "Edit") {
+      console.log("edit is called")
+      console.log(this.state.oldtodoid);
+      let oldtodoid = this.state.oldtodoid;
+      console.log(this.state.incompleteTodos)
+      let todoToEdit = this.state.incompleteTodos.filter(function(todo) {
+        if (todo._id == oldtodoid) {
+          return todo
+        }
+      });
+      console.log(todoToEdit);
+      this.setState ({
+        todoToEdit: todoToEdit[0]
+      });
+      return (
+        <AddForm
+          userName={this.state.roommate1}
+          typeOfFormActivated={this.state.typeOfFormActivated}
+          todoToEdit={this.state.todoToEdit}
+          />
+      )
+    } else {
+      return
+    }
   },
   handleAddForm: function() {
-    console.log("add form submitted")
+    console.log("add form submitted");
   },
 
   componentDidMount: function() {
@@ -91,40 +157,6 @@ const App = React.createClass ({
     }.bind(this));
   },
 
-  createdBy: function(e) {
-    this.setState({
-      created: e.target.value
-    })
-  },
-
-  taskName: function(e) {
-    this.setState({
-      task: e.target.value
-    })
-  },
-
-  timeToComplete: function(e) {
-    this.setState({
-      timeToComplete: e.target.value
-    })
-  },
-
-  dateDue: function(e) {
-    this.setState({
-      dateDue: e.target.value
-    })
-  },
-
-  points: function(e) {
-    this.setState({
-      points: e.target.value
-    })
-  },
-
-  handleSubmit: function(e) {
-    e.preventDefault();
-  },
-
   render: function() {
     return (
       <div>
@@ -132,14 +164,12 @@ const App = React.createClass ({
         <Title className="title"/>
         <ScoreBoardBtn />
         <LoginForm handleLoginSubmit={this.handleLoginSubmit}/>
-        <AddButton />
-        <AddForm
-          taskName={this.taskName}
-          createdBy={this.created}
-          timeToComplete={this.task}
-          dateDue={this.dateDue}
-          points={this.points}
-        />
+        <ScoreBoardButton handleScoreBoardButton={this.handleScoreBoardButton}/>
+        {this.displayScoreBoard()}
+        <AddButton
+          handleAddButton={this.handleAddButton}
+          />
+        {this.displayAddForm()}
         <div className="main-todos-container">
           <TodoList data={this.state.incompleteTodos} handleEditButton={this.handleEditButton} handleDeleteButton={this.handleDeleteButton}/>
           <div className="roommate-containers">
@@ -148,7 +178,6 @@ const App = React.createClass ({
           </div>
           <CompletedTL data={this.state.completeTodos} />
         </div>
-        <ScoreBoard roommate1={this.state.roommate1} roommate2={this.state.roommate2}/>
       </div>
     )
   }
