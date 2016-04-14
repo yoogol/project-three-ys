@@ -1,4 +1,3 @@
-
 * {
   box-sizing: border-box;
   width:100%;
@@ -9,18 +8,7 @@ body {
   color: white;
   justify-content: center;
   display: flex;
-  font-family: sans-serif;
-}
-
-.main-todos-container {
-  display:flex;
-  flex-flow: column nowrap;
-}
-
-.unclaimed-container,
-.roommate-containers,
-.completed-container {
-  width: 30%;
+  font-family: 'Libre Baskerville', serif;
 }
 
 .label {
@@ -47,4 +35,65 @@ body {
   background-color: #1da1f2;
   color: white;
   padding: 0px;
+}
+
+/* CONTAINER STYLES */
+
+h3 {
+  font-family: 'Righteous', cursive;
+  font-size:30px;
+  text-align:center;
+  margin:0;
+}
+
+.main-todos-container {
+  display:flex;
+  flex-flow: row nowrap;
+  justify-content:space-around;
+}
+
+.unclaimed-container,
+.completed-container {
+  width: 30%;
+}
+
+.roommate-containers {
+  width:25%;
+}
+
+.container-title {
+  padding:5px 0;
+  background:purple;
+  border-radius:15px;
+}
+
+.for-all-containers {
+  padding:20px;
+  background:pink;
+  border-radius:15px;
+  margin:10px 0;
+}
+
+.headline {
+  font-family: 'Righteous', cursive;
+  font-size:20px;
+}
+
+.todos-flex-container,
+.todo-buttons {
+  display:flex;
+  flex-flow:row nowrap;
+  justify-content:space-between;
+}
+
+.todos-left-container,
+.points,
+.todo-checkbox,
+.todos-right-container {
+  width:auto;
+  margin: 0 5px;
+}
+
+.todos-left-container {
+  margin-top:5px;
 }
