@@ -4,7 +4,6 @@ import OneToDo from "../components/OneToDo";
 const CompletedTL = React.createClass ({
   render: function() {
     const singleToDo = this.props.data.map((todo,index) => {
-
       return(
         <div key={index}>
           <OneToDo handleCheckBox={this.props.handleCheckBox} ToDoItem={todo} parentComponent="CompletedTL" />
