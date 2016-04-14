@@ -17,14 +17,16 @@ export default function() {
     });
   });
 
-  api.put('/todo', (req, res) => {
-    collection.update({"_id": ObjectID(req.body._id)}, req.body, {w:1} , (err, result) => {
+  api.put('/todo/:oldtodoid', (req, res) => {
+    console.log(req.params);
+    collection.update({"_id": ObjectID(req.params.oldtodoid)}, req.body, {w:1} , (err, result) => {
       res.json(result);
     });
   });
 
-  api.delete('/todo', (req, res) => {
-    collection.remove({"_id": ObjectID(req.body._id)}, (err, result) => {res.json(result);
+  api.delete('/todo/:todoToDeleteId', (req, res) => {
+    console.log(req.params);
+    collection.remove({"_id": ObjectID(req.params.todoToDeleteId)}, (err, result) => {res.json(result);
     });
   });
   return api;

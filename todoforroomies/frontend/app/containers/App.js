@@ -21,7 +21,10 @@ const App = React.createClass ({
       roommate1: "",
       roommate2: "",
       typeOfFormActivated: "",
-      oldtodoid: ''
+      oldtodoid: '',
+      ajaxResponse: '',
+      todoToEdit: ''
+
     }
   },
   handleLoginSubmit: function(e) {
@@ -50,8 +53,16 @@ const App = React.createClass ({
       oldtodoid: e.target.value
     })
   },
-  handleDeleteButton: function() {
-    console.log("delete button clicked")
+  handleDeleteButton: function(e) {
+    console.log("delete button clicked");
+    console.log(e.target.value);
+    let todoToDeleteId = e.target.value;
+    AjaxHelpers.deleteToDo(todoToDeleteId).then(function(response) {
+      console.log(response);
+      this.setState ({
+        ajaxResponse: response
+      })
+    }.bind(this))
   },
   handleCheckBox: function() {
     console.log("checkbox clicked")
@@ -64,12 +75,34 @@ const App = React.createClass ({
     });
   },
   displayAddForm: function() {
-    if (this.state.typeOfFormActivated == "Add" || this.state.typeOfFormActivated == "Edit") {
+    if (this.state.typeOfFormActivated == "Add") {
+      console.log("add is called")
       return (
         <AddForm
           userName={this.state.roommate1}
           typeOfFormActivated={this.state.typeOfFormActivated}
-          oldtodoid={this.state.oldtodoid}
+          todoToEdit={this.state.todoToEdit}
+          />
+      )
+    } else if (this.state.typeOfFormActivated == "Edit") {
+      console.log("edit is called")
+      console.log(this.state.oldtodoid);
+      let oldtodoid = this.state.oldtodoid;
+      console.log(this.state.incompleteTodos)
+      let todoToEdit = this.state.incompleteTodos.filter(function(todo) {
+        if (todo._id == oldtodoid) {
+          return todo
+        }
+      });
+      console.log(todoToEdit);
+      this.setState ({
+        todoToEdit: todoToEdit[0]
+      });
+      return (
+        <AddForm
+          userName={this.state.roommate1}
+          typeOfFormActivated={this.state.typeOfFormActivated}
+          todoToEdit={this.state.todoToEdit}
           />
       )
     } else {
@@ -131,7 +164,10 @@ const App = React.createClass ({
         <ScoreBoardButton handleScoreBoardButton={this.handleScoreBoardButton}/>
         <hr></hr>
         {this.displayScoreBoard()}
-        <AddButton handleAddButton={this.handleAddButton}/>
+        <AddButton
+          handleAddButton={this.handleAddButton}
+
+          />
         <hr></hr>
         {this.displayAddForm()}
         <hr></hr>

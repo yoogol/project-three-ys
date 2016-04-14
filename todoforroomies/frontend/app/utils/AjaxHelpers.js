@@ -9,10 +9,13 @@ const AjaxHelpers = {
     return axios.post('http://localhost:3000/api/todo', todo);
   },
   editToDo: function(todo, oldtodoid) {
-    return axios.put('http://localhost:3000/api/todo' + oldtodoid, todo);
+    console.log(oldtodoid);
+    console.log(todo);
+    return axios.put('http://localhost:3000/api/todo/' + oldtodoid, todo);
   },
   deleteToDo: function(todo) {
-    return axios.delete('http://localhost:3000/api/todo', todo);
+    console.log(todo);
+    return axios.delete('http://localhost:3000/api/todo/' +  todo);
   }
 }
 

@@ -3,13 +3,29 @@ import AjaxHelpers from '../utils/AjaxHelpers';
 
 const AddForm = React.createClass ({
   getInitialState: function() {
+    // console.log(new Date(this.props.todoToEdit.deadline).getDate());
+    // let deadlineYear = new Date(this.props.todoToEdit.deadline).getFullYear();
+    // let deadlineMonth = function() {
+    //   if (Date(this.props.todoToEdit.deadline).getMonth().length == 1) {
+    //     return "0" + Date(this.props.todoToEdit.deadline).getMonth()
+    //   } else {
+    //     return Date(this.props.todoToEdit.deadline).getMonth()
+    //   }
+    // };
+    // let deadlineDay = function() {
+    //   if (Date(this.props.todoToEdit.deadline).getDate().length == 1) {
+    //     return "0" + Date(this.props.todoToEdit.deadline).getDate()
+    //   } else {
+    //     return Date(this.props.todoToEdit.deadline).getDate()
+    //   }
+    // };
+    // let deadline = deadlineYear + "-" + deadlineMonth() + "-" + deadlineDay();
     return {
-      headline: '',
-      deadline: '',
-      timeNeeded: 0,
-      yuckiness: 0,
+      headline: this.props.todoToEdit.headline || '',
+      deadline: new Date(this.props.todoToEdit.deadline) || new Date(),
+      timeNeeded: this.props.todoToEdit.timeNeeded || 0,
+      yuckiness: this.props.todoToEdit.yuckiness || 0,
       pointsWorth: this.calculatePoints(),
-      _id: ''
     }
   },
   handleHeadline: function(e){
@@ -64,25 +80,10 @@ const AddForm = React.createClass ({
 
       AjaxHelpers.addNewToDo(newTask).then(function(response) {
         console.log(response);
-        this.setState ({
-          headline: '',
-          deadline: '',
-          timeNeeded:0 ,
-          yuckiness: 0,
-          pointsWorth: this.calculatePoints()
-        })
       }.bind(this))
     } else if (this.props.typeOfFormActivated == "Edit"){
-      AjaxHelpers.editToDo(newTask, this.state._id).then(function(response) {
+      AjaxHelpers.editToDo(newTask, this.props.todoToEdit._id).then(function(response) {
         console.log(response);
-        this.setState ({
-          headline: '',
-          deadline: '',
-          timeNeeded: 0,
-          yuckiness: 0,
-          pointsWorth: this.calculatePoints(),
-          _id: ''
-        });
       }.bind(this))
     }
   },
@@ -91,17 +92,17 @@ const AddForm = React.createClass ({
       <div>
         <form onSubmit={this.handleSubmit} style={formStyle}><br />
 
-          <label>Enter Your Task: </label>
+          <label>Task to Complete: </label>
           <input
             style={taskStyle}
             type='text'
-            placeholder="laundry etc."
+            placeholder="do laundry, wash dishes etc."
             value={this.state.headline}
             onChange={this.handleHeadline}
             />
           <br /><br/>
 
-          <label>Completion Deadline: </label>
+          <label>Need to Be Completed By: </label>
           <input
             type='date'
             placeholder="pick a date"
