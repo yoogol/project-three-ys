@@ -51,7 +51,7 @@ const AddForm = React.createClass ({
   },
   handlePointsWorth: function(e){
     return (
-      <p>This task is worth {this.state.pointsWorth} points!</p>
+      <p className="label">This task is worth {this.state.pointsWorth} points!</p>
     )
   },
   calculatePoints: function(){
@@ -91,7 +91,7 @@ const AddForm = React.createClass ({
   render: function() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit} style={formStyle}><br />
+        <form onSubmit={this.handleSubmit} style={formStyle} className="form"><br />
           <label className="label">Task to Complete: </label>
           <input
             style={taskStyle}
@@ -102,7 +102,7 @@ const AddForm = React.createClass ({
             />
           <br /><br/>
 
-          <label>Need to Be Completed By: </label>
+          <label className="label">Need to Be Completed By: </label>
           <input
             type='date'
             placeholder="pick a date"
@@ -112,7 +112,7 @@ const AddForm = React.createClass ({
             />
           <br /><br />
 
-          <label>Est. Time to Complete (mins): </label>
+          <label className="label">Est. Time to Complete (mins): </label>
           <input
             style={formStyle}
             type='number'
@@ -121,7 +121,7 @@ const AddForm = React.createClass ({
             onChange={this.handleTimeNeeded}
             />
           <br /><br />
-          <label>How yucky is the task from 1 to 10: </label>
+          <label className="label">How yucky is the task from 1 to 10: </label>
           <input
             style={formStyle}
             type='number'
@@ -129,11 +129,11 @@ const AddForm = React.createClass ({
             value={this.state.yuckiness}
             onChange={this.handleYuckiness}
             />
-          <br /><br />
-          {this.handlePointsWorth()}
-          <br /><br />
 
-          <button className="button" type="submit">Submit</button>
+          <label className="label"><strong>{this.handlePointsWorth()}</strong></label>
+          <br />
+
+          <button className="button submit-button" type="submit">Submit</button>
         </form>
       </div>
     )

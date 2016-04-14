@@ -1,7 +1,10 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans|Raleway);
 
 * {
   box-sizing: border-box;
   width:100%;
+  margin: 0px 5px;
+
 }
 
 body {
@@ -25,26 +28,70 @@ body {
 
 .label {
   color: Yellow;
+  padding-left: 2%;
 }
 
 .title {
   background-color: purple;
   font-size: 4rem;
   color: orange;
-  padding: 0;
+  padding: 5px;
   box-shadow: 0px 3px 3px rgba(0,0,0,0.7);
   opacity: 0.9;
+  width: 40%;
+  font-family: open sans;
+
 }
 
 .button {
   border: 0px;
   font-size: 1rem;
   width: 108px;
-  height: 27px;
+  height: 30px;
   border-radius: 15px;
   cursor: pointer;
   font-weight: normal;
-  background-color: #1da1f2;
+  background-color: #008cfc;
   color: white;
-  padding: 0px;
+}
+
+.add-button {
+  margin-bottom: 20px;
+}
+.submit-button {
+  background: grey;
+  margin: -20px 10px 10px 10px;
+}
+
+.scoreboard-button {
+  font-size: 1.2rem;
+  width: 230px;
+  height: 30px;
+  border: 0px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #e91d00;
+  color: white;
+
+  margin: 15px 0px 15px 0px;
+}
+
+strong {
+  font-size: 1.4rem;
+}
+
+.form {
+  background-color: blue;
+  border-radius: 10px;
+  margin: 5px 0px 10px 5px;
+}
+
+.welcome-message {
+  font: sans-serif;
+  font-size: 1.8rem;
+  padding-bottom: 12px;
+}
+
+.login {
+  padding-bottom: 8px;
 }

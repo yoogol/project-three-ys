@@ -54,11 +54,11 @@ const LoginForm = React.createClass ({
   render: function() {
     return (
       <div>
-        <h2>Welcome message</h2>
-        <h3>Please login or proceed as a guest.</h3>
-        <button onClick={this.handleLoginPathButton}>Login</button>
-        <button onClick={this.handleNoLoginPathButton}>Just go in</button>
-        <hr></hr>
+        <h2 className="welcome-message">Welcome to Roomies</h2>
+        <h3 className="login">Please login or proceed as a guest.</h3>
+        <button className="button" onClick={this.handleLoginPathButton}>Login</button>
+        <button className="button" onClick={this.handleNoLoginPathButton}>Just go in</button>
+        {/* <hr></hr> */}
         {this.displayLogin()}
 
       </div>
