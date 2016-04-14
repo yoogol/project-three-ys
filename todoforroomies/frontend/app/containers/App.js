@@ -11,7 +11,7 @@ import LoginForm from '../components/LoginForm';
 import ScoreBoardButton from '../components/ScoreBoardButton'
 import InfoBtn from "../fsc/InfoBtn";
 import ScoreBoardBtn from "../fsc/ScoreBoardBtn";
-require('../style/Styles.css');
+require ("../style/Styles.css");
 
 const App = React.createClass ({
 
