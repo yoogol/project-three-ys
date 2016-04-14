@@ -3,11 +3,11 @@ import OneToDo from "../components/OneToDo"
 
 const TodoList = React.createClass ({
   render: function() {
+    console.log(this.props.handleEditButton);
     const singleToDo = this.props.data.map((todo,index) => {
-      console.log("todo",todo);
       return (
         <div key={index}>
-          <OneToDo ToDoItem={todo} parentComponent="TodoList" />
+          <OneToDo handleEditButton={this.props.handleEditButton} handleDeleteButton={this.props.handleDeleteButton} ToDoItem={todo} parentComponent="TodoList" />
         </div>
       )
     });

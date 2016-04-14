@@ -6,7 +6,8 @@ import TodoList from './TodoList';
 import ClaimedTL from './ClaimedTL';
 import CompletedTL from './CompletedTL';
 import ScoreBoard from './ScoreBoard';
-import AjaxHelpers from '../utils/AjaxHelpers'
+import AjaxHelpers from '../utils/AjaxHelpers';
+import LoginForm from '../components/LoginForm';
 
 const App = React.createClass ({
 
@@ -19,24 +20,40 @@ const App = React.createClass ({
       createdBy: '',
       task: '',
       timeToComplete: '',
-      dateDue:''
+      dateDue:'',
+      roommate1: "",
+      roommate2: ""
     }
   },
+  handleLoginSubmit: function(e) {
+    this.setState({
+      roommate1: e.target.value
+    })
+  },
+  handleEditButton: function() {
+    console.log("edit button clicked")
+  },
+  handleDeleteButton: function() {
+    console.log("delete button clicked")
+  },
+  handleCheckBox: function() {
+    console.log("checkbox clicked")
+  },
+
   handleAddButton: function() {
     console.log("add button clicked")
   },
   handleAddForm: function() {
     console.log("add form submitted")
   },
+
   componentDidMount: function() {
     AjaxHelpers.getAllToDos().then(function(response) {
-      console.log(response.data.todos)
       let incompleteTodos = response.data.todos.filter(function(todo) {
         if (todo.completedStatus == false) {
           return true
         }
       });
-      console.log("incomplete: ", incompleteTodos );
       this.setState({
         incompleteTodos: incompleteTodos
       });
@@ -46,27 +63,24 @@ const App = React.createClass ({
           return true
         }
       });
-      console.log("complete: ", completeTodos );
       this.setState({
         completeTodos: completeTodos
       });
 
       let claimedTodosR1 = response.data.todos.filter(function(todo) {
-        if (todo.roommate == 1) {
+        if (todo.roommate == 1 && todo.completedStatus == false) {
           return true
         }
       });
-      console.log("claimed by R1: ", claimedTodosR1 );
       this.setState({
         claimedTodosR1: claimedTodosR1
       });
 
       let claimedTodosR2 = response.data.todos.filter(function(todo) {
-        if (todo.roommate == 2) {
+        if (todo.roommate == 2 && todo.completedStatus == false) {
           return true
         }
       });
-      console.log("claimed by R2: ", claimedTodosR2 );
       this.setState({
         claimedTodosR2: claimedTodosR2
       });
@@ -112,6 +126,7 @@ const App = React.createClass ({
     return (
       <div>
         <Title />
+        <LoginForm handleLoginSubmit={this.handleLoginSubmit}/>
         <AddButton />
         <AddForm
           taskName={this.taskName}
@@ -120,15 +135,11 @@ const App = React.createClass ({
           dateDue={this.dateDue}
           points={this.points}
           />
-        <TodoList data={this.state.incompleteTodos}/>
-        <ClaimedTL data={this.state.claimedTodosR1} roommate="Roomie #1" />
-        <ClaimedTL data={this.state.claimedTodosR2} roommate="Roomie #2" />
+        <TodoList data={this.state.incompleteTodos} handleEditButton={this.handleEditButton} handleDeleteButton={this.handleDeleteButton}/>
+        <ClaimedTL handleCheckBox={this.handleCheckBox} data={this.state.claimedTodosR1} roommate="Roomie #1" />
+        <ClaimedTL handleCheckBox={this.handleCheckBox} data={this.state.claimedTodosR2} roommate="Roomie #2" />
         <CompletedTL data={this.state.completeTodos} />
-        <TodoList />
-        <ClaimedTL />
-        <ClaimedTL />
-        <CompletedTL />
-        <ScoreBoard />
+        <ScoreBoard roommate1={this.state.roommate1} roommate2={this.state.roommate2}/>
       </div>
     )
   }

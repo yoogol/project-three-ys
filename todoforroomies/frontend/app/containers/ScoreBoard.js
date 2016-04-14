@@ -5,7 +5,10 @@ const ScoreBoard = React.createClass ({
     return (
       <div>
         <h1>ScoreBoard</h1>
-        <div></div>
+        <h3>Roommate 1: {this.props.roommate1.name}</h3>
+        <div>This week's score: {this.props.roommate1.score}</div>
+        <h3>Roommate 2: {this.props.roommate2.name}</h3>
+        <div>This week's score: {this.props.roommate2.score}</div>
       </div>
     )
   }

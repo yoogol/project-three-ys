@@ -4,10 +4,10 @@ import OneToDo from "../components/OneToDo";
 const ClaimedTL = React.createClass ({
   render: function() {
     const singleToDo = this.props.data.map((todo,index) => {
-      console.log("todo",todo);
+
       return (
         <div key={index}>
-          <OneToDo ToDoItem={todo} parentComponent="ClaimedTL"/>
+          <OneToDo handleCheckBox={this.props.handleCheckBox} ToDoItem={todo} parentComponent="ClaimedTL"/>
         </div>
       )
     });
