@@ -6,7 +6,7 @@ const AddButton = React.createClass ({
   render: function() {
     return (
       <div>
-        <button className="button" onClick={this.props.handleAddButton}>Add Task</button>
+        <button className="button add-button" onClick={this.props.handleAddButton}>Add Task</button>
       </div>
     )
   }

@@ -12,8 +12,10 @@ const TodoList = React.createClass ({
     });
     return (
       <div className="unclaimed-container">
-        <h3>To Do List</h3>
-        <div className="unclaimed-todos">
+        <div className="container-title">
+          <h3>To Do List</h3>
+        </div>
+        <div className="unclaimed-todos for-all-containers">
           {singleToDo}
         </div>
       </div>

@@ -13,8 +13,10 @@ const ClaimedTL = React.createClass ({
     });
     return (
       <div className="claimed-container">
-        <h3>{this.props.roommate}</h3>
-        <div className="claimed-todos">
+        <div className="container-title">
+          <h3>{this.props.roommate}</h3>
+        </div>
+        <div className="claimed-todos for-all-containers">
           {singleToDo}
         </div>
       </div>
