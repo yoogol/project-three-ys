@@ -3,46 +3,68 @@ import React from 'react';
 const LoginForm = React.createClass ({
   getInitialState: function() {
     return {
+      loginPath: "",
       name: "",
       password: ""
     }
   },
+  handleLoginPathButton: function() {
+    this.setState ({
+      loginPath: "login"
+    })
+  },
+  handleNoLoginPathButton: function() {
+    this.setState ({
+      loginPath: "nologin"
+    })
+  },
   displayLogin: function() {
-    return (
-      <form onSubmit={this.handleLoginSubmit}>
-        <input
-          type="text"
-          placeholder="name"
-          value={this.state.name}
-          onChange={this.props.handleLoginName}
-          />
-        <input
-          type="text"
-          placeholder="password"
-          value={this.state.password}
-          onChange={this.props.handleLoginPassword}
-          />
-        <input type="submit"/>
-      </form>
-    )
+    if (this.state.loginPath === "login") {
+      return (
+        <form onSubmit={this.handleLoginSubmit}>
+          <h1>Please log in</h1>
+          <input
+            type="text"
+            placeholder="name"
+            value={this.state.name}
+            onChange={this.props.handleLoginName}
+            />
+          <input
+            type="text"
+            placeholder="password"
+            value={this.state.password}
+            onChange={this.props.handleLoginPassword}
+            />
+          <input type="submit"/>
+        </form>
+      )
+    } else if (this.state.loginPath === "nologin") {
+      return (
+        <div>
+            <h1>You are in!</h1>
+            <p>Please remember since you are not logged in your data will not be saved</p>
+        </div>
+
+      )
+    }
   },
   displayUnregisteredGreeting: function () {
 
   },
   render: function() {
     return (
-      <div style={LoginFormStyle}>
+      <div>
         <h2>Welcome message</h2>
-        <h3>Please login or proceede as a guest.</h3>
-        <button>Login</button>
-        <button>Just go in</button>
+        <h3>Please login or proceed as a guest.</h3>
+        <button onClick={this.handleLoginPathButton}>Login</button>
+        <button onClick={this.handleNoLoginPathButton}>Just go in</button>
+        <hr></hr>
+        {this.displayLogin()}
+
       </div>
     )
   }
 });
 
-let LoginFormStyle = {
-  border: '1px solid grey'
-}
 
 export default LoginForm;

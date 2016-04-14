@@ -3,7 +3,6 @@ import OneToDo from "../components/OneToDo"
 
 const TodoList = React.createClass ({
   render: function() {
-    console.log(this.props.handleEditButton);
     const singleToDo = this.props.data.map((todo,index) => {
       return (
         <div key={index}>

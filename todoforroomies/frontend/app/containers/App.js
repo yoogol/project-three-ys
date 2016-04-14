@@ -8,6 +8,7 @@ import CompletedTL from './CompletedTL';
 import ScoreBoard from './ScoreBoard';
 import AjaxHelpers from '../utils/AjaxHelpers';
 import LoginForm from '../components/LoginForm';
+import ScoreBoardButton from '../components/ScoreBoardButton'
 
 const App = React.createClass ({
 
@@ -17,12 +18,10 @@ const App = React.createClass ({
       completeTodos: [],
       claimedTodosR1: [],
       claimedTodosR2: [],
-      createdBy: '',
-      task: '',
-      timeToComplete: '',
-      dateDue:'',
       roommate1: "",
-      roommate2: ""
+      roommate2: "",
+      typeOfFormActivated: "",
+      oldtodoid: ''
     }
   },
   handleLoginSubmit: function(e) {
@@ -30,8 +29,26 @@ const App = React.createClass ({
       roommate1: e.target.value
     })
   },
-  handleEditButton: function() {
-    console.log("edit button clicked")
+  handleScoreBoardButton: function() {
+    console.log("scoreboard is called");
+    this.setState ({
+      typeOfFormActivated: "ScoreBoard",
+    })
+  },
+  displayScoreBoard: function() {
+    if (this.state.typeOfFormActivated == "ScoreBoard") {
+      return (
+        <ScoreBoard roommate1={this.state.roommate1} roommate2={this.state.roommate2}/>
+      )
+    }
+  },
+  handleEditButton: function(e) {
+    console.log("edit button clicked");
+    console.log(e.target.value)
+    this.setState ({
+      typeOfFormActivated: "Edit",
+      oldtodoid: e.target.value
+    })
   },
   handleDeleteButton: function() {
     console.log("delete button clicked")
@@ -41,10 +58,26 @@ const App = React.createClass ({
   },
 
   handleAddButton: function() {
-    console.log("add button clicked")
+    console.log("add button clicked");
+    this.setState ({
+      typeOfFormActivated: "Add"
+    });
+  },
+  displayAddForm: function() {
+    if (this.state.typeOfFormActivated == "Add" || this.state.typeOfFormActivated == "Edit") {
+      return (
+        <AddForm
+          userName={this.state.roommate1}
+          typeOfFormActivated={this.state.typeOfFormActivated}
+          oldtodoid={this.state.oldtodoid}
+          />
+      )
+    } else {
+      return
+    }
   },
   handleAddForm: function() {
-    console.log("add form submitted")
+    console.log("add form submitted");
   },
 
   componentDidMount: function() {
@@ -88,58 +121,29 @@ const App = React.createClass ({
     }.bind(this));
   },
 
-  createdBy: function(e) {
-    this.setState({
-      created: e.target.value
-    })
-  },
-
-  taskName: function(e) {
-    this.setState({
-      task: e.target.value
-    })
-  },
-
-  timeToComplete: function(e) {
-    this.setState({
-      timeToComplete: e.target.value
-    })
-  },
-
-  dateDue: function(e) {
-    this.setState({
-      dateDue: e.target.value
-    })
-  },
-
-  points: function(e) {
-    this.setState({
-      points: e.target.value
-    })
-  },
-
-  handleSubmit: function(e) {
-    e.preventDefault();
-  },
-
   render: function() {
     return (
       <div>
         <Title />
+        <hr></hr>
         <LoginForm handleLoginSubmit={this.handleLoginSubmit}/>
-        <AddButton />
-        <AddForm
-          taskName={this.taskName}
-          createdBy={this.created}
-          timeToComplete={this.task}
-          dateDue={this.dateDue}
-          points={this.points}
-          />
+        <hr></hr>
+        <ScoreBoardButton handleScoreBoardButton={this.handleScoreBoardButton}/>
+        <hr></hr>
+        {this.displayScoreBoard()}
+        <AddButton handleAddButton={this.handleAddButton}/>
+        <hr></hr>
+        {this.displayAddForm()}
+        <hr></hr>
         <TodoList data={this.state.incompleteTodos} handleEditButton={this.handleEditButton} handleDeleteButton={this.handleDeleteButton}/>
+        <hr></hr>
         <ClaimedTL handleCheckBox={this.handleCheckBox} data={this.state.claimedTodosR1} roommate="Roomie #1" />
+        <hr></hr>
         <ClaimedTL handleCheckBox={this.handleCheckBox} data={this.state.claimedTodosR2} roommate="Roomie #2" />
+        <hr></hr>
         <CompletedTL data={this.state.completeTodos} />
-        <ScoreBoard roommate1={this.state.roommate1} roommate2={this.state.roommate2}/>
+        <hr></hr>
+
       </div>
     )
   }

@@ -1,22 +1,91 @@
 import React from 'react';
+import AjaxHelpers from '../utils/AjaxHelpers';
 
 const AddForm = React.createClass ({
-  handleCreatedBy: function(e){
-    this.props.createdBy(e);
+  getInitialState: function() {
+    return {
+      headline: '',
+      deadline: '',
+      timeNeeded: 0,
+      yuckiness: 0,
+      pointsWorth: this.calculatePoints(),
+      _id: ''
+    }
   },
-  handleTaskName: function(e){
-    this.props.taskName(e)
+  handleHeadline: function(e){
+    this.setState({
+      headline: e.target.value
+    })
   },
-  handleTimeToComplete: function(e){
-    this.props.timeToComplete(e)
+  handleDeadline: function(e){
+    this.setState({
+      deadline: e.target.value
+    })
   },
-  handleDateDue: function(e){
-    this.props.dateDue(e)
+  handleTimeNeeded: function(e){
+    this.setState({
+      timeNeeded: e.target.value
+    })
   },
-  handlePoints: function(e){
-    this.props.points(e)
+  handleYuckiness: function(e) {
+    this.setState({
+      yuckiness: e.target.value
+    })
   },
+  handlePointsWorth: function(e){
+    return (
+      <p>This task is worth {this.state.pointsWorth} points!</p>
+    )
+  },
+  calculatePoints: function(){
+    console.log("calculation goes here");
+    return 100
+  },
+  handleSubmit: function(e) {
+    console.log("submit form button clicked")
+    e.preventDefault();
+    let newTask = {
+      headline: this.state.headline,
+      author: this.state.author,
+      deadline: this.state.deadline,
+      timeNeeded: this.state.timeNeeded,
+      yuckiness: this.state.yuckiness,
+      roommate: this.props.userName,
+      claimedStatus: false,
+      completedStatus: false,
+      timeCompleted: '',
+      timeCreated: new Date(),
+      pointsWorth: this.state.pointsWorth
+    };
+    console.log(newTask);
+    if (!newTask.headline) {
+      return
+    } else if (this.props.typeOfFormActivated == "Add") {
 
+      AjaxHelpers.addNewToDo(newTask).then(function(response) {
+        console.log(response);
+        this.setState ({
+          headline: '',
+          deadline: '',
+          timeNeeded:0 ,
+          yuckiness: 0,
+          pointsWorth: this.calculatePoints()
+        })
+      }.bind(this))
+    } else if (this.props.typeOfFormActivated == "Edit"){
+      AjaxHelpers.editToDo(newTask, this.state._id).then(function(response) {
+        console.log(response);
+        this.setState ({
+          headline: '',
+          deadline: '',
+          timeNeeded: 0,
+          yuckiness: 0,
+          pointsWorth: this.calculatePoints(),
+          _id: ''
+        });
+      }.bind(this))
+    }
+  },
   render: function() {
     return (
       <div>
@@ -25,61 +94,45 @@ const AddForm = React.createClass ({
           <label>Enter Your Task: </label>
           <input
             style={taskStyle}
+            type='text'
             placeholder="laundry etc."
-            value={this.props.taskName}
-            onChange={this.handleTaskName}
+            value={this.state.headline}
+            onChange={this.handleHeadline}
             />
           <br /><br/>
-
-          <label>Created By: </label>
-          <input
-            style={formStyle}
-            type='text'
-            placeholder='Your Name'
-            value={this.props.createdBy}
-            onChange={this.handleCreatedBy}
-            />
-          <br /><br />
-
-
-          <label>Est. Time to Complete (mins): </label>
-          <input
-            style={formStyle}
-            type='text'
-            placeholder="Enter # of minutes"
-            value={this.props.timeToComplete}
-            onChange={this.handleTimeToComplete}
-            />
-          <br /><br />
 
           <label>Completion Deadline: </label>
           <input
             type='date'
             placeholder="pick a date"
             style={formStyle}
-            value={this.props.dateDue}
-            onChange={this.handleDateDue}
+            value={this.state.deadline}
+            onChange={this.handleDeadline}
             />
           <br /><br />
 
-          <label>Points: </label>
+          <label>Est. Time to Complete (mins): </label>
           <input
+            style={formStyle}
             type='number'
-            style={pointStyle}
-            value={this.props.points}
-            onChange={this.handlePoints}
+            placeholder="Enter # of minutes"
+            value={this.state.timeNeeded}
+            onChange={this.handleTimeNeeded}
             />
-
           <br /><br />
-
-          <label> Recurring: </label>
+          <label>How yucky is the task from 1 to 10: </label>
           <input
-            type="checkbox"
-            defaultChecked
+            style={formStyle}
+            type='number'
+            placeholder="0"
+            value={this.state.yuckiness}
+            onChange={this.handleYuckiness}
             />
           <br /><br />
+          {this.handlePointsWorth()}
+          <br /><br />
 
-          <button onClick="">Submit</button>
+          <button type="submit">Submit</button>
         </form>
       </div>
     )

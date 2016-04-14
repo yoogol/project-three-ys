@@ -5,23 +5,28 @@ import TodoList from '../containers/TodoList';
 
 const OneToDo = React.createClass ({
   displayEditButton: function() {
-    console.log(this.props.handleEditButton);
     if (this.props.parentComponent == 'TodoList') {
-      return <button onClick={this.props.handleEditButton} type="button">E</button>
+      return <button onClick={this.props.handleEditButton} type="button"
+      value={this.props.ToDoItem._id}
+        >E</button>
     } else {
       return
     }
   },
   displyDeleteButton: function() {
     if (this.props.parentComponent == 'TodoList') {
-      return <button onClick={this.props.handleDeleteButton} type="button">D</button>
+      return <button onClick={this.props.handleDeleteButton} type="button"
+      value={this.props.ToDoItem._id}
+        >D</button>
     } else {
       return
     }
   },
   displayCheckBox: function() {
     if (this.props.parentComponent == 'CompletedTL' || this.props.parentComponent == 'ClaimedTL') {
-      return <button onClick={this.props.handleCheckBox} type="checkbox"></button>
+      return <button onClick={this.props.handleCheckBox} type="checkbox"
+      value={this.props.ToDoItem._id}
+        ></button>
     } else {
       return
     }
