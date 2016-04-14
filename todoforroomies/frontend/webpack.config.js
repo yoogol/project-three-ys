@@ -21,13 +21,13 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.js$/,
-        loaders: ['babel-loader'],
+        test: /\.jsx?$/,
+        loader: 'babel-loader',
         include: path.join(__dirname, 'app')
       },
       {
         test: /\.css$/,
-        loaders: ['style-loader!css-loader']
+        loader: 'style-loader!css-loader'
       }
     ],
     resolve: {

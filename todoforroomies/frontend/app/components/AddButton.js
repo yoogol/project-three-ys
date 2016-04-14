@@ -6,7 +6,7 @@ const AddButton = React.createClass ({
   render: function() {
     return (
       <div>
-        <button>Add Button</button>
+        <button className="button">Add Task</button>
       </div>
     )
   }

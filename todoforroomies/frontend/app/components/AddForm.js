@@ -81,7 +81,7 @@ const AddForm = React.createClass ({
             />
           <br /><br />
 
-          <button onClick="">Submit</button>
+          <button className="button" onClick="">Submit</button>
         </form>
       </div>
     )

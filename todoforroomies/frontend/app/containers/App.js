@@ -126,7 +126,7 @@ const App = React.createClass ({
   render: function() {
     return (
       <div>
-        <Title />
+        <Title className="title"/>
         <LoginForm handleLoginSubmit={this.handleLoginSubmit}/>
         <AddButton />
         <AddForm
