@@ -1,4 +1,6 @@
 import React from 'react';
+require('../style/Styles.css');
+
 
 const AddForm = React.createClass ({
   handleCreatedBy: function(e){
@@ -22,7 +24,7 @@ const AddForm = React.createClass ({
       <div>
         <form onSubmit={this.handleSubmit} style={formStyle}><br />
 
-          <label>Enter Your Task: </label>
+          <label className="label">Enter Your Task: </label>
           <input
             style={taskStyle}
             placeholder="laundry etc."
@@ -79,7 +81,7 @@ const AddForm = React.createClass ({
             />
           <br /><br />
 
-          <button onClick="">Submit</button>
+          <button className="button" onClick="">Submit</button>
         </form>
       </div>
     )

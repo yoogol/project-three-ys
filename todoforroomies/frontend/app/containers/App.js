@@ -10,6 +10,7 @@ import AjaxHelpers from '../utils/AjaxHelpers';
 import LoginForm from '../components/LoginForm';
 import InfoBtn from "../fsc/InfoBtn";
 import ScoreBoardBtn from "../fsc/ScoreBoardBtn";
+require('../style/Styles.css');
 
 const App = React.createClass ({
 
@@ -128,7 +129,7 @@ const App = React.createClass ({
     return (
       <div>
         <InfoBtn />
-        <Title />
+        <Title className="title"/>
         <ScoreBoardBtn />
         <LoginForm handleLoginSubmit={this.handleLoginSubmit}/>
         <AddButton />
