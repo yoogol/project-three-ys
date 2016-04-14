@@ -8,6 +8,7 @@ import CompletedTL from './CompletedTL';
 import ScoreBoard from './ScoreBoard';
 import AjaxHelpers from '../utils/AjaxHelpers';
 import LoginForm from '../components/LoginForm';
+require('../style/Styles.css');
 
 const App = React.createClass ({
 
