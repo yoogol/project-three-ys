@@ -11,7 +11,9 @@ import LoginForm from '../components/LoginForm';
 import ScoreBoardButton from '../components/ScoreBoardButton'
 import InfoBtn from "../fsc/InfoBtn";
 import ScoreBoardBtn from "../fsc/ScoreBoardBtn";
-require ("../style/Styles.css");
+import FormContainer from "./FormContainer";
+require('../style/Styles.css');
+
 
 const App = React.createClass ({
 
@@ -25,9 +27,8 @@ const App = React.createClass ({
       roommate2: "",
       typeOfFormActivated: "",
       oldtodoid: '',
+      todoToEdit: '',
       ajaxResponse: '',
-      todoToEdit: ''
-
     }
   },
   handleLoginSubmit: function(e) {
@@ -41,19 +42,24 @@ const App = React.createClass ({
       typeOfFormActivated: "ScoreBoard",
     })
   },
-  displayScoreBoard: function() {
-    if (this.state.typeOfFormActivated == "ScoreBoard") {
-      return (
-        <ScoreBoard roommate1={this.state.roommate1} roommate2={this.state.roommate2}/>
-      )
-    }
+  handleAddButton: function() {
+    console.log("add button clicked");
+    this.setState ({
+      typeOfFormActivated: "Add",
+      todoToEdit: ''
+    });
   },
   handleEditButton: function(e) {
     console.log("edit button clicked");
-    console.log(e.target.value)
+    console.log(e.target.value);
+    let todoToEdit = this.state.incompleteTodos.filter(function(todo) {
+      if (todo._id == e.target.value) {
+        return todo
+      }
+    });
     this.setState ({
       typeOfFormActivated: "Edit",
-      oldtodoid: e.target.value
+      todoToEdit: todoToEdit[0]
     })
   },
   handleDeleteButton: function(e) {
@@ -64,58 +70,26 @@ const App = React.createClass ({
       console.log(response);
       this.setState ({
         ajaxResponse: response
-      })
+      });
+      componentDidMount();
     }.bind(this))
+
   },
   handleCheckBox: function() {
     console.log("checkbox clicked")
   },
-
-  handleAddButton: function() {
-    console.log("add button clicked");
-    this.setState ({
-      typeOfFormActivated: "Add"
-    });
-  },
-  displayAddForm: function() {
-    if (this.state.typeOfFormActivated == "Add") {
-      console.log("add is called")
+  displayScoreBoard: function() {
+    if (this.state.typeOfFormActivated == "ScoreBoard") {
       return (
-        <AddForm
-          userName={this.state.roommate1}
-          typeOfFormActivated={this.state.typeOfFormActivated}
-          todoToEdit={this.state.todoToEdit}
-          />
+        <ScoreBoard roommate1={this.state.roommate1} roommate2={this.state.roommate2}/>
       )
-    } else if (this.state.typeOfFormActivated == "Edit") {
-      console.log("edit is called")
-      console.log(this.state.oldtodoid);
-      let oldtodoid = this.state.oldtodoid;
-      console.log(this.state.incompleteTodos)
-      let todoToEdit = this.state.incompleteTodos.filter(function(todo) {
-        if (todo._id == oldtodoid) {
-          return todo
-        }
-      });
-      console.log(todoToEdit);
-      this.setState ({
-        todoToEdit: todoToEdit[0]
-      });
-      return (
-        <AddForm
-          userName={this.state.roommate1}
-          typeOfFormActivated={this.state.typeOfFormActivated}
-          todoToEdit={this.state.todoToEdit}
-          />
-      )
-    } else {
-      return
     }
   },
-  handleAddForm: function() {
-    console.log("add form submitted");
+  displayForm: function() {
+      return (
+          <FormContainer userName={this.state.roommate1} typeOfFormActivated={this.state.typeOfFormActivated} todoToEdit={this.state.todoToEdit}/>
+      )
   },
-
   componentDidMount: function() {
     AjaxHelpers.getAllToDos().then(function(response) {
       let incompleteTodos = response.data.todos.filter(function(todo) {
@@ -156,7 +130,6 @@ const App = React.createClass ({
 
     }.bind(this));
   },
-
   render: function() {
     return (
       <div>
@@ -169,7 +142,7 @@ const App = React.createClass ({
         <AddButton
           handleAddButton={this.handleAddButton}
           />
-        {this.displayAddForm()}
+        {this.displayForm()}
         <div className="main-todos-container">
           <TodoList data={this.state.incompleteTodos} handleEditButton={this.handleEditButton} handleDeleteButton={this.handleDeleteButton}/>
           <div className="roommate-containers">

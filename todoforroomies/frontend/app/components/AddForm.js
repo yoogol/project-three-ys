@@ -4,34 +4,17 @@ require('../style/Styles.css');
 
 const AddForm = React.createClass ({
   getInitialState: function() {
-    // console.log(new Date(this.props.todoToEdit.deadline).getDate());
-    // let deadlineYear = new Date(this.props.todoToEdit.deadline).getFullYear();
-    // let deadlineMonth = function() {
-    //   if (Date(this.props.todoToEdit.deadline).getMonth().length == 1) {
-    //     return "0" + Date(this.props.todoToEdit.deadline).getMonth()
-    //   } else {
-    //     return Date(this.props.todoToEdit.deadline).getMonth()
-    //   }
-    // };
-    // let deadlineDay = function() {
-    //   if (Date(this.props.todoToEdit.deadline).getDate().length == 1) {
-    //     return "0" + Date(this.props.todoToEdit.deadline).getDate()
-    //   } else {
-    //     return Date(this.props.todoToEdit.deadline).getDate()
-    //   }
-    // };
-    // let deadline = deadlineYear + "-" + deadlineMonth() + "-" + deadlineDay();
     return {
       headline: this.props.todoToEdit.headline || '',
-      deadline: new Date(this.props.todoToEdit.deadline) || new Date(),
+      deadline: "",
       timeNeeded: this.props.todoToEdit.timeNeeded || 0,
       yuckiness: this.props.todoToEdit.yuckiness || 0,
-      pointsWorth: this.calculatePoints(),
+      pointsWorth: 100,
     }
   },
   handleHeadline: function(e){
     this.setState({
-      headline: e.target.value
+      headline: e.target.value,
     })
   },
   handleDeadline: function(e){
@@ -104,7 +87,7 @@ const AddForm = React.createClass ({
 
           <label className="label">Need to Be Completed By: </label>
           <input
-            type='date'
+            type='text'
             placeholder="pick a date"
             style={formStyle}
             value={this.state.deadline}
@@ -129,10 +112,8 @@ const AddForm = React.createClass ({
             value={this.state.yuckiness}
             onChange={this.handleYuckiness}
             />
-
           <label className="label"><strong>{this.handlePointsWorth()}</strong></label>
           <br />
-
           <button className="button submit-button" type="submit">Submit</button>
         </form>
       </div>
