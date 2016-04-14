@@ -11,7 +11,7 @@ const CompletedTL = React.createClass ({
       )
     })
     return (
-      <div>
+      <div className="completed-container">
         <h3>Completed</h3>
         <div className="completed-todos">
           {singleToDo}

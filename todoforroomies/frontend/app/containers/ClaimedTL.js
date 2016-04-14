@@ -12,7 +12,7 @@ const ClaimedTL = React.createClass ({
       )
     });
     return (
-      <div>
+      <div className="claimed-container">
         <h3>{this.props.roommate}</h3>
         <div className="claimed-todos">
           {singleToDo}

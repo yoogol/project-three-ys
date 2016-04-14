@@ -19,10 +19,19 @@ module.exports = {
     HtmlWebpackPluginConfig
   ],
   module: {
-    loaders: [{
-      test: /\.js$/,
-      loaders: ['babel-loader'],
-      include: path.join(__dirname, 'app')
-    }]
+    loaders: [
+      {
+        test: /\.jsx?$/,
+        loader: 'babel-loader',
+        include: path.join(__dirname, 'app')
+      },
+      {
+        test: /\.css$/,
+        loader: 'style-loader!css-loader'
+      }
+    ],
+    resolve: {
+      extensions: ['', '.js', '.jsx', '.css']
+    }
   }
 };

@@ -12,7 +12,7 @@ const TodoList = React.createClass ({
       )
     });
     return (
-      <div>
+      <div className="unclaimed-container">
         <h3>To Do List</h3>
         <div className="unclaimed-todos">
           {singleToDo}

@@ -1,0 +1,15 @@
+* {
+  box-sizing: border-box;
+  width:100%;
+}
+
+.main-todos-container {
+  display:flex;
+  flex-flow: column nowrap;
+}
+
+.unclaimed-container,
+.roommate-containers,
+.completed-container {
+  width: 30%;
+}

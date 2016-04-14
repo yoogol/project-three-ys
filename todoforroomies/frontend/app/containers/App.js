@@ -8,6 +8,8 @@ import CompletedTL from './CompletedTL';
 import ScoreBoard from './ScoreBoard';
 import AjaxHelpers from '../utils/AjaxHelpers';
 import LoginForm from '../components/LoginForm';
+import InfoBtn from "../fsc/InfoBtn";
+import ScoreBoardBtn from "../fsc/ScoreBoardBtn";
 
 const App = React.createClass ({
 
@@ -125,7 +127,9 @@ const App = React.createClass ({
   render: function() {
     return (
       <div>
+        <InfoBtn />
         <Title />
+        <ScoreBoardBtn />
         <LoginForm handleLoginSubmit={this.handleLoginSubmit}/>
         <AddButton />
         <AddForm
@@ -134,11 +138,15 @@ const App = React.createClass ({
           timeToComplete={this.task}
           dateDue={this.dateDue}
           points={this.points}
-          />
-        <TodoList data={this.state.incompleteTodos} handleEditButton={this.handleEditButton} handleDeleteButton={this.handleDeleteButton}/>
-        <ClaimedTL handleCheckBox={this.handleCheckBox} data={this.state.claimedTodosR1} roommate="Roomie #1" />
-        <ClaimedTL handleCheckBox={this.handleCheckBox} data={this.state.claimedTodosR2} roommate="Roomie #2" />
-        <CompletedTL data={this.state.completeTodos} />
+        />
+        <div className="main-todos-container">
+          <TodoList data={this.state.incompleteTodos} handleEditButton={this.handleEditButton} handleDeleteButton={this.handleDeleteButton}/>
+          <div className="roommate-containers">
+            <ClaimedTL handleCheckBox={this.handleCheckBox} data={this.state.claimedTodosR1} roommate="Roomie #1" />
+            <ClaimedTL handleCheckBox={this.handleCheckBox} data={this.state.claimedTodosR2} roommate="Roomie #2" />
+          </div>
+          <CompletedTL data={this.state.completeTodos} />
+        </div>
         <ScoreBoard roommate1={this.state.roommate1} roommate2={this.state.roommate2}/>
       </div>
     )
