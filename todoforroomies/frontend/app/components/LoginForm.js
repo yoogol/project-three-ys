@@ -18,6 +18,29 @@ const LoginForm = React.createClass ({
       loginPath: "nologin"
     })
   },
+  handleRegisterPathButton: function() {
+    this.setState ({
+      loginPath: "register"
+    })
+  },
+  handleLoginName: function(e) {
+    this.setState ({
+      name: e.target.value
+    })
+  },
+  handleLoginPassword: function(e) {
+    this.setState ({
+      password: e.target.value
+    })
+  },
+  handleRegisterSubmit: function(e) {
+    console.log("ajax call to add to db (check if unique)");
+    console.log("function to add name to state")
+  },
+  handleLoginSubmit: function() {
+    console.log("check if name is in db");
+    console.log("if yes, approve")
+  },
   displayLogin: function() {
     if (this.state.loginPath === "login") {
       return (
@@ -46,6 +69,25 @@ const LoginForm = React.createClass ({
         </div>
 
       )
+    } else if (this.state.loginPath == "register") {
+      return (
+        <form onSubmit={this.handleRegisterSubmit}>
+          <h1>Please register</h1>
+          <input
+            type="text"
+            placeholder="name"
+            value={this.state.name}
+            onChange={this.props.handleLoginName}
+            />
+          <input
+            type="text"
+            placeholder="password"
+            value={this.state.password}
+            onChange={this.props.handleLoginPassword}
+            />
+          <input type="submit"/>
+        </form>
+      )
     }
   },
   displayUnregisteredGreeting: function () {
@@ -54,10 +96,11 @@ const LoginForm = React.createClass ({
   render: function() {
     return (
       <div>
-        <h2 className="welcome-message">Welcome to Roomies</h2>
+        <h2 className="welcome-message">Welcome to Roomies, where dirty pots don't eat relationships</h2>
         <h3 className="login">Please login or proceed as a guest.</h3>
+        <button className="button" onClick={this.handleRegisterPathButton}>Register</button>
         <button className="button" onClick={this.handleLoginPathButton}>Login</button>
-        <button className="button" onClick={this.handleNoLoginPathButton}>Just go in</button>
+        <button className="button" onClick={this.handleNoLoginPathButton}>Just peek in</button>
         {/* <hr></hr> */}
         {this.displayLogin()}
 

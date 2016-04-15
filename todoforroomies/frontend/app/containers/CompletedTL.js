@@ -6,7 +6,9 @@ const CompletedTL = React.createClass ({
     const singleToDo = this.props.data.map((todo,index) => {
       return(
         <div key={index}>
-          <OneToDo handleCheckBox={this.props.handleCheckBox} ToDoItem={todo} parentComponent="CompletedTL" />
+          <OneToDo
+          handleUnCheckBox={this.props.handleUnCheckBox}
+          ToDoItem={todo} parentComponent="CompletedTL" />
         </div>
       )
     })

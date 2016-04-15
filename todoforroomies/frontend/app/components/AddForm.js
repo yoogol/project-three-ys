@@ -6,10 +6,10 @@ const AddForm = React.createClass ({
   getInitialState: function() {
     return {
       headline: this.props.todoToEdit.headline || '',
-      deadline: "",
-      timeNeeded: this.props.todoToEdit.timeNeeded || 0,
-      yuckiness: this.props.todoToEdit.yuckiness || 0,
-      pointsWorth: 100,
+      deadline: new Date(),
+      timeNeeded: this.props.todoToEdit.timeNeeded || 1,
+      yuckiness: this.props.todoToEdit.yuckiness || 1,
+      pointsWorth: 0,
     }
   },
   handleHeadline: function(e){
@@ -21,16 +21,19 @@ const AddForm = React.createClass ({
     this.setState({
       deadline: e.target.value
     })
+    this.calculatePoints()
   },
   handleTimeNeeded: function(e){
     this.setState({
       timeNeeded: e.target.value
     })
+    this.calculatePoints()
   },
   handleYuckiness: function(e) {
     this.setState({
       yuckiness: e.target.value
     })
+    this.calculatePoints()
   },
   handlePointsWorth: function(e){
     return (
@@ -39,7 +42,17 @@ const AddForm = React.createClass ({
   },
   calculatePoints: function(){
     console.log("calculation goes here");
-    return 100
+    let datePicked = Date.parse(new Date(this.state.deadline));
+    let todayDate = Date.parse(new Date());
+    console.log(datePicked);
+    console.log(todayDate);
+    let daysLeft = Math.floor((datePicked - todayDate)/86400);
+    console.log(daysLeft)
+    let points = daysLeft * this.state.timeNeeded * this.state.yuckiness;
+    console.log(points);
+    this.setState({
+      pointsWorth: points
+    })
   },
   handleSubmit: function(e) {
     console.log("submit form button clicked")
@@ -50,7 +63,7 @@ const AddForm = React.createClass ({
       deadline: this.state.deadline,
       timeNeeded: this.state.timeNeeded,
       yuckiness: this.state.yuckiness,
-      roommate: this.props.userName,
+      roommate: 0,
       claimedStatus: false,
       completedStatus: false,
       timeCompleted: '',
@@ -64,6 +77,8 @@ const AddForm = React.createClass ({
 
       AjaxHelpers.addNewToDo(newTask).then(function(response) {
         console.log(response);
+        this.props.loadAllTasks()
+
       }.bind(this))
     } else if (this.props.typeOfFormActivated == "Edit"){
       AjaxHelpers.editToDo(newTask, this.props.todoToEdit._id).then(function(response) {
@@ -76,6 +91,7 @@ const AddForm = React.createClass ({
       <div>
         <form onSubmit={this.handleSubmit} style={formStyle} className="form"><br />
           <label className="label">Task to Complete: </label>
+          <br /><br />
           <input
             style={taskStyle}
             type='text'
@@ -86,8 +102,9 @@ const AddForm = React.createClass ({
           <br /><br/>
 
           <label className="label">Need to Be Completed By: </label>
+          <br /><br />
           <input
-            type='text'
+            type='datetime-local'
             placeholder="pick a date"
             style={formStyle}
             value={this.state.deadline}
@@ -96,6 +113,7 @@ const AddForm = React.createClass ({
           <br /><br />
 
           <label className="label">Est. Time to Complete (mins): </label>
+          <br /><br />
           <input
             style={formStyle}
             type='number'
@@ -105,6 +123,7 @@ const AddForm = React.createClass ({
             />
           <br /><br />
           <label className="label">How yucky is the task from 1 to 10: </label>
+          <br /><br />
           <input
             style={formStyle}
             type='number'

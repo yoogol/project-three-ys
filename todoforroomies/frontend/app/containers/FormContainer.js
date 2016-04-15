@@ -10,6 +10,7 @@ const FormContainer = React.createClass ({
           userName={this.props.roommate1}
           typeOfFormActivated={this.props.typeOfFormActivated}
           todoToEdit={this.props.todoToEdit}
+          loadAllTasks={this.props.loadAllTasks}
           />
       )
     } else if (this.props.typeOfFormActivated == "Edit") {

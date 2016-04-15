@@ -19,7 +19,7 @@ export default function() {
 
   api.put('/todo/:oldtodoid', (req, res) => {
     console.log(req.params);
-    collection.update({"_id": ObjectID(req.params.oldtodoid)}, req.body, {w:1} , (err, result) => {
+    collection.update({"_id": ObjectID(req.params.oldtodoid)}, {$set: req.body}, {w:1} , (err, result) => {
       res.json(result);
     });
   });
