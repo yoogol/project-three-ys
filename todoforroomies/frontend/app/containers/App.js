@@ -35,7 +35,6 @@ const App = React.createClass ({
 
       oldtodoid: '',
       todoToEdit: '',
-<<<<<<< HEAD
       ajaxResponse: '',
       currentUser: 0,
       showModal: true
