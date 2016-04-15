@@ -47,18 +47,20 @@ const LoginForm = React.createClass ({
         <form onSubmit={this.handleLoginSubmit}>
           <h1>Please log in</h1>
           <input
+            className="logininput"
             type="text"
             placeholder="name"
             value={this.state.name}
             onChange={this.props.handleLoginName}
             />
           <input
+            className="logininput"
             type="text"
-            placeholder="password"
+            placeholder="Password"
             value={this.state.password}
             onChange={this.props.handleLoginPassword}
             />
-          <input type="submit"/>
+          <input className="user-login-button" type="submit"/>
         </form>
       )
     } else if (this.state.loginPath === "nologin") {
@@ -98,9 +100,9 @@ const LoginForm = React.createClass ({
       <div>
         <h2 className="welcome-message">Welcome to Roomies, where dirty pots don't eat relationships</h2>
         <h3 className="login">Please login or proceed as a guest.</h3>
-        <button className="button" onClick={this.handleRegisterPathButton}>Register</button>
-        <button className="button" onClick={this.handleLoginPathButton}>Login</button>
-        <button className="button" onClick={this.handleNoLoginPathButton}>Just peek in</button>
+        <button className="button main-start-button" onClick={this.handleRegisterPathButton}>Register</button>
+        <button className="button main-start-button" onClick={this.handleLoginPathButton}>Login</button>
+        <button className="button main-start-button" onClick={this.handleNoLoginPathButton}>Just peek in</button>
         {/* <hr></hr> */}
         {this.displayLogin()}
 
