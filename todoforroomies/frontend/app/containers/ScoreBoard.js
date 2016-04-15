@@ -9,6 +9,7 @@ const ScoreBoard = React.createClass ({
         <div>This week's score: {this.props.roommate1score}</div>
         <h3>Roommate 2: {this.props.roommate2name}</h3>
         <div>This week's score: {this.props.roommate2score}</div>
+        <button onClick={this.props.closeBtn}>Close</button>
       </div>
     )
   }

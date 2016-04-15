@@ -123,7 +123,7 @@ const LoginForm = React.createClass ({
           <input
             className="logininput"
             type="text"
-            placeholder="name"
+            placeholder="User Name"
             value={this.state.name}
             onChange={this.handleLoginName}
             />

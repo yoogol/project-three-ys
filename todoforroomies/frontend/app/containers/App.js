@@ -1,5 +1,4 @@
 import React from 'react';
-var Button = require('react-bootstrap').Button;
 var Modal = require('react-bootstrap').Modal;
 
 import Title from '../fsc/Title';
@@ -8,6 +7,7 @@ import AddForm from '../components/AddForm';
 import TodoList from './TodoList';
 import ClaimedTL from './ClaimedTL';
 import CompletedTL from './CompletedTL';
+import Instructions from "../fsc/Instructions";
 import ScoreBoard from './ScoreBoard';
 import AjaxHelpers from '../utils/AjaxHelpers';
 import LoginForm from '../components/LoginForm';
@@ -17,7 +17,6 @@ import ScoreBoardBtn from "../fsc/ScoreBoardBtn";
 import FormContainer from "./FormContainer";
 import UserInfo from "../fsc/UserInfo";
 require('../style/Styles.css');
-
 
 const App = React.createClass ({
 
@@ -42,17 +41,49 @@ const App = React.createClass ({
       ajaxResponse: '',
       currentUser: '',
       currentGroup: "",
-      showModal: true
+      currentUser: 0,
+
+      showWelcomeModal: true,
+      showInstructionsModal: true,
+      showScoreboardModal: true,
+      showAddTaskModal: false,
     }
   },
-  //modal functions from react bootstrap:
-  close() {
-   this.setState({ showModal: false });
+
+  //modal functions from react bootstrap
+  welcomeClose() {
+    this.setState({ showWelcomeModal: false });
+  },
+  welcomeOpen() {
+    this.setState({ showWelcomeModal: true });
+  },
+  instructionsClose() {
+    this.setState({ showInstructionsModal: false });
+  },
+  instructionsOpen() {
+    this.setState({ showInstructionsModal: true });
+  },
+  scoreboardClose() {
+    this.setState({ showScoreboardModal: false });
+  },
+  scoreboardOpen() {
+    this.setState({ showScoreboardModal: true });
+  },
+  addTaskClose() {
+    this.setState({ showAddTaskModal: false });
+  },
+  addTaskOpen() {
+    this.setState({ showAddTaskModal: true });
   },
 
-  open() {
-     this.setState({ showModal: true });
+  handleInstructionsButton: function() {
+    console.log("instructions are called");
+    this.setState ({
+      typeOfFormActivated: "Instructions",
+    })
+    this.instructionsOpen();
   },
+
   //*******LOGIN/REGISTRATION*******//
   handleRegistration: function(user) {
     console.log("logging user:", user);
@@ -70,6 +101,8 @@ const App = React.createClass ({
     this.setState ({
       typeOfFormActivated: "ScoreBoard",
     })
+    this.scoreboardOpen();
+
   },
   handleAddButton: function() {
     console.log("add button clicked");
@@ -83,7 +116,9 @@ const App = React.createClass ({
         typeOfFormActivated: "",
         todoToEdit: ''
       });
-    }
+    };
+    this.addTaskOpen();
+
   },
   //*********ONE TODO BUTTONS***********//
   handleEditButton: function(e) {
@@ -163,22 +198,55 @@ const App = React.createClass ({
   },
 
   //********DISPLAY COMPONENTS**********//
+  displayInstructions: function() {
+    if (this.state.typeOfFormActivated == "Instructions") {
+      return (
+        <Modal
+          show={this.state.showInstructionsModal}
+          onHide={this.InstructionsClose}
+          className="pop-up-window"
+        >
+          <Instructions
+            closeBtn={this.instructionsClose}
+          />
+        </Modal>
+      )
+    }
+  },
+
   displayScoreBoard: function() {
     if (this.state.typeOfFormActivated == "ScoreBoard") {
       return (
-        <ScoreBoard
-          roommate1name={this.state.roommate1name}  roommate2name={this.state.roommate2name}
-          roommate1score={this.state.roommate1score}
-          roommate2score={this.state.roommate2score}
+        <Modal
+          show={this.state.showScoreboardModal}
+          onHide={this.scoreboardClose}
+          className="pop-up-window"
+        >
+          <ScoreBoard
+            closeBtn={this.scoreboardClose}
+            roommate1name={this.state.roommate1name}  roommate2name={this.state.roommate2name}
+            roommate1score={this.state.roommate1score}
+            roommate2score={this.state.roommate2score}
           />
+        </Modal>
       )
     }
   },
   displayForm: function() {
       return (
-          <FormContainer userName={this.state.roommate1} typeOfFormActivated={this.state.typeOfFormActivated} todoToEdit={this.state.todoToEdit}
-          loadAllTasks={this.loadAllTasks}
+        <Modal
+          show={this.state.showAddTaskModal}
+          onHide={this.addTaskClose}
+          className="pop-up-window"
+        >
+          <FormContainer
+            closeBtn={this.addTaskClose}
+            userName={this.state.roommate1}
+            typeOfFormActivated={this.state.typeOfFormActivated}
+            todoToEdit={this.state.todoToEdit}
+            loadAllTasks={this.loadAllTasks}
           />
+        </Modal>
       )
   },
   //**********RELOADING FROM DB***********//
@@ -238,18 +306,29 @@ const App = React.createClass ({
   render: function() {
     return (
       <div>
-        <Modal show={this.state.showModal} onHide={this.close} className="pop-up-window">
-          <LoginForm closeBtn={this.close} handleRegistration={this.handleRegistration}/>
+        <Modal show={this.state.showWelcomeModal} className="pop-up-window">
+          <LoginForm closeBtn={this.welcomeClose} handleRegistration={this.handleRegistration}/>
         </Modal>
-        <InfoBtn />
+
+        <InfoBtn
+          show={this.state.showInstructionsModal}
+          handleInstructionsButton={this.handleInstructionsButton}
+        />
+        {this.displayInstructions()}
+
         <Title className="title"/>
         <UserInfo currentGroup={this.state.currentGroup} currentUser={this.state.currentUser}/>
-        <ScoreBoardBtn handleScoreBoardButton={this.handleScoreBoardButton}/>
+
+        <ScoreBoardBtn show={this.state.showScoreboardModal}
+        handleScoreBoardButton={this.handleScoreBoardButton}/>
         {this.displayScoreBoard()}
+
         <AddButton
+          show={this.state.showAddTaskModal}
           handleAddButton={this.handleAddButton}
-          />
+        />
         {this.displayForm()}
+
         <div className="main-todos-container">
           <TodoList
             data={this.state.incompleteTodos} handleEditButton={this.handleEditButton} handleDeleteButton={this.handleDeleteButton}
@@ -258,6 +337,7 @@ const App = React.createClass ({
             handleClaimMenu={this.handleClaimMenu}
             handleClickOnClaimMenu={this.handleClickOnClaimMenu}
             />
+
           <div className="roommate-containers">
             <ClaimedTL
               handleCheckBox={this.handleCheckBox}
@@ -272,8 +352,10 @@ const App = React.createClass ({
               handleUnClaimButton={this.handleUnClaimButton}
             />
           </div>
-          <CompletedTL data={this.state.completeTodos}
-          handleUnCheckBox={this.handleUnCheckBox} />
+          <CompletedTL
+            data={this.state.completeTodos}
+            handleUnCheckBox={this.handleUnCheckBox}
+          />
         </div>
       </div>
     )
