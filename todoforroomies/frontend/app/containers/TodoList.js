@@ -13,6 +13,7 @@ const TodoList = React.createClass ({
             handleClaimButtonR1={this.props.handleClaimButtonR1}
             handleClaimButtonR2={this.props.handleClaimButtonR2}
             handleClaimMenu={this.props.handleClaimMenu}
+            handleClickOnClaimMenu={this.props.handleClickOnClaimMenu}
             parentComponent="TodoList" />
         </div>
       )

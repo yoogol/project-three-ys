@@ -33,24 +33,41 @@ const OneToDo = React.createClass ({
       return
     }
   },
-  displayClaimButtonR1: function() {
-    if (this.props.parentComponent == 'TodoList') {
-      return <button onClick={this.props.handleClaimButtonR1} type="button"
-      value={this.props.ToDoItem._id}
-        >Claim R1</button>
+  displayClaimDropdown: function(){
+    if (this.props.parentComponent == "TodoList"){
+      return(
+        <select
+          onChange={this.props.handleClaimMenu}
+          id={this.props.ToDoItem._id}
+          >
+          <option value="">Who is going to do this?</option>
+          <option value="1">Roomie 1</option>
+          <option value="2">Roomie 2</option>
+        </select>
+      );
     } else {
       return
-    }
+    };
   },
-  displayClaimButtonR2: function() {
-    if (this.props.parentComponent == 'TodoList') {
-      return <button onClick={this.props.handleClaimButtonR2} type="button"
-      value={this.props.ToDoItem._id}
-        >Claim R2</button>
-    } else {
-      return
-    }
-  },
+
+  // displayClaimButtonR1: function() {
+  //   if (this.props.parentComponent == 'TodoList') {
+  //     return <button onClick={this.props.handleClaimButtonR1} type="button"
+  //     value={this.props.ToDoItem._id}
+  //       >Claim R1</button>
+  //   } else {
+  //     return
+  //   }
+  // },
+  // displayClaimButtonR2: function() {
+  //   if (this.props.parentComponent == 'TodoList') {
+  //     return <button onClick={this.props.handleClaimButtonR2} type="button"
+  //     value={this.props.ToDoItem._id}
+  //       >Claim R2</button>
+  //   } else {
+  //     return
+  //   }
+  // },
   displayUnClaimButton: function() {
     if (this.props.parentComponent == 'ClaimedTL') {
       return <button onClick={this.props.handleUnClaimButton} type="button"
@@ -80,23 +97,10 @@ const OneToDo = React.createClass ({
       return
     }
   },
-  displayClaimDropdown: function(){
-    if (this.props.parentComponent == "TodoList"){
-      return(
-        <select onChange={this.props.handleClaimMenu}>
-          <option value="">Who is going to do this?</option>
-          <option value="1">Roomie 1</option>
-          <option value="2">Roomie 2</option>
-        </select>
-      );
-    } else {
-      return
-    };
-  },
+
 
   render: function() {
     let deadlineFormated = this.props.ToDoItem.deadline;
-    console.log(deadlineFormated);
     return (
       <div className="single-item">
         <div className={this.parentComponentStyle()}>
@@ -117,8 +121,6 @@ const OneToDo = React.createClass ({
         {this.displayClaimDropdown()}
         <div className="todo-buttons">
           {this.displayUnClaimButton()}
-          {this.displayClaimButtonR1()}
-          {this.displayClaimButtonR2()}
           {this.displayEditButton()}
           {this.displayDeleteButton()}
         </div>
