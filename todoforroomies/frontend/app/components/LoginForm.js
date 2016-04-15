@@ -8,6 +8,7 @@ const LoginForm = React.createClass ({
       password: ""
     }
   },
+  //******CHOSING PATH ************//
   handleLoginPathButton: function() {
     this.setState ({
       loginPath: "login"
@@ -23,6 +24,7 @@ const LoginForm = React.createClass ({
       loginPath: "register"
     })
   },
+  //************HANDLING LOGIN*************//
   handleLoginName: function(e) {
     this.setState ({
       name: e.target.value
@@ -33,6 +35,7 @@ const LoginForm = React.createClass ({
       password: e.target.value
     })
   },
+  //*************HANDLING REGISTRATION**********//
   handleRegisterSubmit: function(e) {
     console.log("ajax call to add to db (check if unique)");
     console.log("function to add name to state")
@@ -41,6 +44,7 @@ const LoginForm = React.createClass ({
     console.log("check if name is in db");
     console.log("if yes, approve")
   },
+  //*********DISPLAYING*********//
   displayLogin: function() {
     if (this.state.loginPath === "login") {
       return (
@@ -93,9 +97,7 @@ const LoginForm = React.createClass ({
       )
     }
   },
-  displayUnregisteredGreeting: function () {
 
-  },
   render: function() {
     return (
       <div>

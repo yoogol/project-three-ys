@@ -2,8 +2,8 @@ import React from 'react';
 var Button = require('react-bootstrap').Button;
 var Modal = require('react-bootstrap').Modal;
 
-import Title from '../components/Title';
-import AddButton from '../components/AddButton';
+import Title from '../fsc/Title';
+import AddButton from '../fsc/AddButton';
 import AddForm from '../components/AddForm';
 import TodoList from './TodoList';
 import ClaimedTL from './ClaimedTL';
@@ -11,7 +11,7 @@ import CompletedTL from './CompletedTL';
 import ScoreBoard from './ScoreBoard';
 import AjaxHelpers from '../utils/AjaxHelpers';
 import LoginForm from '../components/LoginForm';
-import ScoreBoardButton from '../components/ScoreBoardButton'
+// import ScoreBoardButton from '../components/ScoreBoardButton'
 import InfoBtn from "../fsc/InfoBtn";
 import ScoreBoardBtn from "../fsc/ScoreBoardBtn";
 import FormContainer from "./FormContainer";
@@ -22,15 +22,20 @@ const App = React.createClass ({
 
   getInitialState: function() {
     return {
+      ajaxResponse: '',
       incompleteTodos: [],
       completeTodos: [],
       claimedTodosR1: [],
       claimedTodosR2: [],
-      roommate1: "",
-      roommate2: "",
+
+      roommate1: {name: "", score: 0},
+      roommate2: {name: "", score: 0},
+
       typeOfFormActivated: "",
+
       oldtodoid: '',
       todoToEdit: '',
+<<<<<<< HEAD
       ajaxResponse: '',
       currentUser: 0,
       showModal: true
@@ -39,12 +44,13 @@ const App = React.createClass ({
   //modal functions from react bootstrap:
   close() {
    this.setState({ showModal: false });
- },
+  },
 
- open() {
-   this.setState({ showModal: true });
- },
+  open() {
+     this.setState({ showModal: true });
+  },
 
+  //******MAIN SCREE BUTTONS*******//
   handleScoreBoardButton: function() {
     console.log("scoreboard is called");
     this.setState ({
@@ -65,6 +71,7 @@ const App = React.createClass ({
       });
     }
   },
+  //*********ONE TODO BUTTONS***********//
   handleEditButton: function(e) {
     console.log("edit button clicked");
     console.log(e.target.value);
@@ -92,6 +99,7 @@ const App = React.createClass ({
 
   },
   handleCheckBox: function(e) {
+    e.preventDefault();
     console.log("checkbox clicked");
     let todoToComplete = e.target.value;
     let newTaskProp = {
@@ -103,6 +111,7 @@ const App = React.createClass ({
     }.bind(this))
   },
   handleUnCheckBox: function(e) {
+    e.preventDefault();
     console.log("uncheckbox clicked");
     let todoToComplete = e.target.value;
     let newTaskProp = {
@@ -155,6 +164,21 @@ const App = React.createClass ({
       this.loadAllTasks();
     }.bind(this))
   },
+  handleClaimMenu: function(e){
+    console.log("dropdown has been changed");
+    console.log(e.target.value);
+    console.log(e.target.getAttribute("id"));
+    let todoToChange = e.target.getAttribute("id");
+    let newTaskProp = {
+      roommate: e.target.value
+    };
+    AjaxHelpers.editToDo(newTaskProp, todoToChange).then(function(response) {
+      console.log(response);
+      this.loadAllTasks();
+    }.bind(this))
+  },
+
+  //********DISPLAY COMPONENTS**********//
   displayScoreBoard: function() {
     if (this.state.typeOfFormActivated == "ScoreBoard") {
       return (
@@ -169,9 +193,7 @@ const App = React.createClass ({
           />
       )
   },
-  onDropDownChange: function(){
-    console.log("dropdown has been changed");
-  },
+  //**********RELOADING FROM DB***********//
   loadAllTasks: function() {
     AjaxHelpers.getAllToDos().then(function(response) {
       let incompleteTodos = response.data.todos.filter(function(todo) {
@@ -223,8 +245,9 @@ const App = React.createClass ({
     let backdrop = document.querySelector(".pop-up-window").parentNode.parentNode;
     backdrop.style.width = "auto";
   },
-  render: function() {
 
+  //*************RENDERING***************//
+  render: function() {
     return (
       <div>
         <Modal show={this.state.showModal} onHide={this.close} className="pop-up-window">
@@ -232,8 +255,7 @@ const App = React.createClass ({
         </Modal>
         <InfoBtn />
         <Title className="title"/>
-        <ScoreBoardBtn />
-        <ScoreBoardButton handleScoreBoardButton={this.handleScoreBoardButton}/>
+        <ScoreBoardBtn handleScoreBoardButton={this.handleScoreBoardButton}/>
         {this.displayScoreBoard()}
         <AddButton
           handleAddButton={this.handleAddButton}
@@ -244,7 +266,8 @@ const App = React.createClass ({
             data={this.state.incompleteTodos} handleEditButton={this.handleEditButton} handleDeleteButton={this.handleDeleteButton}
             handleClaimButtonR1={this.handleClaimButtonR1}
             handleClaimButtonR2={this.handleClaimButtonR2}
-            handleClaimMenu={this.onDropDownChange}
+            handleClaimMenu={this.handleClaimMenu}
+            handleClickOnClaimMenu={this.handleClickOnClaimMenu}
             />
           <div className="roommate-containers">
             <ClaimedTL
