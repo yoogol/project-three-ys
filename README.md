@@ -10,15 +10,18 @@ DONE:
 [x] create logic to return the task to the common field from roomies lists
 [x] have lists refresh themselves when a task is added, deleted or edited
 [x] create logic to assign a task to a roomie (FIX button delay)
+[x] handle login/register information: get user input and send into a db collection of users (create user group and save users/roomies inside it)
+[x] make data load for appropriate user
+[x] prevent Registering with the same name
 
 TODO:
-[x] handle login/register information: get user input and send into a db collection of users (create user group and save users/roomies inside it)
-[] make data load for appropriate user
-[] figure out date format with displaying tasks
-[] figure out date format when editing tasks in a format
 [] create logic for calculating weekly score and update the scoreboard
 [] create logic for determining the winner  after one week is up
-[x] preventRegistering with the same name
+[] figure out date format with displaying tasks
+[] figure out date format when editing tasks in a format
+[] figure out how to add a user to an existing group
+[] allow unclaim only for the user whose task it is
+[] log who completed the task
 
 
 * update points logic
