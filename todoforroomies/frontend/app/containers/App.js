@@ -59,8 +59,8 @@ const App = React.createClass ({
     this.setState ({
       currentUser: user.name,
       currentGroup: user.group,
-      roommate1: {name: user.name},
-      roommate2: {name: "unknown for now"}
+      roommate1name: user.name,
+      roommate2name: "unknown for now"
     });
     console.log(this.state.roommate1);
   },
@@ -166,7 +166,11 @@ const App = React.createClass ({
   displayScoreBoard: function() {
     if (this.state.typeOfFormActivated == "ScoreBoard") {
       return (
-        <ScoreBoard roommate1={this.state.roommate1} roommate2={this.state.roommate2}/>
+        <ScoreBoard
+          roommate1name={this.state.roommate1name}  roommate2name={this.state.roommate2name}
+          roommate1score={this.state.roommate1score}
+          roommate2score={this.state.roommate2score}
+          />
       )
     }
   },

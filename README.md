@@ -12,12 +12,15 @@ DONE:
 [x] create logic to assign a task to a roomie (FIX button delay)
 
 TODO:
-* handle login/register information: get user input and send into a db collection of users (create user group and save users/roomies inside it)
-* figure out date format with displaying tasks
-* figure out date format when editing tasks in a format
-* create logic for calculating weekly score and update the scoreboard
-* create logic for determining the winner  after one week is up
-* preventRegistering with the same name
+[x] handle login/register information: get user input and send into a db collection of users (create user group and save users/roomies inside it)
+[] make data load for appropriate user
+[] figure out date format with displaying tasks
+[] figure out date format when editing tasks in a format
+[] create logic for calculating weekly score and update the scoreboard
+[] create logic for determining the winner  after one week is up
+[x] preventRegistering with the same name
+
+
 * update points logic
 * points if task has no deadline
 

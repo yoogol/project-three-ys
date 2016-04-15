@@ -42,6 +42,7 @@ const LoginForm = React.createClass ({
       group: e.target.value
     })
   },
+
   //*************HANDLING REGISTRATION**********//
   handleRegisterSubmit: function(e) {
     e.preventDefault();
@@ -104,6 +105,15 @@ const LoginForm = React.createClass ({
       }.bind(this));
     }
   },
+  handleJustPeekIn: function(e) {
+    e.preventDefault();
+    this.props.closeBtn();
+    let dummyUser = {
+      name: "Awesome Roommate",
+      group: "Just Trying It Out"
+    };
+    this.props.handleRegistration(dummyUser);
+  },
   //*********DISPLAYING*********//
   displayLogin: function() {
     if (this.state.loginPath === "login") {
@@ -133,7 +143,7 @@ const LoginForm = React.createClass ({
         <div>
             <h1>You are in!</h1>
             <p>Please remember since you are not logged in your data will not be saved</p>
-            <button onClick={this.props.closeBtn}>Close</button>
+            <button onClick={this.handleJustPeekIn}>Close</button>
         </div>
 
       )
