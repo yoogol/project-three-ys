@@ -34,7 +34,9 @@ const AddForm = React.createClass ({
       yuckiness: e.target.value
     })
     this.calculatePoints()
+    console.log(e.target.value);
   },
+
   handlePointsWorth: function(e){
     return (
       <p className="label">This task is worth {this.state.pointsWorth} points!</p>
@@ -46,9 +48,12 @@ const AddForm = React.createClass ({
     let todayDate = Date.parse(new Date());
     console.log(datePicked);
     console.log(todayDate);
+    console.log(this.state.deadline)
+    // let daysLeft = Math.floor((datePicked - todayDate)/86400);
     let daysLeft = Math.floor((datePicked - todayDate)/86400);
     console.log(daysLeft)
-    let points = daysLeft * this.state.timeNeeded * this.state.yuckiness;
+    console.log("time:",parseInt(this.state.timeNeeded),"yuck:",parseInt(this.state.yuckiness));
+    let points = this.state.timeNeeded * this.state.yuckiness;
     console.log(points);
     this.setState({
       pointsWorth: points
@@ -114,23 +119,48 @@ const AddForm = React.createClass ({
 
           <label className="label">Est. Time to Complete (mins): </label>
           <br /><br />
-          <input
+          {/*<input
             style={formStyle}
             type='number'
             placeholder="Enter # of minutes"
             value={this.state.timeNeeded}
             onChange={this.handleTimeNeeded}
-            />
+            />*/}
+          <select
+            value={this.state.timeNeeded}
+            onChange={this.handleTimeNeeded}>
+            <option type="number" value="5">5</option>
+            <option type="number" value="10">10</option>
+            <option type="number" value="15">15</option>
+            <option type="number" value="20">20</option>
+            <option type="number" value="25">25</option>
+            <option type="number" value="30">30</option>
+            <option type="number" value="35">35</option>
+            <option type="number" value="40">40</option>
+            <option type="number" value="45">45</option>
+            <option type="number" value="50">50</option>
+            <option type="number" value="55">55</option>
+            <option type="number" value="60">60</option>
+          </select>
           <br /><br />
-          <label className="label">How yucky is the task from 1 to 10: </label>
+          <label className="label">How yucky is the task from 1 to 5: </label>
           <br /><br />
-          <input
+          {/*<input
             style={formStyle}
             type='number'
             placeholder="0"
             value={this.state.yuckiness}
             onChange={this.handleYuckiness}
-            />
+            />*/}
+          <select
+            value={this.state.yuckiness}
+            onChange={this.handleYuckiness}>
+            <option type="number" value="1">1</option>
+            <option type="number" value="2">2</option>
+            <option type="number" value="3">3</option>
+            <option type="number" value="4">4</option>
+            <option type="number" value="5">5</option>
+          </select>
           <label className="label"><strong>{this.handlePointsWorth()}</strong></label>
           <br />
           <button className="button submit-button" type="submit">Submit</button>
@@ -140,9 +170,9 @@ const AddForm = React.createClass ({
   }
 })
 
+
 let formStyle = {
   width: '50%',
-
 }
 
 let taskStyle = {

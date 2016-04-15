@@ -108,10 +108,12 @@ strong {
   font-size: 1.4rem;
 }
 
-input {
+input, select {
   margin-left: 3%;
   height: 22px;
   font-size: 14px;
+  color: black;
+  width: 200px;
 }
 
 /*styling log-in */
@@ -124,8 +126,7 @@ input {
   background: transparent;
   border-radius: 0;
   border-bottom: 3px solid #188fff;
-  margin-top: 8px;
-  margin-bottom: 8px;
+  margin: 8px 0px 8px 200px;
 }
 
 .form {
