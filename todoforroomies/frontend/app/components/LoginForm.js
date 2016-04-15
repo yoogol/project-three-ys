@@ -1,11 +1,13 @@
 import React from 'react';
+import AjaxHelpers from '../utils/AjaxHelpers';
 
 const LoginForm = React.createClass ({
   getInitialState: function() {
     return {
       loginPath: "",
       name: "",
-      password: ""
+      password: "",
+      group: ""
     }
   },
   //******CHOSING PATH ************//
@@ -35,14 +37,72 @@ const LoginForm = React.createClass ({
       password: e.target.value
     })
   },
+  handleGroupName: function(e) {
+    this.setState ({
+      group: e.target.value
+    })
+  },
   //*************HANDLING REGISTRATION**********//
   handleRegisterSubmit: function(e) {
-    console.log("ajax call to add to db (check if unique)");
-    console.log("function to add name to state")
+    e.preventDefault();
+    if (this.state.name != "") {
+      let newUser = {
+        name: this.state.name,
+        password: this.state.password,
+        group: this.state.group
+      };
+      console.log(newUser);
+      console.log("ajax call to add to db (check if unique)");
+      AjaxHelpers.getAllUsers().then(function(response) {
+        console.log(response.data);
+        let userExists = response.data.filter(function(user) {
+          if (user.name == newUser.name) {
+            return true
+          }
+        });
+        let groupExists = response.data.filter(function(user) {
+          if (user.group == newUser.group) {
+            return true
+          }
+        });
+        if (userExists.length > 0 || groupExists.length > 0) {
+          console.log("user already exists")
+        } else {
+          AjaxHelpers.addNewUser(newUser).then(function(response) {
+            console.log(response);
+            this.props.handleRegistration(newUser);
+          }.bind(this))
+        }
+      }.bind(this));
+    }
   },
-  handleLoginSubmit: function() {
+  handleLoginSubmit: function(e) {
+    e.preventDefault();
     console.log("check if name is in db");
-    console.log("if yes, approve")
+    console.log("if yes, approve");
+    e.preventDefault();
+    if (this.state.name != "") {
+      let lookupUser = {
+        name: this.state.name,
+        password: this.state.password,
+      };
+      console.log(lookupUser);
+      console.log("ajax call to add to db (check if unique)");
+      AjaxHelpers.getAllUsers().then(function(response) {
+        console.log(response.data);
+        let userIsCorrect = response.data.filter(function(user) {
+          if (user.name == lookupUser.name && user.password == lookupUser.password) {
+            return true
+          }
+        });
+        if (userIsCorrect.length > 0) {
+          console.log("user info is correct");
+          this.props.handleRegistration(userIsCorrect[0]);
+        } else {
+          console.log("user info incorrect")
+        }
+      }.bind(this));
+    }
   },
   //*********DISPLAYING*********//
   displayLogin: function() {
@@ -55,19 +115,20 @@ const LoginForm = React.createClass ({
             type="text"
             placeholder="name"
             value={this.state.name}
-            onChange={this.props.handleLoginName}
+            onChange={this.handleLoginName}
             />
           <input
             className="logininput"
             type="text"
             placeholder="Password"
             value={this.state.password}
-            onChange={this.props.handleLoginPassword}
+            onChange={this.handleLoginPassword}
             />
           <input className="user-login-button" type="submit"/>
         </form>
       )
     } else if (this.state.loginPath === "nologin") {
+
       return (
         <div>
             <h1>You are in!</h1>
@@ -82,15 +143,21 @@ const LoginForm = React.createClass ({
           <h1>Please register</h1>
           <input
             type="text"
+            placeholder="group name"
+            value={this.state.group}
+            onChange={this.handleGroupName}
+            />
+          <input
+            type="text"
             placeholder="name"
             value={this.state.name}
-            onChange={this.props.handleLoginName}
+            onChange={this.handleLoginName}
             />
           <input
             type="text"
             placeholder="password"
             value={this.state.password}
-            onChange={this.props.handleLoginPassword}
+            onChange={this.handleLoginPassword}
             />
           <input type="submit"/>
         </form>

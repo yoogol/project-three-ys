@@ -15,6 +15,7 @@ import LoginForm from '../components/LoginForm';
 import InfoBtn from "../fsc/InfoBtn";
 import ScoreBoardBtn from "../fsc/ScoreBoardBtn";
 import FormContainer from "./FormContainer";
+import UserInfo from "../fsc/UserInfo";
 require('../style/Styles.css');
 
 
@@ -28,15 +29,19 @@ const App = React.createClass ({
       claimedTodosR1: [],
       claimedTodosR2: [],
 
-      roommate1: {name: "", score: 0},
-      roommate2: {name: "", score: 0},
+      roommate1name: "",
+      roommate1score: 0,
+      roommate2name: "",
+      roommate2score: 0,
+
 
       typeOfFormActivated: "",
 
       oldtodoid: '',
       todoToEdit: '',
       ajaxResponse: '',
-      currentUser: 0,
+      currentUser: '',
+      currentGroup: "",
       showModal: true
     }
   },
@@ -48,8 +53,18 @@ const App = React.createClass ({
   open() {
      this.setState({ showModal: true });
   },
-
-  //******MAIN SCREE BUTTONS*******//
+  //*******LOGIN/REGISTRATION*******//
+  handleRegistration: function(user) {
+    console.log("logging user:", user);
+    this.setState ({
+      currentUser: user.name,
+      currentGroup: user.group,
+      roommate1: {name: user.name},
+      roommate2: {name: "unknown for now"}
+    });
+    console.log(this.state.roommate1);
+  },
+  //******MAIN SCREEN BUTTONS*******//
   handleScoreBoardButton: function() {
     console.log("scoreboard is called");
     this.setState ({
@@ -117,36 +132,6 @@ const App = React.createClass ({
       completedStatus: false
     };
     AjaxHelpers.editToDo(newTaskProp, todoToComplete).then(function(response) {
-      console.log(response);
-      this.loadAllTasks();
-    }.bind(this))
-  },
-  handleClaimButtonR1: function(e) {
-    this.setState ({
-      currentUser: 1
-    });
-    console.log("claim button clicked");
-    console.log(e.target.value);
-    let todoToChange = e.target.value;
-    let newTaskProp = {
-      roommate: this.state.currentUser
-    };
-    AjaxHelpers.editToDo(newTaskProp, todoToChange).then(function(response) {
-      console.log(response);
-      this.loadAllTasks();
-    }.bind(this))
-  },
-  handleClaimButtonR2: function(e) {
-    this.setState ({
-      currentUser: 2
-    });
-    console.log("claim button clicked");
-    console.log(e.target.value);
-    let todoToChange = e.target.value;
-    let newTaskProp = {
-      roommate: this.state.currentUser
-    };
-    AjaxHelpers.editToDo(newTaskProp, todoToChange).then(function(response) {
       console.log(response);
       this.loadAllTasks();
     }.bind(this))
@@ -250,10 +235,11 @@ const App = React.createClass ({
     return (
       <div>
         <Modal show={this.state.showModal} onHide={this.close} className="pop-up-window">
-          <LoginForm closeBtn={this.close}/>
+          <LoginForm closeBtn={this.close} handleRegistration={this.handleRegistration}/>
         </Modal>
         <InfoBtn />
         <Title className="title"/>
+        <UserInfo currentGroup={this.state.currentGroup} currentUser={this.state.currentUser}/>
         <ScoreBoardBtn handleScoreBoardButton={this.handleScoreBoardButton}/>
         {this.displayScoreBoard()}
         <AddButton

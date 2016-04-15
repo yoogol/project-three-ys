@@ -16,6 +16,13 @@ const AjaxHelpers = {
   deleteToDo: function(todo) {
     console.log(todo);
     return axios.delete('http://localhost:3000/api/todo/' +  todo);
+  },
+  addNewUser: function(user) {
+    console.log("ajax for user");
+    return axios.post('http://localhost:3000/api/user', user)
+  },
+  getAllUsers: function() {
+    return axios.get('http://localhost:3000/api/users')
   }
 }
 
