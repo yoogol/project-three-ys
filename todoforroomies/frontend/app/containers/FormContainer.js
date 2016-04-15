@@ -7,6 +7,7 @@ const FormContainer = React.createClass ({
       console.log("add is called")
       return (
         <AddForm
+          closeBtn={this.props.closeBtn}
           userName={this.props.roommate1}
           typeOfFormActivated={this.props.typeOfFormActivated}
           todoToEdit={this.props.todoToEdit}
@@ -16,6 +17,7 @@ const FormContainer = React.createClass ({
     } else if (this.props.typeOfFormActivated == "Edit") {
       return (
         <AddForm
+          closeBtn={this.props.closeBtn}
           userName={this.props.roommate1}
           typeOfFormActivated={this.props.typeOfFormActivated}
           todoToEdit={this.props.todoToEdit}
