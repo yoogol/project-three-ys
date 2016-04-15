@@ -13,7 +13,7 @@ body {
   display: flex;
   font-family: 'Libre Baskerville', serif;
   font-size:16px;
-  margin: 0px 5px;
+  margin: 0px 10px;
 }
 
 .label {
@@ -45,12 +45,34 @@ body {
   color: white;
 }
 
+/*Register, LogIn and peekin styles*/
+.main-start-button {
+  margin-right: 10px;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
 .add-button {
   margin-bottom: 20px;
 }
+
 .submit-button {
   background: grey;
   margin: -20px 10px 10px 10px;
+}
+
+.user-login-button {
+  border: 0px;
+  font-size: 1rem;
+  width: 108px;
+  height: 30px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: normal;
+  background-color: #008cfc;
+  color: white;
+  margin-top: 8px;
+
 }
 
 .scoreboard-button {
@@ -68,6 +90,26 @@ body {
 
 strong {
   font-size: 1.4rem;
+}
+
+input {
+  margin-left: 3%;
+  height: 22px;
+  font-size: 14px;
+}
+
+/*styling log-in */
+.logininput {
+  width: 210px;
+  font-family: helvetica;
+  display: block;
+  box-shadow: none;
+  border: 0;
+  background: transparent;
+  border-radius: 0;
+  border-bottom: 3px solid #188fff;
+  margin-top: 8px;
+  margin-bottom: 8px;
 }
 
 .form {

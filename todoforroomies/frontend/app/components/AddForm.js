@@ -147,7 +147,7 @@ let formStyle = {
 
 let taskStyle = {
   width: '60%',
-  height:'16'
+  height:'24'
 }
 
 let pointStyle = {
