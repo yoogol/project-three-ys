@@ -245,6 +245,8 @@ const App = React.createClass ({
             typeOfFormActivated={this.state.typeOfFormActivated}
             todoToEdit={this.state.todoToEdit}
             loadAllTasks={this.loadAllTasks}
+            currentUser={this.state.currentUser}
+            currentGroup={this.state.currentGroup}
           />
         </Modal>
       )
