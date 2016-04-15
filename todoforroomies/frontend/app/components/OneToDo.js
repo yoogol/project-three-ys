@@ -4,6 +4,17 @@ import TodoList from '../containers/TodoList';
 // this.props.parentComponent
 
 const OneToDo = React.createClass ({
+  parentComponentStyle: function() {
+    if (this.props.parentComponent == 'TodoList') {
+      return "todos-flex-container todo-list-style";
+    } else if (this.props.parentComponent == 'ClaimedTL') {
+      return "todos-flex-container claimed-list-style";
+    } else if (this.props.parentComponent == 'CompletedTL') {
+      return "todos-flex-container completed-list-style";
+    } else {
+      return
+    }
+  },
   displayEditButton: function() {
     if (this.props.parentComponent == 'TodoList') {
       return <button onClick={this.props.handleEditButton} type="button"
@@ -32,14 +43,14 @@ const OneToDo = React.createClass ({
   },
   render: function() {
     return (
-      <div className="singleItem">
-        <div className="todos-flex-container">
+      <div className="single-item">
+        <div className={this.parentComponentStyle()}>
           <div className="todos-left-container">
             {this.displayCheckBox()}
             <div className="points">{this.props.ToDoItem.pointsWorth}pts</div>
           </div>
           <div className="todos-right-container">
-            <div className="headline">{this.props.ToDoItem.headline}</div>
+            <div className="headline" >{this.props.ToDoItem.headline}</div>
             <div className="todo-details-container">
               <span className="author todo-details">Created by {this.props.ToDoItem.author}, </span>
               <span className="timeNeeded todo-details">{this.props.ToDoItem.timeNeeded} min, </span>

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Scrollbars } from 'react-custom-scrollbars';
 import OneToDo from "../components/OneToDo";
 
 const ClaimedTL = React.createClass ({
@@ -7,22 +6,20 @@ const ClaimedTL = React.createClass ({
     // console.log(this.props.data);
     const singleToDo = this.props.data.map((todo,index) => {
       return (
-        <div key={index}>
+        <div key={index} className="single-item-container">
           <OneToDo handleCheckBox={this.props.handleCheckBox} ToDoItem={todo} parentComponent="ClaimedTL"/>
         </div>
       )
     });
     return (
-      <Scrollbars style={{ width: 500, height: 300 }}>
-        <div className="claimed-container">
-          <div className="container-title">
-            <h3>{this.props.roommate}</h3>
-          </div>
+      <div className="claimed-container">
+        <div className="container-title">
+          <h3>{this.props.roommate}</h3>
+        </div>
           <div className="claimed-todos for-all-containers">
             {singleToDo}
           </div>
-        </div>
-      </Scrollbars>
+      </div>
     )
   }
 });

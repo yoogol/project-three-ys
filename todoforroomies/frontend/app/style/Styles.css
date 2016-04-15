@@ -3,7 +3,6 @@
 * {
   box-sizing: border-box;
   width:100%;
-  margin: 0px 5px;
 
 }
 
@@ -13,6 +12,8 @@ body {
   justify-content: center;
   display: flex;
   font-family: 'Libre Baskerville', serif;
+  font-size:16px;
+  margin: 0px 5px;
 }
 
 .label {
@@ -116,7 +117,7 @@ h3 {
 }
 
 .for-all-containers {
-  padding:20px;
+  /*padding:20px;*/
   background:pink;
   border-radius:15px;
   margin:10px 0;
@@ -124,7 +125,30 @@ h3 {
 
 .headline {
   font-family: 'Righteous', cursive;
-  font-size:20px;
+  font-size:24px;
+  text-transform: capitalize;
+}
+
+.claimed-list-style .headline {
+  font-size:18px;
+}
+
+.claimed-list-style .points span,
+.claimed-list-style .todos-right-container {
+  font-size:14px;
+}
+
+.claimed-list-style .author {
+  display:none;
+}
+
+.single-item-container {
+  border-bottom:1px solid #999;
+  padding: 20px;
+}
+
+.single-item-container:last-child {
+  border-bottom:none;
 }
 
 .todos-flex-container,
@@ -134,12 +158,17 @@ h3 {
   justify-content:space-between;
 }
 
-.todos-left-container,
-.points,
-.todo-checkbox,
+.todo-buttons {
+  margin-top:10px;
+}
+
+.todos-left-container {
+  width:25%;
+}
+
 .todos-right-container {
-  width:auto;
-  margin: 0 5px;
+  width:75%;
+  margin: 0 0 0 10px;
 }
 
 .todos-left-container {
