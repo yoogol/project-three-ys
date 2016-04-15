@@ -46,6 +46,7 @@ const LoginForm = React.createClass ({
   //*************HANDLING REGISTRATION**********//
   handleRegisterSubmit: function(e) {
     e.preventDefault();
+    this.props.closeBtn();
     if (this.state.name != "") {
       let newUser = {
         name: this.state.name,
@@ -79,6 +80,7 @@ const LoginForm = React.createClass ({
   },
   handleLoginSubmit: function(e) {
     e.preventDefault();
+    this.props.closeBtn();
     console.log("check if name is in db");
     console.log("if yes, approve");
     e.preventDefault();
