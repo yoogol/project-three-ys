@@ -31,6 +31,7 @@ const App = React.createClass ({
       ajaxResponse: '',
     }
   },
+
   handleLoginSubmit: function(e) {
     this.setState({
       roommate1: e.target.value
@@ -131,6 +132,7 @@ const App = React.createClass ({
     }.bind(this));
   },
   render: function() {
+
     return (
       <div>
         <InfoBtn />

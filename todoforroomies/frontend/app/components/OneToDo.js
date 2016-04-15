@@ -41,6 +41,20 @@ const OneToDo = React.createClass ({
       return
     }
   },
+  displayDropDown: function(){
+    if (this.props.parentComponent == "TodoList"){
+      return(
+        <select onChange={this.onDropDownChange}>
+          <option value="">Who is going to do this?</option>
+          <option value="1">Roomie 1</option>
+          <option value="2">Roomie 2</option>
+        </select>
+      )
+    }
+  },
+  onDropDownChange: function(){
+    console.log("dropdown has been changed");
+  },
   render: function() {
     return (
       <div className="single-item">
@@ -58,6 +72,7 @@ const OneToDo = React.createClass ({
             </div>
           </div>
         </div>
+        {this.displayDropDown()}
         <div className="todo-buttons">
           {this.displayEditButton()}
           {this.displayDeleteButton()}
