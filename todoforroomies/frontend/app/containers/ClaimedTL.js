@@ -7,7 +7,12 @@ const ClaimedTL = React.createClass ({
     const singleToDo = this.props.data.map((todo,index) => {
       return (
         <div key={index} className="single-item-container">
-          <OneToDo handleCheckBox={this.props.handleCheckBox} ToDoItem={todo} parentComponent="ClaimedTL"/>
+          <OneToDo
+            handleCheckBox={this.props.handleCheckBox}
+            handleUnclaimTask={this.props.handleUnclaimTask}
+            ToDoItem={todo}
+            parentComponent="ClaimedTL"
+          />
         </div>
       )
     });

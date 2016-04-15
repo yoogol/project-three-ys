@@ -91,6 +91,16 @@ const App = React.createClass ({
           <FormContainer userName={this.state.roommate1} typeOfFormActivated={this.state.typeOfFormActivated} todoToEdit={this.state.todoToEdit}/>
       )
   },
+
+  onDropDownChange: function(){
+    console.log("dropdown has been changed");
+  },
+
+  onUnclaimTask: function(){
+    console.log("unclaimed has been clicked");
+  },
+
+
   componentDidMount: function() {
     AjaxHelpers.getAllToDos().then(function(response) {
       let incompleteTodos = response.data.todos.filter(function(todo) {
@@ -146,10 +156,25 @@ const App = React.createClass ({
           />
         {this.displayForm()}
         <div className="main-todos-container">
-          <TodoList data={this.state.incompleteTodos} handleEditButton={this.handleEditButton} handleDeleteButton={this.handleDeleteButton}/>
+          <TodoList
+            data={this.state.incompleteTodos}
+            handleEditButton={this.handleEditButton}
+            handleDeleteButton={this.handleDeleteButton}
+            handleClaimMenu={this.onDropDownChange}
+          />
           <div className="roommate-containers">
-            <ClaimedTL handleCheckBox={this.handleCheckBox} data={this.state.claimedTodosR1} roommate="Roomie #1" />
-            <ClaimedTL handleCheckBox={this.handleCheckBox} data={this.state.claimedTodosR2} roommate="Roomie #2" />
+            <ClaimedTL
+              handleCheckBox={this.handleCheckBox}
+              data={this.state.claimedTodosR1}
+              handleUnclaimTask={this.onUnclaimTask}
+              roommate="Roomie #1"
+            />
+            <ClaimedTL
+              handleCheckBox={this.handleCheckBox}
+              data={this.state.claimedTodosR2}
+              handleUnclaimTask={this.onUnclaimTask}
+              roommate="Roomie #2"
+            />
           </div>
           <CompletedTL data={this.state.completeTodos} />
         </div>

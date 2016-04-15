@@ -6,7 +6,7 @@ const TodoList = React.createClass ({
     const singleToDo = this.props.data.map((todo,index) => {
       return (
         <div key={index} className="single-item-container">
-          <OneToDo handleEditButton={this.props.handleEditButton} handleDeleteButton={this.props.handleDeleteButton} ToDoItem={todo} parentComponent="TodoList" />
+          <OneToDo handleEditButton={this.props.handleEditButton} handleDeleteButton={this.props.handleDeleteButton} handleClaimMenu={this.props.handleClaimMenu} ToDoItem={todo} parentComponent="TodoList" />
         </div>
       )
     });
