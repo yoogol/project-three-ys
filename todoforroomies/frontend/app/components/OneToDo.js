@@ -80,7 +80,7 @@ const OneToDo = React.createClass ({
       return
     }
   },
-  displayClaimComponent: function(){
+  displayClaimDropdown: function(){
     if (this.props.parentComponent == "TodoList"){
       return(
         <select onChange={this.props.handleClaimMenu}>
@@ -88,10 +88,6 @@ const OneToDo = React.createClass ({
           <option value="1">Roomie 1</option>
           <option value="2">Roomie 2</option>
         </select>
-      );
-    } else if (this.props.parentComponent == "ClaimedTL") {
-      return (
-        <button type="button" onClick={this.props.handleUnclaimTask}>Unclaim this task</button>
       );
     } else {
       return
@@ -118,7 +114,7 @@ const OneToDo = React.createClass ({
             </div>
           </div>
         </div>
-        {this.displayClaimComponent()}
+        {this.displayClaimDropdown()}
         <div className="todo-buttons">
           {this.displayUnClaimButton()}
           {this.displayClaimButtonR1()}
