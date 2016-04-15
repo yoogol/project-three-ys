@@ -3,7 +3,6 @@
 * {
   box-sizing: border-box;
   width:100%;
-
 }
 
 body {
@@ -15,6 +14,23 @@ body {
   font-size:16px;
   margin: 0px 10px;
 }
+
+/* POP UP STYLES (overriding bootstrap) */
+
+body > div:nth-child(2){
+  width:auto;
+}
+
+.modal-content {
+  background:blue;
+  min-height:300px;
+  display:flex;
+  flex-flow:row nowrap;
+  align-items: center;
+  text-align:center;
+}
+
+
 
 .label {
   color: Yellow;

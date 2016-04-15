@@ -1,4 +1,7 @@
 import React from 'react';
+var Button = require('react-bootstrap').Button;
+var Modal = require('react-bootstrap').Modal;
+
 import Title from '../components/Title';
 import AddButton from '../components/AddButton';
 import AddForm from '../components/AddForm';
@@ -29,9 +32,19 @@ const App = React.createClass ({
       oldtodoid: '',
       todoToEdit: '',
       ajaxResponse: '',
-      currentUser: 0
+      currentUser: 0,
+      showModal: true
     }
   },
+  //modal functions from react bootstrap:
+  close() {
+   this.setState({ showModal: false });
+ },
+
+ open() {
+   this.setState({ showModal: true });
+ },
+
   handleScoreBoardButton: function() {
     console.log("scoreboard is called");
     this.setState ({
@@ -205,15 +218,21 @@ const App = React.createClass ({
   },
   componentDidMount: function() {
     this.loadAllTasks();
+
+    // fixing backdrop width for modal bootstrap
+    let backdrop = document.querySelector(".pop-up-window").parentNode.parentNode;
+    backdrop.style.width = "auto";
   },
   render: function() {
 
     return (
       <div>
+        <Modal show={this.state.showModal} onHide={this.close} className="pop-up-window">
+          <LoginForm closeBtn={this.close}/>
+        </Modal>
         <InfoBtn />
         <Title className="title"/>
         <ScoreBoardBtn />
-        <LoginForm />
         <ScoreBoardButton handleScoreBoardButton={this.handleScoreBoardButton}/>
         {this.displayScoreBoard()}
         <AddButton

@@ -68,6 +68,7 @@ const LoginForm = React.createClass ({
         <div>
             <h1>You are in!</h1>
             <p>Please remember since you are not logged in your data will not be saved</p>
+            <button onClick={this.props.closeBtn}>Close</button>
         </div>
 
       )
