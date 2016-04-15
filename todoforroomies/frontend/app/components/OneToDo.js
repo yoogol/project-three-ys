@@ -4,6 +4,17 @@ import TodoList from '../containers/TodoList';
 // this.props.parentComponent
 
 const OneToDo = React.createClass ({
+  parentComponentStyle: function() {
+    if (this.props.parentComponent == 'TodoList') {
+      return "todos-flex-container todo-list-style";
+    } else if (this.props.parentComponent == 'ClaimedTL') {
+      return "todos-flex-container claimed-list-style";
+    } else if (this.props.parentComponent == 'CompletedTL') {
+      return "todos-flex-container completed-list-style";
+    } else {
+      return
+    }
+  },
   displayEditButton: function() {
     if (this.props.parentComponent == 'TodoList') {
       return <button onClick={this.props.handleEditButton} type="button"
@@ -69,19 +80,37 @@ const OneToDo = React.createClass ({
       return
     }
   },
+  displayClaimComponent: function(){
+    if (this.props.parentComponent == "TodoList"){
+      return(
+        <select onChange={this.props.handleClaimMenu}>
+          <option value="">Who is going to do this?</option>
+          <option value="1">Roomie 1</option>
+          <option value="2">Roomie 2</option>
+        </select>
+      );
+    } else if (this.props.parentComponent == "ClaimedTL") {
+      return (
+        <button type="button" onClick={this.props.handleUnclaimTask}>Unclaim this task</button>
+      );
+    } else {
+      return
+    };
+  },
+
   render: function() {
     let deadlineFormated = this.props.ToDoItem.deadline;
     console.log(deadlineFormated);
     return (
-      <div className="singleItem">
-        <div className="todos-flex-container">
+      <div className="single-item">
+        <div className={this.parentComponentStyle()}>
           <div className="todos-left-container">
             {this.displayCheckBoxIncomplete()}
             {this.displayCheckBoxComplete()}
             <div className="points">{this.props.ToDoItem.pointsWorth}pts</div>
           </div>
           <div className="todos-right-container">
-            <div className="headline">{this.props.ToDoItem.headline}</div>
+            <div className="headline" >{this.props.ToDoItem.headline}</div>
             <div className="todo-details-container">
               <span className="author todo-details">Created by {this.props.ToDoItem.author}, </span>
               <span className="timeNeeded todo-details">{this.props.ToDoItem.timeNeeded} min, </span>
@@ -89,6 +118,7 @@ const OneToDo = React.createClass ({
             </div>
           </div>
         </div>
+        {this.displayClaimComponent()}
         <div className="todo-buttons">
           {this.displayUnClaimButton()}
           {this.displayClaimButtonR1()}

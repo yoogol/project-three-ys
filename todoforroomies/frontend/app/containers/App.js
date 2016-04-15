@@ -156,6 +156,9 @@ const App = React.createClass ({
           />
       )
   },
+  onDropDownChange: function(){
+    console.log("dropdown has been changed");
+  },
   loadAllTasks: function() {
     AjaxHelpers.getAllToDos().then(function(response) {
       let incompleteTodos = response.data.todos.filter(function(todo) {
@@ -204,6 +207,7 @@ const App = React.createClass ({
     this.loadAllTasks();
   },
   render: function() {
+
     return (
       <div>
         <InfoBtn />
@@ -217,17 +221,25 @@ const App = React.createClass ({
           />
         {this.displayForm()}
         <div className="main-todos-container">
-          <TodoList data={this.state.incompleteTodos} handleEditButton={this.handleEditButton} handleDeleteButton={this.handleDeleteButton}
-          handleClaimButtonR1={this.handleClaimButtonR1}
-          handleClaimButtonR2={this.handleClaimButtonR2}
+          <TodoList
+            data={this.state.incompleteTodos} handleEditButton={this.handleEditButton} handleDeleteButton={this.handleDeleteButton}
+            handleClaimButtonR1={this.handleClaimButtonR1}
+            handleClaimButtonR2={this.handleClaimButtonR2}
+            handleClaimMenu={this.onDropDownChange}
             />
           <div className="roommate-containers">
-            <ClaimedTL handleCheckBox={this.handleCheckBox}
-            data={this.state.claimedTodosR1} roommate="Roomie #1"
-            handleUnClaimButton={this.handleUnClaimButton}
+            <ClaimedTL
+              handleCheckBox={this.handleCheckBox}
+              data={this.state.claimedTodosR1}
+              roommate="Roomie #1"
+              handleUnClaimButton={this.handleUnClaimButton}
             />
-            <ClaimedTL handleCheckBox={this.handleCheckBox} data={this.state.claimedTodosR2} roommate="Roomie #2"
-            handleUnClaimButton={this.handleUnClaimButton}/>
+            <ClaimedTL
+              handleCheckBox={this.handleCheckBox}
+              data={this.state.claimedTodosR2}
+              roommate="Roomie #2"
+              handleUnClaimButton={this.handleUnClaimButton}
+            />
           </div>
           <CompletedTL data={this.state.completeTodos}
           handleUnCheckBox={this.handleUnCheckBox} />

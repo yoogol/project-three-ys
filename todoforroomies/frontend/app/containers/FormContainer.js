@@ -27,7 +27,7 @@ const FormContainer = React.createClass ({
   },
 
   render: function() {
-    console.log(this.props.todoToEdit);
+    // console.log(this.props.todoToEdit);
     return (
       <div>
         {this.displayAddForm()}
