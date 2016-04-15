@@ -2,7 +2,7 @@
 
 * {
   box-sizing: border-box;
-  width:100%;
+  /*width:100%;*/
 }
 
 body {
@@ -15,11 +15,11 @@ body {
   margin: 0px 10px;
 }
 
-/* POP UP STYLES (overriding bootstrap) */
-
-body > div:nth-child(2){
-  width:auto;
+#app {
+  width:100%;
 }
+
+/* POP UP STYLES (overriding bootstrap) */
 
 .modal-content {
   background:blue;
@@ -112,6 +112,7 @@ input {
   margin-left: 3%;
   height: 22px;
   font-size: 14px;
+  color:black;
 }
 
 /*styling log-in */
@@ -157,6 +158,7 @@ h3 {
   display:flex;
   flex-flow: row nowrap;
   justify-content:space-around;
+  width:100%;
 }
 
 .unclaimed-container,
