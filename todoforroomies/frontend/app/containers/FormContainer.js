@@ -12,6 +12,8 @@ const FormContainer = React.createClass ({
           typeOfFormActivated={this.props.typeOfFormActivated}
           todoToEdit={this.props.todoToEdit}
           loadAllTasks={this.props.loadAllTasks}
+          currentUser={this.props.currentUser}
+          currentGroup={this.props.currentGroup}
           />
       )
     } else if (this.props.typeOfFormActivated == "Edit") {
@@ -21,6 +23,8 @@ const FormContainer = React.createClass ({
           userName={this.props.roommate1}
           typeOfFormActivated={this.props.typeOfFormActivated}
           todoToEdit={this.props.todoToEdit}
+          currentUser={this.props.currentUser}
+          currentGroup={this.props.currentGroup}
           />
       )
     } else {

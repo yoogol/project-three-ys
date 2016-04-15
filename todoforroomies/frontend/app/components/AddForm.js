@@ -64,7 +64,9 @@ const AddForm = React.createClass ({
     e.preventDefault();
     let newTask = {
       headline: this.state.headline,
-      author: this.state.author,
+      author: this.props.currentUser,
+      lastChangedBy: this.props.currentUser,
+      group: this.props.currentGroup,
       deadline: this.state.deadline,
       timeNeeded: this.state.timeNeeded,
       yuckiness: this.state.yuckiness,
@@ -73,7 +75,7 @@ const AddForm = React.createClass ({
       completedStatus: false,
       timeCompleted: '',
       timeCreated: new Date(),
-      pointsWorth: this.state.pointsWorth
+      pointsWorth: this.state.pointsWorth,
     };
     console.log(newTask);
     if (!newTask.headline) {
