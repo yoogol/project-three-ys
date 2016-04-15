@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 const AjaxHelpers = {
-  getAllToDos: function() {
-    return axios.get('http://localhost:3000/api/todos');
+  getAllToDos: function(currentGroup) {
+    return axios.get('http://localhost:3000/api/todos/' + currentGroup);
   },
   addNewToDo: function(todo) {
     console.log("ajax for todo");

@@ -8,8 +8,9 @@ export default function() {
   const collectionUsers = db.get().collection('users');
 
 //*******TODOS***********//
-  api.get('/todos', (req, res) => {
-    collectionTodos.find().toArray((err,docs) => {
+  api.get('/todos/:group', (req, res) => {
+    console.log(req.params);
+    collectionTodos.find(req.params).toArray((err,docs) => {
       res.json({ todos : docs });
     });
   });

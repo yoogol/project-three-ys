@@ -39,9 +39,8 @@ const App = React.createClass ({
       oldtodoid: '',
       todoToEdit: '',
       ajaxResponse: '',
-      currentUser: '',
-      currentGroup: "",
-      currentUser: 0,
+      currentUser: 'Awesome Roommate',
+      currentGroup: "Just Trying It Out",
 
       showWelcomeModal: true,
       showInstructionsModal: true,
@@ -93,7 +92,7 @@ const App = React.createClass ({
       roommate1name: user.name,
       roommate2name: "unknown for now"
     });
-    console.log(this.state.roommate1);
+    this.loadAllTasks()
   },
   //******MAIN SCREEN BUTTONS*******//
   handleScoreBoardButton: function() {
@@ -254,7 +253,9 @@ const App = React.createClass ({
   },
   //**********RELOADING FROM DB***********//
   loadAllTasks: function() {
-    AjaxHelpers.getAllToDos().then(function(response) {
+    console.log(this.state.currentGroup);
+    AjaxHelpers.getAllToDos(this.state.currentGroup).then(function(response) {
+      console.log("response.data.todos", response.data.todos);
       let incompleteTodos = response.data.todos.filter(function(todo) {
         if (todo.completedStatus == false && todo.roommate == 0) {
           return true
