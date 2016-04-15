@@ -133,7 +133,7 @@ const AddForm = React.createClass ({
             />
           <label className="label"><strong>{this.handlePointsWorth()}</strong></label>
           <br />
-          <button className="button submit-button" type="submit">Submit</button>
+          <button onClick={this.props.closeBtn} className="button submit-button" type="submit">Submit</button>
         </form>
       </div>
     )
