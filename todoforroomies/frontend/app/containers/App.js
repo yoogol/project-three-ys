@@ -132,7 +132,8 @@ const App = React.createClass ({
     this.setState ({
       typeOfFormActivated: "Edit",
       todoToEdit: todoToEdit[0]
-    })
+    });
+    this.addTaskOpen();
   },
   handleDeleteButton: function(e) {
     console.log("delete button clicked");
@@ -297,9 +298,6 @@ const App = React.createClass ({
   componentDidMount: function() {
     this.loadAllTasks();
 
-    // fixing backdrop width for modal bootstrap
-    let backdrop = document.querySelector(".pop-up-window").parentNode.parentNode;
-    backdrop.style.width = "auto";
   },
 
   //*************RENDERING***************//
