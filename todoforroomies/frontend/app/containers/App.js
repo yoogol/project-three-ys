@@ -147,6 +147,14 @@ const App = React.createClass ({
     }.bind(this))
 
   },
+  changeScore: function() {
+    let newScore ={
+      score: this.state.roommate1score
+    };
+    AjaxHelpers.editUserInfo(newScore, this.state.roommate1name).then(function(response) {
+      console.log(response);
+    })
+  },
   handleCheckBox: function(e) {
     e.preventDefault();
     console.log("checkbox clicked");
@@ -162,9 +170,11 @@ const App = React.createClass ({
           return true
         }
       })[0].pointsWorth;
-      console.log("points earned:", pointsEarned)
-      console.log("make a change in user profile info");
-      console.log("what happens if user unchecks");
+      console.log("Assumes you are roommate 1 all the time");
+      this.setState ({
+        roommate1score: this.state.roommate1score + pointsEarned
+      });
+      this.changeScore();
     }.bind(this));
   },
   handleUnCheckBox: function(e) {
@@ -177,6 +187,16 @@ const App = React.createClass ({
     AjaxHelpers.editToDo(newTaskProp, todoToComplete).then(function(response) {
       console.log(response);
       this.loadAllTasks();
+      let pointsLost = this.state.allTasks.filter(function(todo) {
+        if (todoToComplete == todo._id) {
+          return true
+        }
+      })[0].pointsWorth;
+      console.log("Assumes you are roommate 1 all the time");
+      this.setState ({
+        roommate1score: this.state.roommate1score - pointsLost
+      });
+      this.changeScore();
     }.bind(this))
   },
   handleUnClaimButton: function(e) {

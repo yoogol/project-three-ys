@@ -43,5 +43,12 @@ export default function() {
       res.json(docs);
     });
   });
+  api.put('/user/:name', (req, res) => {
+    console.log(req.params);
+    console.log(req.body);
+    collectionUsers.update({"name": req.params.name}, {$set: req.body}, {w:1}, (err, result) => {
+      res.json(result);
+    });
+  });
   return api;
 }

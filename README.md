@@ -22,7 +22,7 @@ TODO:
 [] figure out date format with displaying tasks
 [] figure out date format when editing tasks in a format
 [] figure out how to add a user to an existing group
-[] allow unclaim only for the user whose task it is
+[] allow unclaim and check only for the user whose task it is
 [] log who completed the task
 [] replace roomie1 and roomie2 with names
 
