@@ -31,6 +31,10 @@ hr {
   width:50%;
 }
 
+.italic {
+  font-style: italic;
+}
+
 /* DROPDOWN STYLES */
 
 .btn-group>.btn:first-child {

@@ -6,8 +6,12 @@ function Instructions(props){
   return(
     <div className="pop-up-content">
       <h3>Instructions</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sem eros, dapibus et accumsan eget, feugiat nec risus. Curabitur et pellentesque nulla. Ut id convallis leo. Suspendisse eu sollicitudin lectus. Donec tristique rutrum dui, at luctus orci molestie laoreet.</p>
-      <p>Aliquam magna ipsum, dictum ut tristique a, malesuada sit amet sem. Pellentesque in porta nunc. In tortor metus, porta nec tincidunt sed, efficitur at ipsum. Donec libero arcu, eleifend nec fringilla nec, efficitur et odio. Curabitur et elit ultrices, consectetur tortor nec, finibus ex. In egestas dignissim ex id pellentesque. Phasellus hendrerit, augue id sodales congue, risus risus sollicitudin ante, in accumsan tortor ligula sit amet urna. Cras a dictum turpis.</p>
+      <p>Sick of looking at those dirty dishes in the sink? Welcome to Roomies, getting rid of resentful roommates one point at a time.</p>
+      <p>It's simple. Start by adding a new task: When should it be completed by? How long will it take? Cleaning toilets...gross! Mark that one as <span className="italic">extra yucky</span>!</p>
+      <p>Claim that chore with the dropdown, and watch it move to your board.</p>
+      <p>Need to change a task you already added? No problem! Just click edit or delete.</p>
+      <p>When you're done, just check it off and watch your score go up!</p>
+      <p>Whoever has the most points at the end of each week wins... And the loser has to do that week's random punishment.</p>
       <Button className="close-button" onClick={props.closeBtn}>Close</Button>
     </div>
   )

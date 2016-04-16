@@ -1,15 +1,11 @@
-Simple on the surface, with more under the hood.
+Sick of looking at those dirty dishes in the sink? Welcome to Roomies, where there are no more resentful roommates.
 
-A Trello board is a list of lists, filled with cards, used by you and your team. It’s a lot more than that, though. Trello has everything you need to organize projects of any size.
+It's simple. Start by adding a new task: Choose a date and time it should be completed by! How long will the chore take? Cleaning toilets...gross! Mark that one as <italics>extra yucky<italics>!
 
-Open a card and you can add comments, upload file attachments, create checklists, add labels and due dates, and more.
+Claim that chore with the dropdown and watch it move to your board.
 
-You can invite as many people to your board as you need, all for free. Drag and drop people to cards to divvy up tasks. Everyone sees the same board and the whole picture all at once.
+Need to change a task you already added? No problem! Just click edit or delete.
 
-Start a discussion with comments and attachments. Add a quick note or a detailed, Markdown-enabled diatribe. Mention a member in a comment to make sure they get notified. Add files by uploading them from your computer, Google Drive, Dropbox, Box, and OneDrive. Liven it up with emojis, too.  
+When you're done, just check it off and watch your score go up!
 
-
-Whenever something important happens, you know instantly with Trello’s notification system. You’ll get notifications wherever you are: inside the app, via email, desktop notifications via the browser, or via mobile push notifications. Notifications stay in sync across all your devices.
-
-
-Trello works in real-time, real fast. When somebody moves a card, it moves on your board instantly, no matter what device you use. You can keep your tab open all day and never have to refresh. Plus, Trello opens and loads so fast you won’t even notice.
+Whoever has the most points at the end of each week wins! ...And the loser has to do that week's random punishment.
