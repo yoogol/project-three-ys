@@ -160,7 +160,9 @@ const App = React.createClass ({
     console.log("checkbox clicked");
     let todoToComplete = e.target.value;
     let newTaskProp = {
-      completedStatus: true
+      completedStatus: true,
+      timeCompleted: new Date(),
+      weekCompleted: new Date().format('W');
     };
     AjaxHelpers.editToDo(newTaskProp, todoToComplete).then(function(response) {
       console.log(response);
@@ -379,13 +381,13 @@ const App = React.createClass ({
             <ClaimedTL
               handleCheckBox={this.handleCheckBox}
               data={this.state.claimedTodosR1}
-              roommate="Roomie #1"
+              roommate={this.state.roommate1name}
               handleUnClaimButton={this.handleUnClaimButton}
             />
             <ClaimedTL
               handleCheckBox={this.handleCheckBox}
               data={this.state.claimedTodosR2}
-              roommate="Roomie #2"
+              roommate={this.state.roommate2name}
               handleUnClaimButton={this.handleUnClaimButton}
             />
           </div>
