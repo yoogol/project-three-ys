@@ -15,6 +15,8 @@ DONE:
 [x] prevent Registering with the same name
 
 TODO:
+[] save user's score into db (find user, get their score updated)
+[] update score when the task is checked and when the task is unchecked
 [] create logic for calculating weekly score and update the scoreboard
 [] create logic for determining the winner  after one week is up
 [] figure out date format with displaying tasks
@@ -22,6 +24,7 @@ TODO:
 [] figure out how to add a user to an existing group
 [] allow unclaim only for the user whose task it is
 [] log who completed the task
+[] replace roomie1 and roomie2 with names
 
 
 * update points logic
