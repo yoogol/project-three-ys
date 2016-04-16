@@ -13,7 +13,7 @@ function InfoBtn(props){
         <FontAwesome
           onClick={props.handleInstructionsButton}
           name='info-circle'
-          size='2x'
+          size='3x'
         />
       </OverlayTrigger>
   </div>

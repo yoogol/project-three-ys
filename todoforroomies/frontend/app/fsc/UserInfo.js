@@ -3,9 +3,15 @@ import React from 'react';
 const UserInfo = React.createClass ({
   render: function() {
     return (
-      <div>
-        <div>Group: {this.props.currentGroup}</div>
-        <div>Logged In As: {this.props.currentUser}</div>
+      <div className="user-group-info">
+        <div className="group-info-labels">
+          <p>Group:</p>
+          <p>Logged In As:</p>
+        </div>
+        <div className="group-info-data">
+          <p>{this.props.currentGroup}</p>
+          <p>{this.props.currentUser}</p>
+        </div>
       </div>
     )
   }

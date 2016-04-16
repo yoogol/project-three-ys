@@ -8,7 +8,6 @@ const AddButton = React.createClass ({
       <div>
         <button className="add-button" onClick={this.props.handleAddButton}>Add Task <FontAwesome
           name='plus'
-          size='1x'
         /></button>
       </div>
     )

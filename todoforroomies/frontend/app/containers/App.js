@@ -320,14 +320,18 @@ const App = React.createClass ({
           />
           {this.displayInstructions()}
 
-          <Title className="title"/>
+          <div className="top-middle">
+            <Title className="title"/>
+
+            <UserInfo currentGroup={this.state.currentGroup} currentUser={this.state.currentUser}/>
+          </div>
+
+
 
           <ScoreBoardBtn show={this.state.showScoreboardModal}
           handleScoreBoardButton={this.handleScoreBoardButton}/>
           {this.displayScoreBoard()}
         </div>
-
-        <UserInfo currentGroup={this.state.currentGroup} currentUser={this.state.currentUser}/>
 
         <AddButton
           show={this.state.showAddTaskModal}

@@ -13,7 +13,7 @@ function ScoreBoardBtn(props){
         <FontAwesome
           onClick={props.handleScoreBoardButton}
           name='star'
-          size='2x'
+          size='3x'
         />
       </OverlayTrigger>
     </div>
