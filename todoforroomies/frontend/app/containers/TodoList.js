@@ -1,5 +1,7 @@
 import React from 'react';
 import OneToDo from "../components/OneToDo"
+require('../style/Styles.css');
+
 
 const TodoList = React.createClass ({
   render: function() {

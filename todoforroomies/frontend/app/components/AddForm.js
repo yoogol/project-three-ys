@@ -121,7 +121,7 @@ const AddForm = React.createClass ({
               />
             <br /><br />
 
-            <label className="add-form-label">Need to Be Completed By: </label>
+            <label className="add-form-label">Needs to Be Completed By: </label>
             <br />
 
             <Datetime isValidDate={ valid } />

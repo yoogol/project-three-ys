@@ -1,5 +1,7 @@
 import React from 'react';
 var Button = require('react-bootstrap').Button;
+require('../style/Styles.css');
+
 
 const ScoreBoard = React.createClass ({
   render: function() {
