@@ -1,4 +1,5 @@
 import React from 'react';
+var Button = require('react-bootstrap').Button;
 import TodoList from '../containers/TodoList';
 
 // this.props.parentComponent
@@ -17,18 +18,18 @@ const OneToDo = React.createClass ({
   },
   displayEditButton: function() {
     if (this.props.parentComponent == 'TodoList') {
-      return <button onClick={this.props.handleEditButton} type="button"
+      return <Button onClick={this.props.handleEditButton} type="button"
       value={this.props.ToDoItem._id}
-        >Edit</button>
+        >Edit</Button>
     } else {
       return
     }
   },
   displayDeleteButton: function() {
     if (this.props.parentComponent == 'TodoList') {
-      return <button onClick={this.props.handleDeleteButton} type="button"
+      return <Button onClick={this.props.handleDeleteButton} type="button"
       value={this.props.ToDoItem._id}
-        >Delete</button>
+        >Delete</Button>
     } else {
       return
     }
@@ -39,7 +40,7 @@ const OneToDo = React.createClass ({
         <select
           onChange={this.props.handleClaimMenu}
           id={this.props.ToDoItem._id}
-          >
+        >
           <option value="">Who is going to do this?</option>
           <option value="1">Roomie 1</option>
           <option value="2">Roomie 2</option>
@@ -70,9 +71,10 @@ const OneToDo = React.createClass ({
   // },
   displayUnClaimButton: function() {
     if (this.props.parentComponent == 'ClaimedTL') {
-      return <button onClick={this.props.handleUnClaimButton} type="button"
+      return <Button onClick={this.props.handleUnClaimButton} type="button"
       value={this.props.ToDoItem._id}
-        >Unclaim</button>
+      className="unclaim-button"
+        >Unclaim</Button>
     } else {
       return
     }
@@ -118,8 +120,8 @@ const OneToDo = React.createClass ({
             </div>
           </div>
         </div>
-        {this.displayClaimDropdown()}
         <div className="todo-buttons">
+          {this.displayClaimDropdown()}
           {this.displayUnClaimButton()}
           {this.displayEditButton()}
           {this.displayDeleteButton()}
