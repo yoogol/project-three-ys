@@ -22,7 +22,7 @@ const App = React.createClass ({
 
   getInitialState: function() {
     return {
-      ajaxResponse: '',
+      allTasks: [],
       incompleteTodos: [],
       completeTodos: [],
       claimedTodosR1: [],
@@ -157,7 +157,15 @@ const App = React.createClass ({
     AjaxHelpers.editToDo(newTaskProp, todoToComplete).then(function(response) {
       console.log(response);
       this.loadAllTasks();
-    }.bind(this))
+      let pointsEarned = this.state.allTasks.filter(function(todo) {
+        if (todoToComplete == todo._id) {
+          return true
+        }
+      })[0].pointsWorth;
+      console.log("points earned:", pointsEarned)
+      console.log("make a change in user profile info");
+      console.log("what happens if user unchecks");
+    }.bind(this));
   },
   handleUnCheckBox: function(e) {
     e.preventDefault();
@@ -258,6 +266,9 @@ const App = React.createClass ({
     console.log(this.state.currentGroup);
     AjaxHelpers.getAllToDos(this.state.currentGroup).then(function(response) {
       console.log("response.data.todos", response.data.todos);
+      this.setState({
+        allTasks: response.data.todos
+      });
       let incompleteTodos = response.data.todos.filter(function(todo) {
         if (todo.completedStatus == false && todo.roommate == 0) {
           return true
