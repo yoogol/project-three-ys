@@ -1,5 +1,6 @@
 import React from "react";
 var Button = require('react-bootstrap').Button;
+require('../style/Styles.css');
 
 function Instructions(props){
   return(

@@ -1,6 +1,8 @@
 import React from 'react';
 var Button = require('react-bootstrap').Button;
+var FontAwesome = require('react-fontawesome');
 import AjaxHelpers from '../utils/AjaxHelpers';
+require('../style/Styles.css');
 
 const LoginForm = React.createClass ({
   getInitialState: function() {

@@ -1,6 +1,7 @@
 import React from 'react';
 var Button = require('react-bootstrap').Button;
 import TodoList from '../containers/TodoList';
+require('../style/Styles.css');
 
 // this.props.parentComponent
 

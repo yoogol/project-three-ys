@@ -1,4 +1,5 @@
 import React from 'react';
+require('../style/Styles.css');
 
 const ScoreBoardButton = React.createClass ({
   render: function() {
