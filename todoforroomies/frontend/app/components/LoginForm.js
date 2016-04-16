@@ -94,14 +94,14 @@ const LoginForm = React.createClass ({
       console.log("ajax call to add to db (check if unique)");
       AjaxHelpers.getAllUsers().then(function(response) {
         console.log(response.data);
-        let userIsCorrect = response.data.filter(function(user) {
+        let correctUser = response.data.filter(function(user) {
           if (user.name == lookupUser.name && user.password == lookupUser.password) {
             return true
           }
         });
-        if (userIsCorrect.length > 0) {
+        if (correctUser.length > 0) {
           console.log("user info is correct");
-          this.props.handleRegistration(userIsCorrect[0]);
+          this.props.handleRegistration(correctUser[0]);
         } else {
           console.log("user info incorrect")
         }

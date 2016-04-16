@@ -20,8 +20,8 @@ TODO:
 
 
 [] create logic for calculating weekly score and update the scoreboard
-  [] add time completed  and week completed
-  []
+  [x] add time completed  and week completed
+  [] retrieve user's scores at login
 [] create logic for determining the winner  after one week is up
 [] figure out date format with displaying tasks
 [] figure out date format when editing tasks in a format

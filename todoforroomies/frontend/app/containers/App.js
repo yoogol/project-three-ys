@@ -89,11 +89,15 @@ const App = React.createClass ({
   //*******LOGIN/REGISTRATION*******//
   handleRegistration: function(user) {
     console.log("logging user:", user);
+    if (!user.hasOwnProperty('score')) {
+      user.score = 0
+    };
     this.setState ({
       currentUser: user.name,
       currentGroup: user.group,
       roommate1name: user.name,
-      roommate2name: "unknown for now"
+      roommate2name: "unknown for now",
+      roommate1score: user.score
     });
     this.loadAllTasks()
   },
@@ -125,7 +129,6 @@ const App = React.createClass ({
   //*********ONE TODO BUTTONS***********//
   handleEditButton: function(e) {
     console.log("edit button clicked");
-    console.log(e.target.value);
     let todoToEdit = this.state.incompleteTodos.filter(function(todo) {
       if (todo._id == e.target.value) {
         return todo
@@ -139,10 +142,9 @@ const App = React.createClass ({
   },
   handleDeleteButton: function(e) {
     console.log("delete button clicked");
-    console.log(e.target.value);
     let todoToDeleteId = e.target.value;
     AjaxHelpers.deleteToDo(todoToDeleteId).then(function(response) {
-      console.log(response);
+      console.log("response from deleteToDo", response);
       this.setState ({
         ajaxResponse: response
       });
@@ -155,30 +157,32 @@ const App = React.createClass ({
       score: this.state.roommate1score
     };
     AjaxHelpers.editUserInfo(newScore, this.state.roommate1name).then(function(response) {
-      console.log(response);
+      console.log("response from editUserInfo", response);
     })
+
   },
   handleCheckBox: function(e) {
     e.preventDefault();
     console.log("checkbox clicked");
     let todoToComplete = e.target.value;
+    console.log("week number stored in db", Moment().format('W'));
     let newTaskProp = {
       completedStatus: true,
       timeCompleted: new Date(),
-      weekCompleted: new Date().format('W');
+      weekCompleted: Moment().format('W')
     };
     AjaxHelpers.editToDo(newTaskProp, todoToComplete).then(function(response) {
-      console.log(response);
+      console.log("response from editToDo (check):", response);
       this.loadAllTasks();
       let pointsEarned = this.state.allTasks.filter(function(todo) {
         if (todoToComplete == todo._id) {
           return true
         }
       })[0].pointsWorth;
-      console.log("Assumes you are roommate 1 all the time");
       this.setState ({
         roommate1score: this.state.roommate1score + pointsEarned
       });
+      console.log("new score after updating the state (check)", this.state.roommate1score);
       this.changeScore();
     }.bind(this));
   },
@@ -187,32 +191,33 @@ const App = React.createClass ({
     console.log("uncheckbox clicked");
     let todoToComplete = e.target.value;
     let newTaskProp = {
-      completedStatus: false
+      completedStatus: false,
+      timeCompleted: '',
+      weekCompleted: ''
     };
     AjaxHelpers.editToDo(newTaskProp, todoToComplete).then(function(response) {
-      console.log(response);
+      console.log("response from editToDo (uncheck):", response);
       this.loadAllTasks();
       let pointsLost = this.state.allTasks.filter(function(todo) {
         if (todoToComplete == todo._id) {
           return true
         }
       })[0].pointsWorth;
-      console.log("Assumes you are roommate 1 all the time");
       this.setState ({
         roommate1score: this.state.roommate1score - pointsLost
       });
+      console.log("new score after updating the state (uncheck)", this.state.roommate1score);
       this.changeScore();
     }.bind(this))
   },
   handleUnClaimButton: function(e) {
     console.log("unclaim button clicked");
-    console.log(e.target.value);
     let todoToChange = e.target.value;
     let newTaskProp = {
       roommate: 0
     };
     AjaxHelpers.editToDo(newTaskProp, todoToChange).then(function(response) {
-      console.log(response);
+      console.log("response from editToDo", response);
       this.loadAllTasks();
     }.bind(this))
   },
@@ -227,7 +232,7 @@ const App = React.createClass ({
       roommate: e.target.value
     };
     AjaxHelpers.editToDo(newTaskProp, todoToChange).then(function(response) {
-      console.log(response);
+      console.log("response from editToDo", response);
       this.loadAllTasks();
     }.bind(this))
   },
@@ -288,9 +293,9 @@ const App = React.createClass ({
   },
   //**********RELOADING FROM DB***********//
   loadAllTasks: function() {
-    console.log(this.state.currentGroup);
+    console.log("currentGroup:", this.state.currentGroup);
     AjaxHelpers.getAllToDos(this.state.currentGroup).then(function(response) {
-      console.log("response.data.todos", response.data.todos);
+      console.log("response from get All To Dos", response.data.todos);
       this.setState({
         allTasks: response.data.todos
       });
@@ -302,7 +307,7 @@ const App = React.createClass ({
       this.setState({
         incompleteTodos: incompleteTodos
       });
-      console.log("incomplete:", this.state.incompleteTodos)
+      // console.log("incomplete:", this.state.incompleteTodos)
 
       let completeTodos = response.data.todos.filter(function(todo) {
         if (todo.completedStatus === true) {
@@ -312,7 +317,7 @@ const App = React.createClass ({
       this.setState({
         completeTodos: completeTodos
       });
-      console.log("complete:", this.state.completeTodos)
+      // console.log("complete:", this.state.completeTodos)
 
       let claimedTodosR1 = response.data.todos.filter(function(todo) {
         if (todo.roommate == 1 && todo.completedStatus == false) {
@@ -322,7 +327,7 @@ const App = React.createClass ({
       this.setState({
         claimedTodosR1: claimedTodosR1
       });
-      console.log("claimed1", this.state.claimedTodosR1)
+      // console.log("claimed1", this.state.claimedTodosR1)
 
       let claimedTodosR2 = response.data.todos.filter(function(todo) {
         if (todo.roommate == 2 && todo.completedStatus == false) {
@@ -332,7 +337,7 @@ const App = React.createClass ({
       this.setState({
         claimedTodosR2: claimedTodosR2
       });
-      console.log("claimed2:", this.state.claimedTodosR2)
+      // console.log("claimed2:", this.state.claimedTodosR2)
 
     }.bind(this));
   },
