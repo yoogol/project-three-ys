@@ -49,7 +49,7 @@ const AddForm = React.createClass ({
     console.log(todayDate);
     console.log(this.state.deadline)
     // let daysLeft = Math.floor((datePicked - todayDate)/86400);
-    let daysLeft = Math.floor((datePicked - todayDate)/86400);
+    let daysLeft = Math.floor(((datePicked - todayDate)/86400)/100);
     console.log(daysLeft)
     console.log("time:",parseInt(this.state.timeNeeded),"yuck:",parseInt(this.state.yuckiness));
     let points = daysLeft * this.state.timeNeeded * this.state.yuckiness;
@@ -57,6 +57,7 @@ const AddForm = React.createClass ({
     this.setState({
       pointsWorth: points
     })
+    console.log(points)
   },
   handleSubmit: function(e) {
     console.log("submit form button clicked")
@@ -157,11 +158,11 @@ const AddForm = React.createClass ({
           <select
             value={this.state.yuckiness}
             onChange={this.handleYuckiness}>
-            <option type="number" value="1">1</option>
-            <option type="number" value="2">2</option>
-            <option type="number" value="3">3</option>
-            <option type="number" value="4">4</option>
-            <option type="number" value="5">5</option>
+            <option type="number" value="1">1 - Least</option>
+            <option type="number" value="2">2 - I will do it!</option>
+            <option type="number" value="3">3 - Neutral</option>
+            <option type="number" value="4">4 - I don't want it!</option>
+            <option type="number" value="5">5 - Most</option>
           </select>
           <label className="label"><strong>{this.handlePointsWorth()}</strong></label>
           <br />
