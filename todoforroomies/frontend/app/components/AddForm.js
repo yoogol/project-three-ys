@@ -15,26 +15,24 @@ const AddForm = React.createClass ({
   handleHeadline: function(e){
     this.setState({
       headline: e.target.value,
-    })
+    }, this.calculatePoints)
   },
   handleDeadline: function(e){
     this.setState({
       deadline: e.target.value
-    })
-    this.calculatePoints()
+    }, this.calculatePoints)
+
   },
   handleTimeNeeded: function(e){
+    console.log('handleTimeNeeded')
     this.setState({
       timeNeeded: e.target.value
-    })
-    this.calculatePoints()
+    }, this.calculatePoints)
   },
   handleYuckiness: function(e) {
     this.setState({
       yuckiness: e.target.value
-    })
-    this.calculatePoints()
-    console.log(e.target.value);
+    }, this.calculatePoints)
   },
 
   handlePointsWorth: function(e){
@@ -43,6 +41,7 @@ const AddForm = React.createClass ({
     )
   },
   calculatePoints: function(){
+    console.log('calculatePoints')
     console.log("calculation goes here");
     let datePicked = Date.parse(new Date(this.state.deadline));
     let todayDate = Date.parse(new Date());
@@ -53,7 +52,7 @@ const AddForm = React.createClass ({
     let daysLeft = Math.floor((datePicked - todayDate)/86400);
     console.log(daysLeft)
     console.log("time:",parseInt(this.state.timeNeeded),"yuck:",parseInt(this.state.yuckiness));
-    let points = this.state.timeNeeded * this.state.yuckiness;
+    let points = daysLeft * this.state.timeNeeded * this.state.yuckiness;
     console.log(points);
     this.setState({
       pointsWorth: points
@@ -94,6 +93,7 @@ const AddForm = React.createClass ({
     }
   },
   render: function() {
+    console.log('rendering....')
     return (
       <div>
         <form onSubmit={this.handleSubmit} style={formStyle} className="form"><br />
@@ -113,7 +113,7 @@ const AddForm = React.createClass ({
           <input
             type='datetime-local'
             placeholder="pick a date"
-            style={formStyle}
+            style={formTwoStyle}
             value={this.state.deadline}
             onChange={this.handleDeadline}
             />
@@ -177,8 +177,12 @@ let formStyle = {
   width: '50%',
 }
 
+let formTwoStyle = {
+  width: '75%',
+}
+
 let taskStyle = {
-  width: '60%',
+  width: '75%',
   height:'24'
 }
 

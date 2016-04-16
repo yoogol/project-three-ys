@@ -110,7 +110,7 @@ hr {
 
 .button {
   border: 0px;
-  font-size: 1rem;
+  font-size: 1.4rem;
   width: 108px;
   height: 30px;
   border-radius: 15px;
@@ -140,7 +140,7 @@ hr {
 
 .submit-button {
   background: grey;
-  margin: -20px 10px 10px 10px;
+  margin: 15px 10px 10px 10px;
 }
 
 .user-login-button {
@@ -152,11 +152,10 @@ hr {
   cursor: pointer;
   font-weight: normal;
   margin-top: 8px;
-
 }
 
 strong {
-  font-size: 1.4rem;
+  font-size: 2.5rem;
 }
 
 input, select {
@@ -164,9 +163,8 @@ input, select {
   height: 22px;
   font-size: 14px;
   color: black;
-  width: 200px;
+  width: 180px;
 }
-
 
 .label {
   color: Yellow;
