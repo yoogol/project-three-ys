@@ -89,6 +89,7 @@ const AddForm = React.createClass ({
     } else if (this.props.typeOfFormActivated == "Edit"){
       AjaxHelpers.editToDo(newTask, this.props.todoToEdit._id).then(function(response) {
         console.log(response);
+        this.props.loadAllTasks()
       }.bind(this))
     }
   },

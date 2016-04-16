@@ -23,6 +23,9 @@ const AjaxHelpers = {
   },
   getAllUsers: function() {
     return axios.get('http://localhost:3000/api/users')
+  },
+  editUserInfo: function(score, name) {
+    return axios.put('http://localhost:3000/api/user/' + name, score)
   }
 }
 
