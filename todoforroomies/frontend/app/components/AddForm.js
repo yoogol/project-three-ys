@@ -1,6 +1,14 @@
 import React from 'react';
 import AjaxHelpers from '../utils/AjaxHelpers';
 require('../style/Styles.css');
+var Datetime = require('react-datetime');
+var Moment = require('moment');
+
+// Let's use moment static reference in the Datetime component.
+var yesterday = Datetime.moment().subtract(1,'day');
+var valid = function( current ){
+    return current.isAfter( yesterday );
+};
 
 const AddForm = React.createClass ({
   getInitialState: function() {
@@ -41,6 +49,8 @@ const AddForm = React.createClass ({
     )
   },
   calculatePoints: function(){
+
+
     console.log('calculatePoints')
     console.log("calculation goes here");
     let datePicked = Date.parse(new Date(this.state.deadline));
@@ -49,7 +59,7 @@ const AddForm = React.createClass ({
     console.log(todayDate);
     console.log(this.state.deadline)
     // let daysLeft = Math.floor((datePicked - todayDate)/86400);
-    let daysLeft = Math.floor((datePicked - todayDate)/86400);
+    let daysLeft = Math.floor(((datePicked - todayDate)/86400)/100);
     console.log(daysLeft)
     console.log("time:",parseInt(this.state.timeNeeded),"yuck:",parseInt(this.state.yuckiness));
     let points = daysLeft * this.state.timeNeeded * this.state.yuckiness;
@@ -57,6 +67,7 @@ const AddForm = React.createClass ({
     this.setState({
       pointsWorth: points
     })
+    console.log(points)
   },
   handleSubmit: function(e) {
     console.log("submit form button clicked")
@@ -109,7 +120,8 @@ const AddForm = React.createClass ({
             />
           <br /><br/>
 
-          <label className="label">Need to Be Completed By: </label>
+          <Datetime isValidDate={ valid } />
+          {/*<label className="label">Need to Be Completed By: </label>
           <br /><br />
           <input
             type='datetime-local'
@@ -117,7 +129,7 @@ const AddForm = React.createClass ({
             style={formTwoStyle}
             value={this.state.deadline}
             onChange={this.handleDeadline}
-            />
+            />*/}
           <br /><br />
 
           <label className="label">Est. Time to Complete (mins): </label>
@@ -158,11 +170,11 @@ const AddForm = React.createClass ({
           <select
             value={this.state.yuckiness}
             onChange={this.handleYuckiness}>
-            <option type="number" value="1">1</option>
-            <option type="number" value="2">2</option>
-            <option type="number" value="3">3</option>
-            <option type="number" value="4">4</option>
-            <option type="number" value="5">5</option>
+            <option type="number" value="1">1 - Least</option>
+            <option type="number" value="2">2 - I will do it!</option>
+            <option type="number" value="3">3 - Neutral</option>
+            <option type="number" value="4">4 - I don't want it!</option>
+            <option type="number" value="5">5 - Most</option>
           </select>
           <label className="label"><strong>{this.handlePointsWorth()}</strong></label>
           <br />
