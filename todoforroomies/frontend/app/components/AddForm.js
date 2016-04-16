@@ -1,4 +1,5 @@
 import React from 'react';
+var Button = require('react-bootstrap').Button;
 import AjaxHelpers from '../utils/AjaxHelpers';
 require('../style/Styles.css');
 var Datetime = require('react-datetime');
@@ -45,12 +46,12 @@ const AddForm = React.createClass ({
 
   handlePointsWorth: function(e){
     return (
-      <p className="label">This task is worth {this.state.pointsWorth} points!</p>
+      <p className="add-form-label">This task is worth {this.state.pointsWorth} points!</p>
     )
   },
+
+
   calculatePoints: function(){
-
-
     console.log('calculatePoints')
     console.log("calculation goes here");
     let datePicked = Date.parse(new Date(this.state.deadline));
@@ -107,102 +108,106 @@ const AddForm = React.createClass ({
   render: function() {
     console.log('rendering....')
     return (
-      <div>
-        <form onSubmit={this.handleSubmit} style={formStyle} className="form"><br />
-          <label className="label">Task to Complete: </label>
-          <br /><br />
-          <input
-            style={taskStyle}
-            type='text'
-            placeholder="do laundry, wash dishes etc."
-            value={this.state.headline}
-            onChange={this.handleHeadline}
-            />
-          <br /><br/>
+      <div className="pop-up-content">
+        <div>
+          <form onSubmit={this.handleSubmit} className="form">
+            <label className="add-form-label">Task to Complete: </label>
+            <br />
+            <input
+              type='text'
+              placeholder="do laundry, wash dishes etc."
+              value={this.state.headline}
+              onChange={this.handleHeadline}
+              />
+            <br /><br />
 
-          <Datetime isValidDate={ valid } />
-          {/*<label className="label">Need to Be Completed By: </label>
-          <br /><br />
-          <input
-            type='datetime-local'
-            placeholder="pick a date"
-            style={formTwoStyle}
-            value={this.state.deadline}
-            onChange={this.handleDeadline}
-            />*/}
-          <br /><br />
+            <label className="add-form-label">Need to Be Completed By: </label>
+            <br />
 
-          <label className="label">Est. Time to Complete (mins): </label>
-          <br /><br />
-          {/*<input
-            style={formStyle}
-            type='number'
-            placeholder="Enter # of minutes"
-            value={this.state.timeNeeded}
-            onChange={this.handleTimeNeeded}
-            />*/}
-          <select
-            value={this.state.timeNeeded}
-            onChange={this.handleTimeNeeded}>
-            <option type="number" value="5">5</option>
-            <option type="number" value="10">10</option>
-            <option type="number" value="15">15</option>
-            <option type="number" value="20">20</option>
-            <option type="number" value="25">25</option>
-            <option type="number" value="30">30</option>
-            <option type="number" value="35">35</option>
-            <option type="number" value="40">40</option>
-            <option type="number" value="45">45</option>
-            <option type="number" value="50">50</option>
-            <option type="number" value="55">55</option>
-            <option type="number" value="60">60</option>
-          </select>
-          <br /><br />
-          <label className="label">How yucky is the task from 1 to 5: </label>
-          <br /><br />
-          {/*<input
-            style={formStyle}
-            type='number'
-            placeholder="0"
-            value={this.state.yuckiness}
-            onChange={this.handleYuckiness}
-            />*/}
-          <select
-            value={this.state.yuckiness}
-            onChange={this.handleYuckiness}>
-            <option type="number" value="1">1 - Least</option>
-            <option type="number" value="2">2 - I will do it!</option>
-            <option type="number" value="3">3 - Neutral</option>
-            <option type="number" value="4">4 - I don't want it!</option>
-            <option type="number" value="5">5 - Most</option>
-          </select>
-          <label className="label"><strong>{this.handlePointsWorth()}</strong></label>
-          <br />
-          <button onClick={this.props.closeBtn} className="button submit-button" type="submit">Submit</button>
-        </form>
+            <Datetime
+              value={this.state.deadline}
+              onChange={this.handleDeadline}
+              isValidDate={ valid } />
+            {/*<label className="add-form-label">Need to Be Completed By: </label>
+            <br /><br />
+            <input
+              type='datetime-local'
+              placeholder="pick a date"
+              style={formTwoStyle}
+              value={this.state.deadline}
+              onChange={this.handleDeadline}
+              />*/}
+            <br /><br />
+
+            <label className="add-form-label">Est. Time to Complete (mins): </label>
+            <br />
+            {/*<input
+              style={formStyle}
+              type='number'
+              placeholder="Enter # of minutes"
+              value={this.state.timeNeeded}
+              onChange={this.handleTimeNeeded}
+              />*/}
+            <select
+              value={this.state.timeNeeded}
+              onChange={this.handleTimeNeeded}>
+              <option type="number" value="5">5</option>
+              <option type="number" value="10">10</option>
+              <option type="number" value="15">15</option>
+              <option type="number" value="20">20</option>
+              <option type="number" value="25">25</option>
+              <option type="number" value="30">30</option>
+              <option type="number" value="35">35</option>
+              <option type="number" value="40">40</option>
+              <option type="number" value="45">45</option>
+              <option type="number" value="50">50</option>
+              <option type="number" value="55">55</option>
+              <option type="number" value="60">60</option>
+            </select>
+            <br /><br />
+            <label className="add-form-label">How yucky is the task from 1 to 5: </label>
+            <br /><br />
+            {/*<input
+              style={formStyle}
+              type='number'
+              placeholder="0"
+              value={this.state.yuckiness}
+              onChange={this.handleYuckiness}
+              />*/}
+            <select
+              value={this.state.yuckiness}
+              onChange={this.handleYuckiness}>
+              <option type="number" value="1">1 - Least</option>
+              <option type="number" value="2">2 - I will do it!</option>
+              <option type="number" value="3">3 - Neutral</option>
+              <option type="number" value="4">4 - I don't want it!</option>
+              <option type="number" value="5">5 - Most</option>
+            </select>
+            <label className="add-form-label"><strong>{this.handlePointsWorth()}</strong></label>
+            <br />
+            <button onClick={this.props.closeBtn} className="button submit-button" type="submit">Submit</button>
+          </form>
+        </div>
       </div>
     )
   }
 })
 
 
-let formStyle = {
-  width: '50%',
-}
 
-let formTwoStyle = {
-  width: '75%',
-}
-
-let taskStyle = {
-  width: '75%',
-  height:'24'
-}
-
-let pointStyle = {
-  width: '8%',
-  height:'18'
-}
+// let formStyle = {
+//   width: '50%',
+// }
+//
+// let taskStyle = {
+//   width: '60%',
+//   height:'24'
+// }
+//
+// let pointStyle = {
+//   width: '8%',
+//   height:'18'
+// }
 
 
 export default AddForm;
