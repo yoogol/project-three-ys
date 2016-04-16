@@ -98,7 +98,7 @@ const AddForm = React.createClass ({
     return (
       <div className="pop-up-content">
         <div>
-          <form onSubmit={this.handleSubmit} className="form"><br />
+          <form onSubmit={this.handleSubmit} className="form">
             <label className="add-form-label">Task to Complete: </label>
             <br />
             <input

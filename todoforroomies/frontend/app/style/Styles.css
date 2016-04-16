@@ -12,7 +12,7 @@ body {
   font-family: 'Libre Baskerville', serif;
   font-weight:400;
   font-size:16px;
-  margin: 0px 10px;
+  margin: 0px 25px;
 }
 
 #app {
@@ -88,7 +88,7 @@ hr {
   background-image: -o-linear-gradient(top,#880030 0,#A7003C 100%);
   background-image: -webkit-gradient(linear,left top,left bottom,from(#880030),to(#A7003C));
   background-image: linear-gradient(to bottom,#880030 0,#A7003C 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#A7003C', endColorstr='#880030', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#880030', endColorstr='#A7003C', GradientType=0);
 
 }
 
@@ -133,6 +133,7 @@ hr {
 }
 
 .title {
+  margin:5px 0 0 0;
   font-size: 75px;
   color: #fff;
   text-align:center;
@@ -196,12 +197,18 @@ hr {
   margin-bottom: 20px;
   border: 0px;
   font-family: 'Righteous', cursive;
-  font-size:24px;
+  font-size:20px;
   padding:5px 25px;
-  border-radius: 15px;
+  border-radius: 10px;
   cursor: pointer;
-  background-color: #333333;
   color: white;
+  background:#333333;
+}
+
+.add-button:hover {
+  /*box-shadow: 5px 5px 5px #D20A51;*/
+  box-shadow: inset -2px -2px 15px #CCCCCC;
+
 }
 
 /*.submit-button {
@@ -287,18 +294,19 @@ h3 {
 .main-todos-container {
   display:flex;
   flex-flow: row nowrap;
-  justify-content:space-around;
+  justify-content:space-between;
   width:100%;
   color:#333333;
 }
 
 .unclaimed-container,
 .completed-container {
-  width: 30%;
+  width: 35%;
 }
 
 .roommate-containers {
-  width:25%;
+  width:30%;
+  margin: 0 25px;
 }
 
 .container-title {
