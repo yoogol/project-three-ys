@@ -15,9 +15,13 @@ DONE:
 [x] prevent Registering with the same name
 
 TODO:
-[] save user's score into db (find user, get their score updated)
-[] update score when the task is checked and when the task is unchecked
+[x] save user's score into db (find user, get their score updated)
+[x] update score when the task is checked and when the task is unchecked
+
+
 [] create logic for calculating weekly score and update the scoreboard
+  [] add time completed  and week completed
+  []
 [] create logic for determining the winner  after one week is up
 [] figure out date format with displaying tasks
 [] figure out date format when editing tasks in a format
