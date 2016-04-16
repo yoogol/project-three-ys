@@ -166,7 +166,7 @@ const AddForm = React.createClass ({
             </select>
             <br /><br />
             <label className="add-form-label">How yucky is the task from 1 to 5: </label>
-            <br /><br />
+            <br />
             {/*<input
               style={formStyle}
               type='number'
@@ -183,7 +183,8 @@ const AddForm = React.createClass ({
               <option type="number" value="4">4 - I don't want it!</option>
               <option type="number" value="5">5 - Most</option>
             </select>
-            <label className="add-form-label"><strong>{this.handlePointsWorth()}</strong></label>
+            <br />
+            <label className="add-form-label larger-font">{this.handlePointsWorth()}</label>
             <br />
             <button onClick={this.props.closeBtn} className="button submit-button" type="submit">Submit</button>
           </form>

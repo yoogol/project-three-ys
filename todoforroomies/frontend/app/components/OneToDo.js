@@ -1,5 +1,7 @@
 import React from 'react';
 var Button = require('react-bootstrap').Button;
+var DropdownButton = require('react-bootstrap').DropdownButton;
+var MenuItem = require('react-bootstrap').MenuItem;
 import TodoList from '../containers/TodoList';
 require('../style/Styles.css');
 
@@ -38,14 +40,14 @@ const OneToDo = React.createClass ({
   displayClaimDropdown: function(){
     if (this.props.parentComponent == "TodoList"){
       return(
-        <select
-          onChange={this.props.handleClaimMenu}
+        <DropdownButton
+          title="Who is going to do this?"
+          onSelect={this.props.handleClaimMenu}
           id={this.props.ToDoItem._id}
         >
-          <option value="">Who is going to do this?</option>
-          <option value="1">Roomie 1</option>
-          <option value="2">Roomie 2</option>
-        </select>
+          <MenuItem id={this.props.ToDoItem._id} value="1" eventKey="1">Roomie 1</MenuItem>
+          <MenuItem id={this.props.ToDoItem._id} value="2" eventKey="2">Roomie 2</MenuItem>
+        </DropdownButton>
       );
     } else {
       return

@@ -214,15 +214,15 @@ const App = React.createClass ({
       this.loadAllTasks();
     }.bind(this))
   },
-  handleClaimMenu: function(e){
+  handleClaimMenu: function(e,eventKey){
     console.log("dropdown has been changed");
-    console.log("e",e),
-    console.log("e.target",e.target);
-    console.log("e.target.value",e.target.value);
-    console.log("e.target.getAttribute('id')",e.target.getAttribute("id"));
+    // console.log("eventKey",eventKey);
+    // console.log("e.target",e.target);
+    // console.log("e.target.getAttribute('value')",e.target.getAttribute("value"));
+    // console.log("e.target.getAttribute('id')",e.target.getAttribute("id"));
     let todoToChange = e.target.getAttribute("id");
     let newTaskProp = {
-      roommate: e.target.value
+      roommate: eventKey
     };
     AjaxHelpers.editToDo(newTaskProp, todoToChange).then(function(response) {
       console.log(response);

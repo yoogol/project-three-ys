@@ -31,6 +31,24 @@ hr {
   width:50%;
 }
 
+/* DROPDOWN STYLES */
+
+.btn-group>.btn:first-child {
+  margin:0;
+}
+
+/* TOOLTIP STYLES (overriding bootstrap) */
+
+.tooltip {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 15px;
+  letter-spacing:1px;
+}
+
+.tooltip-inner {
+  background-color: #333333;
+}
+
 /* POP UP STYLES (overriding bootstrap) */
 
 .modal-dialog {
@@ -212,7 +230,6 @@ hr {
 .add-button:hover {
   /*box-shadow: 5px 5px 5px #D20A51;*/
   box-shadow: inset -2px -2px 15px #CCCCCC;
-
 }
 
 /*.submit-button {
@@ -235,7 +252,8 @@ hr {
   padding:0 30px;
 }
 
-strong {
+
+.larger-font {
   font-size: 2.5rem;
 }
 
@@ -245,7 +263,8 @@ input, select {
   min-height: 25px;
   font-size: 14px;
   color: black;
-  width: 180px;
+  min-width:275px;
+  padding:5px;
 }
 
 /*styling log-in */
@@ -369,7 +388,7 @@ h3 {
 }
 
 .todo-buttons * {
-  margin: 0 8px;
+  margin: 0 5px;
 }
 
 .todo-buttons .unclaim-button {
@@ -391,9 +410,15 @@ h3 {
 
 
 /*Date and time styling for deadline*/
+.form-control {
+  width:auto;
+  margin:0 auto;
+}
+
 .rdt {
 	position: relative;
 }
+
 .rdtPicker {
 	display: none;
 	position: absolute;
@@ -405,8 +430,11 @@ h3 {
   box-shadow: 0 1px 3px rgba(0,0,0,.1);
   border: 1px solid #f9f9f9;
 }
+
 .rdtOpen .rdtPicker {
-	display: block;
+	display: inline;
+  margin:0 auto;
+  right: 160px;
 }
 .rdtStatic .rdtPicker {
 	box-shadow: none;
