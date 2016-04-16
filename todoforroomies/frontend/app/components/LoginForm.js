@@ -124,7 +124,7 @@ const LoginForm = React.createClass ({
         <div>
           <hr></hr>
           <form onSubmit={this.handleLoginSubmit}>
-            <h1>Please log in</h1>
+            <h2>Please log in</h2>
             <input
               className="logininput"
               type="text"
@@ -132,6 +132,7 @@ const LoginForm = React.createClass ({
               value={this.state.name}
               onChange={this.handleLoginName}
               />
+            <br />
             <input
               className="logininput"
               type="text"
@@ -139,7 +140,8 @@ const LoginForm = React.createClass ({
               value={this.state.password}
               onChange={this.handleLoginPassword}
               />
-            <input className="user-login-button" type="submit"/>
+            <br />
+            <Button className="user-login-button" type="submit">Submit!</Button>
           </form>
         </div>
       )
@@ -148,8 +150,8 @@ const LoginForm = React.createClass ({
       return (
         <div>
             <hr></hr>
-            <h1>You are in!</h1>
-            <p>Please remember since you are not logged in your data will not be saved</p>
+            <h2>You are in!</h2>
+            <p className="guest-message">Please remember since you are not logged in your data will not be saved</p>
             <Button onClick={this.handleJustPeekIn}>Close</Button>
         </div>
 
@@ -159,26 +161,29 @@ const LoginForm = React.createClass ({
         <div>
           <hr></hr>
           <form onSubmit={this.handleRegisterSubmit}>
-            <h1>Please register</h1>
+            <h2>Please register</h2>
             <input
               type="text"
               placeholder="group name"
               value={this.state.group}
               onChange={this.handleGroupName}
               />
+            <br />
             <input
               type="text"
               placeholder="name"
               value={this.state.name}
               onChange={this.handleLoginName}
               />
+            <br />
             <input
               type="text"
               placeholder="password"
               value={this.state.password}
               onChange={this.handleLoginPassword}
               />
-            <input type="submit"/>
+            <br />
+            <Button type="submit">Submit!</Button>
           </form>
         </div>
       )
@@ -189,7 +194,9 @@ const LoginForm = React.createClass ({
     return (
       <div className="pop-up-content">
         <h2 className="welcome-message">Welcome to Roomies, where dirty pots don't eat relationships</h2>
+        <hr className="small-hr"></hr>
         <h3 className="login">Please login or proceed as a guest.</h3>
+        <br />
         <Button className="button main-start-button" onClick={this.handleRegisterPathButton}>Register</Button>
         <Button className="button main-start-button" onClick={this.handleLoginPathButton}>Login</Button>
         <Button className="button main-start-button" onClick={this.handleNoLoginPathButton}>Just peek in</Button>

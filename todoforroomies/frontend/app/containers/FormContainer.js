@@ -35,7 +35,7 @@ const FormContainer = React.createClass ({
   render: function() {
     // console.log(this.props.todoToEdit);
     return (
-      <div>
+      <div className="add-form-container">
         {this.displayAddForm()}
       </div>
     )
