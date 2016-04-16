@@ -1,4 +1,5 @@
 import React from 'react';
+var Button = require('react-bootstrap').Button;
 import AjaxHelpers from '../utils/AjaxHelpers';
 
 const LoginForm = React.createClass ({
@@ -120,71 +121,78 @@ const LoginForm = React.createClass ({
   displayLogin: function() {
     if (this.state.loginPath === "login") {
       return (
-        <form onSubmit={this.handleLoginSubmit}>
-          <h1>Please log in</h1>
-          <input
-            className="logininput"
-            type="text"
-            placeholder="User Name"
-            value={this.state.name}
-            onChange={this.handleLoginName}
-            />
-          <input
-            className="logininput"
-            type="text"
-            placeholder="Password"
-            value={this.state.password}
-            onChange={this.handleLoginPassword}
-            />
-          <input className="user-login-button" type="submit"/>
-        </form>
+        <div>
+          <hr></hr>
+          <form onSubmit={this.handleLoginSubmit}>
+            <h1>Please log in</h1>
+            <input
+              className="logininput"
+              type="text"
+              placeholder="User Name"
+              value={this.state.name}
+              onChange={this.handleLoginName}
+              />
+            <input
+              className="logininput"
+              type="text"
+              placeholder="Password"
+              value={this.state.password}
+              onChange={this.handleLoginPassword}
+              />
+            <input className="user-login-button" type="submit"/>
+          </form>
+        </div>
       )
     } else if (this.state.loginPath === "nologin") {
 
       return (
         <div>
+            <hr></hr>
             <h1>You are in!</h1>
             <p>Please remember since you are not logged in your data will not be saved</p>
-            <button onClick={this.handleJustPeekIn}>Close</button>
+            <Button onClick={this.handleJustPeekIn}>Close</Button>
         </div>
 
       )
     } else if (this.state.loginPath == "register") {
       return (
-        <form onSubmit={this.handleRegisterSubmit}>
-          <h1>Please register</h1>
-          <input
-            type="text"
-            placeholder="group name"
-            value={this.state.group}
-            onChange={this.handleGroupName}
-            />
-          <input
-            type="text"
-            placeholder="name"
-            value={this.state.name}
-            onChange={this.handleLoginName}
-            />
-          <input
-            type="text"
-            placeholder="password"
-            value={this.state.password}
-            onChange={this.handleLoginPassword}
-            />
-          <input type="submit"/>
-        </form>
+        <div>
+          <hr></hr>
+          <form onSubmit={this.handleRegisterSubmit}>
+            <h1>Please register</h1>
+            <input
+              type="text"
+              placeholder="group name"
+              value={this.state.group}
+              onChange={this.handleGroupName}
+              />
+            <input
+              type="text"
+              placeholder="name"
+              value={this.state.name}
+              onChange={this.handleLoginName}
+              />
+            <input
+              type="text"
+              placeholder="password"
+              value={this.state.password}
+              onChange={this.handleLoginPassword}
+              />
+            <input type="submit"/>
+          </form>
+        </div>
       )
     }
   },
 
   render: function() {
     return (
-      <div>
+      <div className="pop-up-content">
         <h2 className="welcome-message">Welcome to Roomies, where dirty pots don't eat relationships</h2>
         <h3 className="login">Please login or proceed as a guest.</h3>
-        <button className="button main-start-button" onClick={this.handleRegisterPathButton}>Register</button>
-        <button className="button main-start-button" onClick={this.handleLoginPathButton}>Login</button>
-        <button className="button main-start-button" onClick={this.handleNoLoginPathButton}>Just peek in</button>
+        <Button className="button main-start-button" onClick={this.handleRegisterPathButton}>Register</Button>
+        <Button className="button main-start-button" onClick={this.handleLoginPathButton}>Login</Button>
+        <Button className="button main-start-button" onClick={this.handleNoLoginPathButton}>Just peek in</Button>
         {/* <hr></hr> */}
         {this.displayLogin()}
 

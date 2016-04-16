@@ -1,12 +1,11 @@
-@import url(https://fonts.googleapis.com/css?family=Open+Sans|Raleway);
-
 * {
   box-sizing: border-box;
+  outline: none;
   /*width:100%;*/
 }
 
 body {
-  background: lightblue;
+  background: #A7003C;
   color: white;
   justify-content: center;
   display: flex;
@@ -19,10 +18,19 @@ body {
   width:100%;
 }
 
+hr {
+  border-top: 1px solid #999999;
+}
+
 /* POP UP STYLES (overriding bootstrap) */
 
+.modal-dialog {
+  margin-top: 60px;
+}
+
 .modal-content {
-  background:blue;
+  background:#EFEFEF;
+  color:#333333;
   min-height:300px;
   display:flex;
   flex-flow:row nowrap;
@@ -30,23 +38,74 @@ body {
   text-align:center;
 }
 
-
-
-.label {
-  color: Yellow;
-  padding-left: 2%;
+.pop-up-content {
+  width:100%;
+  margin:0 auto;
+  padding:20px;
 }
 
-.title {
-  background-color: purple;
-  font-size: 4rem;
-  color: orange;
-  padding: 5px;
-  box-shadow: 0px 3px 3px rgba(0,0,0,0.7);
-  opacity: 0.9;
-  width: 40%;
-  font-family: open sans;
+.pop-up-content h3 {
+  margin: 0 0 10px 0;
+}
 
+.pop-up-content .close-button {
+  margin: 10px 0 0 0;
+}
+
+/* BUTTON STYLES (overriding bootstrap) */
+
+.btn-default {
+  margin: 0 auto;
+  background-image: -webkit-linear-gradient(top,#EFEFEF 0,#CCCCCC 100%);
+  background-image: -o-linear-gradient(top,#EFEFEF 0,#CCCCCC 100%);
+  background-image: -webkit-gradient(linear,left top,left bottom,from(#EFEFEF),to(#CCCCCC));
+  background-image: linear-gradient(to bottom,#EFEFEF 0,#CCCCCC 100%);
+}
+
+.btn {
+  font-size:12px;
+}
+
+.btn-default.main-start-button {
+  background-image: -webkit-linear-gradient(top,#B40041 0,#A7003C 100%);
+  background-image: -o-linear-gradient(top,#B40041 0,#A7003C 100%);
+  background-image: -webkit-gradient(linear,left top,left bottom,from(#B40041),to(#A7003C));
+  background-image: linear-gradient(to bottom,#B40041 0,#A7003C 100%);
+}
+
+.btn.main-start-button {
+  font-size:12px;
+}
+
+.unclaim-button {
+  font-size:14px;
+}
+
+
+
+/* TOP ROW FLEX BOX */
+
+.top-row {
+  display:flex;
+  flex-flow: row nowrap;
+  justify-content:space-around;
+  width:100%;
+}
+
+/* TITLE AND ICON STYLES */
+
+.title {
+  width:80%;
+  font-size: 50px;
+  color: #fff;
+  text-align:center;
+  font-family: 'Righteous', cursive;
+}
+
+.instructions-button,
+.scoreboard-button {
+  width:10%;
+  cursor: pointer;
 }
 
 .button {
@@ -57,7 +116,7 @@ body {
   border-radius: 15px;
   cursor: pointer;
   font-weight: normal;
-  background-color: #008cfc;
+  background-color: #A7003C;
   color: white;
 }
 
@@ -65,11 +124,18 @@ body {
 .main-start-button {
   margin-right: 10px;
   border-radius: 5px;
-  font-size: 1rem;
 }
 
 .add-button {
   margin-bottom: 20px;
+  border: 0px;
+  font-family: 'Righteous', cursive;
+  font-size:24px;
+  padding:5px 25px;
+  border-radius: 15px;
+  cursor: pointer;
+  background-color: #333333;
+  color: white;
 }
 
 .submit-button {
@@ -85,23 +151,8 @@ body {
   border-radius: 5px;
   cursor: pointer;
   font-weight: normal;
-  background-color: #008cfc;
-  color: white;
   margin-top: 8px;
 
-}
-
-.scoreboard-button {
-  font-size: 1.2rem;
-  width: 230px;
-  height: 30px;
-  border: 0px;
-  border-radius: 5px;
-  cursor: pointer;
-  background-color: #e91d00;
-  color: white;
-
-  margin: 15px 0px 15px 0px;
 }
 
 strong {
@@ -116,6 +167,13 @@ input, select {
   width: 200px;
 }
 
+
+.label {
+  color: Yellow;
+  padding-left: 2%;
+}
+
+
 /*styling log-in */
 .logininput {
   width: 210px;
@@ -125,8 +183,8 @@ input, select {
   border: 0;
   background: transparent;
   border-radius: 0;
-  border-bottom: 3px solid #188fff;
-  margin: 8px 0px 8px 200px;
+  border-bottom: 3px solid #999999;
+  margin: 8px auto;
 }
 
 .form {
@@ -136,12 +194,13 @@ input, select {
 }
 
 .welcome-message {
-  font: sans-serif;
-  font-size: 1.8rem;
+  font-size: 30px;
   padding-bottom: 12px;
 }
 
 .login {
+  font-size:20px;
+  color:#999999;
   padding-bottom: 8px;
 }
 
@@ -159,6 +218,7 @@ h3 {
   flex-flow: row nowrap;
   justify-content:space-around;
   width:100%;
+  color:#333333;
 }
 
 .unclaimed-container,
@@ -172,13 +232,14 @@ h3 {
 
 .container-title {
   padding:5px 0;
-  background:purple;
+  background:#999999;
+  color:#fff;
   border-radius:15px;
 }
 
 .for-all-containers {
   /*padding:20px;*/
-  background:pink;
+  background:#EFEFEF;
   border-radius:15px;
   margin:10px 0;
 }
@@ -196,6 +257,10 @@ h3 {
 .claimed-list-style .points span,
 .claimed-list-style .todos-right-container {
   font-size:14px;
+}
+
+.todo-details-container {
+  color:#999999;
 }
 
 .claimed-list-style .author {
@@ -219,7 +284,15 @@ h3 {
 }
 
 .todo-buttons {
-  margin-top:10px;
+  margin-top:15px;
+}
+
+.todo-buttons * {
+  margin: 0 8px;
+}
+
+.todo-buttons .unclaim-button {
+  margin: 0 auto;
 }
 
 .todos-left-container {

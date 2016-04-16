@@ -186,8 +186,10 @@ const App = React.createClass ({
   },
   handleClaimMenu: function(e){
     console.log("dropdown has been changed");
-    console.log(e.target.value);
-    console.log(e.target.getAttribute("id"));
+    console.log("e",e),
+    console.log("e.target",e.target);
+    console.log("e.target.value",e.target.value);
+    console.log("e.target.getAttribute('id')",e.target.getAttribute("id"));
     let todoToChange = e.target.getAttribute("id");
     let newTaskProp = {
       roommate: e.target.value
@@ -308,18 +310,21 @@ const App = React.createClass ({
           <LoginForm closeBtn={this.welcomeClose} handleRegistration={this.handleRegistration}/>
         </Modal>
 
-        <InfoBtn
-          show={this.state.showInstructionsModal}
-          handleInstructionsButton={this.handleInstructionsButton}
-        />
-        {this.displayInstructions()}
+        <div className="top-row">
+          <InfoBtn
+            show={this.state.showInstructionsModal}
+            handleInstructionsButton={this.handleInstructionsButton}
+          />
+          {this.displayInstructions()}
 
-        <Title className="title"/>
+          <Title className="title"/>
+
+          <ScoreBoardBtn show={this.state.showScoreboardModal}
+          handleScoreBoardButton={this.handleScoreBoardButton}/>
+          {this.displayScoreBoard()}
+        </div>
+
         <UserInfo currentGroup={this.state.currentGroup} currentUser={this.state.currentUser}/>
-
-        <ScoreBoardBtn show={this.state.showScoreboardModal}
-        handleScoreBoardButton={this.handleScoreBoardButton}/>
-        {this.displayScoreBoard()}
 
         <AddButton
           show={this.state.showAddTaskModal}
