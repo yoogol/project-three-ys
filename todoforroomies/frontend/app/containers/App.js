@@ -25,16 +25,29 @@ const App = React.createClass ({
 
   getInitialState: function() {
     return {
+      currentUser: 'best roomie',
+      partnerUser: "",
+      currentGroup: "Just Trying It Out",
+
+
       allTasks: [],
       incompleteTodos: [],
       completeTodos: [],
+      completeTodosThisWR1: [],
+      completeTodosLastWR1: [],
+      completeTodosThisWR2: [],
+      completeTodosLastWR1: [],
       claimedTodosR1: [],
       claimedTodosR2: [],
 
       roommate1name: "",
       roommate1score: 0,
+      roommate1scoreThisWeek: 0,
+      roommate1scoreLastWeek: 0,
       roommate2name: "",
       roommate2score: 0,
+      roommate2scoreThisWeek: 0,
+      roommate2scoreLastWeek: 0,
 
 
       typeOfFormActivated: "",
@@ -42,8 +55,7 @@ const App = React.createClass ({
       oldtodoid: '',
       todoToEdit: '',
       ajaxResponse: '',
-      currentUser: 'Awesome Roommate',
-      currentGroup: "Just Trying It Out",
+
 
       showWelcomeModal: true,
       showInstructionsModal: true,
@@ -96,9 +108,10 @@ const App = React.createClass ({
       currentUser: user.name,
       currentGroup: user.group,
       roommate1name: user.name,
-      roommate2name: "unknown for now",
+      roommate2name: "dirty roomie",
       roommate1score: user.score
     });
+    
     this.loadAllTasks()
   },
   //******MAIN SCREEN BUTTONS*******//
@@ -161,6 +174,38 @@ const App = React.createClass ({
     })
 
   },
+  retrieveThisWeekScore: function() {
+    const determineScore = function(weekNum, roomie) {
+      console.log("runnign function");
+      console.log("complted", this.state.completeTodos)
+      let tasks = this.state.completeTodos.filter(function(todo) {
+        if (todo.weekCompleted == weekNum && todo.completedBy == roomie) {
+          return true
+        }
+      });
+      console.log("tasks found", tasks)
+      let NumOfTasks = tasks.length;
+      let scores = 0;
+      for (let i = 0; i < NumOfTasks; i ++) {
+        scores += tasks[i].pointsWorth
+      };
+      console.log(scores)
+      return scores
+    }.bind(this);
+
+    let thisWeekR1 = determineScore(Moment().format('W'), this.state.roommate1name);
+    let lastWeekR1 = determineScore((Moment().format('W')-1), this.state.roommate1name);
+    let thisWeekR2 =  determineScore(Moment().format('W'), this.state.roommate2name);
+    let lastWeekR2 = determineScore((Moment().format('W')-1), this.state.roommate2name);
+    this.setState ({
+      roommate1scoreThisWeek: thisWeekR1,
+      roommate1scoreLastWeek: lastWeekR1,
+      roommate1scoreThisWeek: thisWeekR2,
+      roommate2scoreLastWeek: lastWeekR2
+    }, console.log("updating the state"));
+    console.log(thisWeekR1, lastWeekR1, thisWeekR2,lastWeekR2)
+
+  },
   handleCheckBox: function(e) {
     e.preventDefault();
     console.log("checkbox clicked");
@@ -169,7 +214,8 @@ const App = React.createClass ({
     let newTaskProp = {
       completedStatus: true,
       timeCompleted: new Date(),
-      weekCompleted: Moment().format('W')
+      weekCompleted: Moment().format('W'),
+      completedBy: this.state.currentUser
     };
     AjaxHelpers.editToDo(newTaskProp, todoToComplete).then(function(response) {
       console.log("response from editToDo (check):", response);
@@ -193,7 +239,8 @@ const App = React.createClass ({
     let newTaskProp = {
       completedStatus: false,
       timeCompleted: '',
-      weekCompleted: ''
+      weekCompleted: '',
+      completedBy: ''
     };
     AjaxHelpers.editToDo(newTaskProp, todoToComplete).then(function(response) {
       console.log("response from editToDo (uncheck):", response);
@@ -265,8 +312,11 @@ const App = React.createClass ({
           <ScoreBoard
             closeBtn={this.scoreboardClose}
             roommate1name={this.state.roommate1name}  roommate2name={this.state.roommate2name}
-            roommate1score={this.state.roommate1score}
-            roommate2score={this.state.roommate2score}
+            retrieveThisWeekScore={this.retrieveThisWeekScore}
+            roommate1scoreThisWeek={this.state.roommate1scoreThisWeek}
+            roommate2scoreThisWeek={this.state.roommate2scoreThisWeek}
+            roommate1scoreLastWeek={this.roommate1scoreLastWeek}
+            roommate2scoreLastWeek={this.roommate2scoreLastWeek}
           />
         </Modal>
       )
@@ -364,7 +414,9 @@ const App = React.createClass ({
           <div className="top-middle">
             <Title className="title"/>
 
-            <UserInfo currentGroup={this.state.currentGroup} currentUser={this.state.currentUser}/>
+            <UserInfo currentGroup={this.state.currentGroup} currentUser={this.state.currentUser}
+            roommate2name={this.state.roommate2name}
+              />
           </div>
 
 

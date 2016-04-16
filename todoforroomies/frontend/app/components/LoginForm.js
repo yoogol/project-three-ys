@@ -101,6 +101,7 @@ const LoginForm = React.createClass ({
         });
         if (correctUser.length > 0) {
           console.log("user info is correct");
+          console.log(correctUser[0]);
           this.props.handleRegistration(correctUser[0]);
         } else {
           console.log("user info incorrect")
@@ -112,7 +113,7 @@ const LoginForm = React.createClass ({
     e.preventDefault();
     this.props.closeBtn();
     let dummyUser = {
-      name: "Awesome Roommate",
+      name: "best roomie",
       group: "Just Trying It Out"
     };
     this.props.handleRegistration(dummyUser);
