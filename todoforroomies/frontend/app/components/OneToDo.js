@@ -102,7 +102,7 @@ const OneToDo = React.createClass ({
 
 
   render: function() {
-    let deadlineFormated = this.props.ToDoItem.deadline;
+    let deadlineFormated = parseInt(this.props.ToDoItem.deadline);
     return (
       <div className="single-item">
         <div className={this.parentComponentStyle()}>
@@ -116,7 +116,7 @@ const OneToDo = React.createClass ({
             <div className="todo-details-container">
               <span className="author todo-details">Created by {this.props.ToDoItem.author}, </span>
               <span className="timeNeeded todo-details">{this.props.ToDoItem.timeNeeded} min, </span>
-              <span className="deadline todo-details">Due: {deadlineFormated[0]} at {deadlineFormated[1]}</span>
+              <span className="deadline todo-details">Due: {deadlineFormated} at {deadlineFormated[1]}</span>
             </div>
           </div>
         </div>
