@@ -30,7 +30,6 @@ const AddForm = React.createClass ({
     this.setState({
       deadline: e.target.value
     }, this.calculatePoints)
-
   },
   handleTimeNeeded: function(e){
     console.log('handleTimeNeeded')
@@ -125,9 +124,11 @@ const AddForm = React.createClass ({
             <br />
 
             <Datetime
-              value={this.state.deadline}
               onChange={this.handleDeadline}
-              isValidDate={ valid } />
+              isValidDate={ valid }
+              onInputChange = {this.handleDeadline}
+              />
+
             {/*<label className="add-form-label">Need to Be Completed By: </label>
             <br /><br />
             <input
