@@ -49,9 +49,9 @@ const AddForm = React.createClass ({
       <p className="add-form-label">This task is worth {this.state.pointsWorth} points!</p>
     )
   },
+
+
   calculatePoints: function(){
-
-
     console.log('calculatePoints')
     console.log("calculation goes here");
     let datePicked = Date.parse(new Date(this.state.deadline));
@@ -124,7 +124,10 @@ const AddForm = React.createClass ({
             <label className="add-form-label">Need to Be Completed By: </label>
             <br />
 
-            <Datetime isValidDate={ valid } />
+            <Datetime
+              value={this.state.deadline}
+              onChange={this.handleDeadline}
+              isValidDate={ valid } />
             {/*<label className="add-form-label">Need to Be Completed By: </label>
             <br /><br />
             <input
