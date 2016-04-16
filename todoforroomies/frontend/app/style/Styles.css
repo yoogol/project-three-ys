@@ -30,11 +30,10 @@ body > div:nth-child(2){
   text-align:center;
 }
 
-
-
 .label {
   color: Yellow;
   padding-left: 2%;
+  font-size: 13px;
 }
 
 .title {
@@ -51,7 +50,7 @@ body > div:nth-child(2){
 
 .button {
   border: 0px;
-  font-size: 1rem;
+  font-size: 1.4rem;
   width: 108px;
   height: 30px;
   border-radius: 15px;
@@ -74,7 +73,7 @@ body > div:nth-child(2){
 
 .submit-button {
   background: grey;
-  margin: -20px 10px 10px 10px;
+  margin: 15px 10px 10px 10px;
 }
 
 .user-login-button {
@@ -88,7 +87,6 @@ body > div:nth-child(2){
   background-color: #008cfc;
   color: white;
   margin-top: 8px;
-
 }
 
 .scoreboard-button {
@@ -100,12 +98,11 @@ body > div:nth-child(2){
   cursor: pointer;
   background-color: #e91d00;
   color: white;
-
   margin: 15px 0px 15px 0px;
 }
 
 strong {
-  font-size: 1.4rem;
+  font-size: 2.5rem;
 }
 
 input, select {
@@ -113,7 +110,7 @@ input, select {
   height: 22px;
   font-size: 14px;
   color: black;
-  width: 200px;
+  width: 180px;
 }
 
 /*styling log-in */

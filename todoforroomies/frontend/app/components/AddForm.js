@@ -111,7 +111,7 @@ const AddForm = React.createClass ({
           <input
             type='datetime-local'
             placeholder="pick a date"
-            style={formStyle}
+            style={formTwoStyle}
             value={this.state.deadline}
             onChange={this.handleDeadline}
             />
@@ -175,8 +175,12 @@ let formStyle = {
   width: '50%',
 }
 
+let formTwoStyle = {
+  width: '75%',
+}
+
 let taskStyle = {
-  width: '60%',
+  width: '75%',
   height:'24'
 }
 
