@@ -1,6 +1,14 @@
 import React from 'react';
 import AjaxHelpers from '../utils/AjaxHelpers';
 require('../style/Styles.css');
+var Datetime = require('react-datetime');
+var Moment = require('moment');
+
+// Let's use moment static reference in the Datetime component.
+var yesterday = Datetime.moment().subtract(1,'day');
+var valid = function( current ){
+    return current.isAfter( yesterday );
+};
 
 const AddForm = React.createClass ({
   getInitialState: function() {
@@ -41,6 +49,8 @@ const AddForm = React.createClass ({
     )
   },
   calculatePoints: function(){
+
+
     console.log('calculatePoints')
     console.log("calculation goes here");
     let datePicked = Date.parse(new Date(this.state.deadline));
@@ -109,7 +119,8 @@ const AddForm = React.createClass ({
             />
           <br /><br/>
 
-          <label className="label">Need to Be Completed By: </label>
+          <Datetime isValidDate={ valid } />
+          {/*<label className="label">Need to Be Completed By: </label>
           <br /><br />
           <input
             type='datetime-local'
@@ -117,7 +128,7 @@ const AddForm = React.createClass ({
             style={formTwoStyle}
             value={this.state.deadline}
             onChange={this.handleDeadline}
-            />
+            />*/}
           <br /><br />
 
           <label className="label">Est. Time to Complete (mins): </label>
