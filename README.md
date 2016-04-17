@@ -1,27 +1,3 @@
-Roomies: An app for roommates to turn their weekly "to-do" lists into a game!
-
-
-Packages used:
--CSS loader and Style loader (for external stylesheet)
--React Bootstrap (for modals, tooltips, buttons and dropdowns)
--React Scrollbar (for adding scrollbars to components)
--Moment and React Datetime (for calendar on "Add a Task" menu)
--React FontAwesome (for using FontAwesome within React)
-
-
-"Nice to Have" features to come later:
--Users can input a punishment or choose a random one that changes weekly
--Ability for more than two users
--Connect with social media (Facebook, Twitter, Snapchat)
-
-
-Unsolved problems:
--Drag and drop capability in React
-
-
-==========================
-
-
 TODO:
 
 #App logic and functionality: (Yulia)#
@@ -43,21 +19,25 @@ DONE:
 [x] create ability to join somebody else's team
 [x] figure out how to add a user to an existing group
 [x] log who completed the task
-
-TODO:
 [x] merge
-[] fix: when checkbox is pressed, score is counted toward current user
-[] update roommate 1 to something else
-[] determine who won last week and score
-[] create logic for calculating weekly score and update the scoreboard
+[x] fix: when checkbox is pressed, score is counted toward current user
+[x] determine who won last week and score
+[x] create logic for calculating weekly score and update the scoreboard
   [x] add time completed  and week completed
   [x] retrieve user's scores at login
-[] create logic for determining the winner  after one week is up
+[x] create logic for determining the winner  after one week is up
+[x] edit refresh
+
 [] punishment logic
-[] figure out date format with displaying tasks
-[] figure out date format when editing tasks in a format
+[] wrong password => show the login form again
+
+
+TODO:
+
+[] dummy data
 [] allow unclaim and check only for the user whose task it is
 [] replace roomie1 and roomie2 with names
+[] update roommate 1 to something else
 
 
 * update points logic
