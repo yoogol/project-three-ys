@@ -195,7 +195,7 @@ const LoginForm = React.createClass ({
   render: function() {
     return (
       <div className="pop-up-content">
-        <h2 className="welcome-message">Welcome to Roomies, where dirty pots don't eat relationships</h2>
+        <h2 className="welcome-message">Welcome to Roomies, where dirty plates don't eat relationships</h2>
         <hr className="small-hr"></hr>
         <h3 className="login">Please login or proceed as a guest.</h3>
         <br />
