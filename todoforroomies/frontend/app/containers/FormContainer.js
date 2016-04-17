@@ -24,6 +24,7 @@ const FormContainer = React.createClass ({
           closeBtn={this.props.closeBtn}
           userName={this.props.roommate1}
           typeOfFormActivated={this.props.typeOfFormActivated}
+          loadAllTasks={this.props.loadAllTasks}
           todoToEdit={this.props.todoToEdit}
           currentUser={this.props.currentUser}
           currentGroup={this.props.currentGroup}

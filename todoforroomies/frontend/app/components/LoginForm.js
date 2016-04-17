@@ -81,6 +81,7 @@ const LoginForm = React.createClass ({
 
         if (userExists.length > 0) {
           alert("Sorry, this name is already taken. Try a different one, please!")
+
         } else if (groupExists.length > 0) {
           alert("If you are creating a new group, this group name is already taken. If you are joining an existing group, your group password did not match. Please try again!")
         } else {
@@ -254,6 +255,7 @@ const LoginForm = React.createClass ({
   render: function() {
     return (
       <div className="pop-up-content">
+        <p>KYKass GA WDI Team Presents</p>
         <h2 className="welcome-message">Welcome to Roomies, <br/> an app for happy roommates</h2>
         <hr className="small-hr"></hr>
         <h3 className="login">Please login or proceed as a guest.</h3>
