@@ -4,6 +4,8 @@ var DropdownButton = require('react-bootstrap').DropdownButton;
 var MenuItem = require('react-bootstrap').MenuItem;
 import TodoList from '../containers/TodoList';
 require('../style/Styles.css');
+var Datetime = require('react-datetime');
+var Moment = require('moment');
 
 // this.props.parentComponent
 
@@ -105,7 +107,7 @@ const OneToDo = React.createClass ({
 
 
   render: function() {
-    let deadlineFormated = parseInt(this.props.ToDoItem.deadline);
+    let deadlineFormated = Moment(this.props.ToDoItem.deadline).format('llll');
     return (
       <div className="single-item">
         <div className={this.parentComponentStyle()}>
@@ -118,8 +120,8 @@ const OneToDo = React.createClass ({
             <div className="headline" >{this.props.ToDoItem.headline}</div>
             <div className="todo-details-container">
               <span className="author todo-details">Created by {this.props.ToDoItem.author}, </span>
-              <span className="timeNeeded todo-details">{this.props.ToDoItem.timeNeeded} min, </span>
-              <span className="deadline todo-details">Due: {deadlineFormated} at {deadlineFormated[1]}</span>
+              <span className="timeNeeded todo-details">Length: {this.props.ToDoItem.timeNeeded} min, </span>
+              <span className="deadline todo-details">Due: {deadlineFormated}</span>
             </div>
           </div>
         </div>
