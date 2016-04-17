@@ -1,9 +1,10 @@
 Welcome to the README file of Roomies: An app for roommates to turn their weekly "to-do" lists into a game!
 
-## This app was created by
+## This app was created as part of General Assembly's Web Development Immersive course by:
 * @kaushalpatel922 (focus: points algorithm, add/edit form and css styling)
 * @kristynlyncheski (focus: design, css styling, visual effects)
-* @yoogol (focus: user interaction functionality) as part of General Assembly's Web Development Immersive course.
+* @yoogol (focus: user interaction functionality)
+
 
 ## Core Technology Used
 * React for frontend
@@ -12,7 +13,7 @@ Welcome to the README file of Roomies: An app for roommates to turn their weekly
 
 ## Additional Packages Used
 * CSS loader and Style loader (for external stylesheet)
-* React Bootstrap (for modals, tooltips, buttons and dropdowns) 
+* React Bootstrap (for modals, tooltips, buttons and dropdowns)
 * React Scrollbar (for adding scrollbars to components)
 * Moment and React Datetime (for calendar on "Add a Task" menu)
 * React FontAwesome (for using FontAwesome within React)
