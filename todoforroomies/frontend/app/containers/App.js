@@ -165,7 +165,7 @@ const App = React.createClass ({
     let newTaskProp = {
       completedStatus: true,
       timeCompleted: new Date(),
-      weekCompleted: new Date().format('W');
+      weekCompleted: new Date().format('W')
     };
     AjaxHelpers.editToDo(newTaskProp, todoToComplete).then(function(response) {
       console.log(response);
@@ -216,15 +216,15 @@ const App = React.createClass ({
       this.loadAllTasks();
     }.bind(this))
   },
-  handleClaimMenu: function(e){
+  handleClaimMenu: function(e,eventKey){
     console.log("dropdown has been changed");
-    console.log("e",e),
-    console.log("e.target",e.target);
-    console.log("e.target.value",e.target.value);
-    console.log("e.target.getAttribute('id')",e.target.getAttribute("id"));
+    // console.log("eventKey",eventKey);
+    // console.log("e.target",e.target);
+    // console.log("e.target.getAttribute('value')",e.target.getAttribute("value"));
+    // console.log("e.target.getAttribute('id')",e.target.getAttribute("id"));
     let todoToChange = e.target.getAttribute("id");
     let newTaskProp = {
-      roommate: e.target.value
+      roommate: eventKey
     };
     AjaxHelpers.editToDo(newTaskProp, todoToChange).then(function(response) {
       console.log(response);
@@ -362,22 +362,25 @@ const App = React.createClass ({
             <UserInfo currentGroup={this.state.currentGroup} currentUser={this.state.currentUser}/>
           </div>
 
-
-
           <ScoreBoardBtn show={this.state.showScoreboardModal}
           handleScoreBoardButton={this.handleScoreBoardButton}/>
           {this.displayScoreBoard()}
         </div>
 
-        <AddButton
-          show={this.state.showAddTaskModal}
-          handleAddButton={this.handleAddButton}
-        />
-        {this.displayForm()}
+        {/* <AddButton
+        //   show={this.state.showAddTaskModal}
+        //   handleAddButton={this.handleAddButton}
+        // />
+        // {this.displayForm()}*/}
 
         <div className="main-todos-container">
           <TodoList
-            data={this.state.incompleteTodos} handleEditButton={this.handleEditButton} handleDeleteButton={this.handleDeleteButton}
+            showForm={this.state.showAddTaskModal}
+            handleAddButton={this.handleAddButton}
+            displayAddForm={this.displayForm}
+            data={this.state.incompleteTodos}
+            handleEditButton={this.handleEditButton}
+            handleDeleteButton={this.handleDeleteButton}
             handleClaimButtonR1={this.handleClaimButtonR1}
             handleClaimButtonR2={this.handleClaimButtonR2}
             handleClaimMenu={this.handleClaimMenu}
