@@ -53,25 +53,6 @@ const OneToDo = React.createClass ({
       return
     };
   },
-
-  // displayClaimButtonR1: function() {
-  //   if (this.props.parentComponent == 'TodoList') {
-  //     return <button onClick={this.props.handleClaimButtonR1} type="button"
-  //     value={this.props.ToDoItem._id}
-  //       >Claim R1</button>
-  //   } else {
-  //     return
-  //   }
-  // },
-  // displayClaimButtonR2: function() {
-  //   if (this.props.parentComponent == 'TodoList') {
-  //     return <button onClick={this.props.handleClaimButtonR2} type="button"
-  //     value={this.props.ToDoItem._id}
-  //       >Claim R2</button>
-  //   } else {
-  //     return
-  //   }
-  // },
   displayUnClaimButton: function() {
     if (this.props.parentComponent == 'ClaimedTL') {
       return <Button onClick={this.props.handleUnClaimButton} type="button"
@@ -85,7 +66,7 @@ const OneToDo = React.createClass ({
   displayCheckBoxIncomplete: function() {
     if (this.props.parentComponent == 'ClaimedTL') {
       return <input className="todo-checkbox" onClick={this.props.handleCheckBox} type="checkbox"
-      value={this.props.ToDoItem._id}
+      value={this.props.ToDoItem._id} id={this.props.roommate}
 
       />
     } else {

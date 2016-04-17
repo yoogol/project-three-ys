@@ -21,7 +21,7 @@ DONE:
 [x] log who completed the task
 
 TODO:
-[] merge
+[x] merge
 [] fix: when checkbox is pressed, score is counted toward current user
 [] update roommate 1 to something else
 [] determine who won last week and score

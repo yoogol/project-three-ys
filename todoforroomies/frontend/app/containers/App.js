@@ -194,11 +194,13 @@ const App = React.createClass ({
     console.log("checkbox clicked");
     let todoToComplete = e.target.value;
     console.log("week number stored in db", Moment().format('W'));
+    let roommateThatClaimed = e.target.getAttribute("id");
+    console.log("roommateThatClaimed:", roommateThatClaimed);
     let newTaskProp = {
       completedStatus: true,
       timeCompleted: new Date(),
       weekCompleted: Moment().format('W'),
-      completedBy: this.state.currentUser
+      completedBy: roommateThatClaimed
     };
     AjaxHelpers.editToDo(newTaskProp, todoToComplete).then(function(response) {
       console.log("response from editToDo (check):", response);
@@ -273,6 +275,7 @@ const App = React.createClass ({
     let newTaskProp = {
       roommate: eventKey
     };
+    //"roommate reflects which roomie claimed the task"
     AjaxHelpers.editToDo(newTaskProp, todoToChange).then(function(response) {
       console.log("response from editToDo", response);
       this.loadAllTasks();
