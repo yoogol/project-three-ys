@@ -26,9 +26,9 @@ const AddForm = React.createClass ({
       headline: e.target.value,
     }, this.calculatePoints)
   },
-  handleDeadline: function(e){
+  handleDeadline: function(momentDate){
     this.setState({
-      deadline: e.target.value
+      deadline: momentDate.toDate()
     }, this.calculatePoints)
   },
   handleTimeNeeded: function(e){
