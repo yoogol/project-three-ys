@@ -1,9 +1,12 @@
 import React from 'react';
 var Button = require('react-bootstrap').Button;
+var DropdownButton = require('react-bootstrap').DropdownButton;
+var MenuItem = require('react-bootstrap').MenuItem;
 import AjaxHelpers from '../utils/AjaxHelpers';
 require('../style/Styles.css');
 var Datetime = require('react-datetime');
 var Moment = require('moment');
+
 
 // Let's use moment static reference in the Datetime component.
 var yesterday = Datetime.moment().subtract(1,'day');
@@ -32,7 +35,7 @@ const AddForm = React.createClass ({
       deadline: momentDate.toDate()
     }, this.calculatePoints)
   },
-  handleTimeNeeded: function(e){
+  handleTimeNeeded: function(e,eventKey){
     console.log('handleTimeNeeded')
     this.setState({
       timeNeeded: e.target.value
@@ -104,6 +107,9 @@ const AddForm = React.createClass ({
         this.props.loadAllTasks()
       }.bind(this))
     }
+  },
+  handleTimeEventKey(e,eventKey){
+
   },
   render: function() {
     console.log('rendering....')

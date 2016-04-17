@@ -68,18 +68,22 @@ const ScoreBoard = React.createClass ({
     return (
       <div className="pop-up-content">
         <h3>ScoreBoard</h3>
+
         <h5>{this.determineLeadThisWeek()}</h5>
-        <div className="roommate-score-info">
-          <p className="scoreboard-roommate">Roomie 1: {this.props.currentUser}</p>
-          <div>This week's score:  {this.props.currentUserThisWeek}</div>
-        </div>
-        <div className="roommate-score-info">
-          <p className="scoreboard-roommate">Roomie 2: {this.props.partnerUser}</p>
-          <div>This week's score: {this.props.partnerUserThisWeek}</div>
+        <div className="score-info-container">
+          <div className="roommate-score-info">
+            <p className="scoreboard-roommate">Roomie 1: {this.props.currentUser}</p>
+            <div>This week's score:  {this.props.currentUserThisWeek}</div>
+          </div>
+          <div className="roommate-score-info">
+            <p className="scoreboard-roommate">Roomie 2: {this.props.partnerUser}</p>
+            <div>This week's score: {this.props.partnerUserThisWeek}</div>
+          </div>
         </div>
         <br></br>
         <h3>And the winner is...</h3>
         {this.determineWinner()}
+
         <Button onClick={this.props.closeBtn}>Close</Button>
       </div>
     )
