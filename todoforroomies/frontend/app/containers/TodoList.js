@@ -29,12 +29,13 @@ const TodoList = React.createClass ({
       <div className="unclaimed-container">
         <div className="container-title">
           <h3>
-            To Do List
             <AddButton
               showForm={this.props.showForm}
               handleAddButton={this.props.handleAddButton}
               displayAddForm={this.props.displayForm}
             />
+            To Do List
+
           {this.props.displayAddForm()}
           </h3>
         </div>

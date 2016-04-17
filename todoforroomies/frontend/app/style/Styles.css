@@ -98,8 +98,19 @@ hr {
   margin: 0 0 10px 0;
 }
 
+.score-info-container {
+  display:flex;
+  flex-flow:row nowrap;
+}
+
 .roommate-score-info {
   margin:10px 0;
+  width:50%;
+  padding:0 10px;
+}
+
+.roommate-score-info:first-child {
+  border-right:1px solid #CCCCCC;
 }
 
 .scoreboard-roommate {
@@ -247,13 +258,13 @@ hr {
 .add-button {
   position:absolute;
   height:43px;
-  right:0;
+  left:0;
   top:0;
   border: 0px;
   font-family: 'Righteous', cursive;
   font-size:20px;
   padding:5px 25px;
-  border-radius: 0 10px 10px 0;
+  border-radius: 10px 0 0 10px;
   cursor: pointer;
   color: white;
   background:#333333;
@@ -261,8 +272,11 @@ hr {
 
 .add-button:hover {
   /*box-shadow: 5px 5px 5px #D20A51;*/
-  box-shadow: inset -2px -2px 15px #CCCCCC;
-  /*background:#A7003C;*/
+  box-shadow: 1px 1px 5px #fff;
+  background: #008642;
+  transform:scale(1.15);
+  border-radius: 10px;
+
 }
 
 

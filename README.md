@@ -1,3 +1,27 @@
+Roomies: An app for roommates to turn their weekly "to-do" lists into a game!
+
+
+Packages used:
+-CSS loader and Style loader (for external stylesheet)
+-React Bootstrap (for modals, tooltips, buttons and dropdowns)
+-React Scrollbar (for adding scrollbars to components)
+-Moment and React Datetime (for calendar on "Add a Task" menu)
+-React FontAwesome (for using FontAwesome within React)
+
+
+"Nice to Have" features to come later:
+-Users can input a punishment or choose a random one that changes weekly
+-Ability for more than two users
+-Connect with social media (Facebook, Twitter, Snapchat)
+
+
+Unsolved problems:
+-Drag and drop capability in React
+
+
+==========================
+
+
 TODO:
 
 #App logic and functionality: (Yulia)#
