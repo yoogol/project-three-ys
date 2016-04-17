@@ -42,8 +42,8 @@ const OneToDo = React.createClass ({
           id={this.props.ToDoItem._id}
         >
           <option value="">Who is going to do this?</option>
-          <option value="1">Roomie 1</option>
-          <option value="2">Roomie 2</option>
+          <option value="1">{this.props.currentUser}</option>
+          <option value="2">{this.props.partnerUser}</option>
         </select>
       );
     } else {

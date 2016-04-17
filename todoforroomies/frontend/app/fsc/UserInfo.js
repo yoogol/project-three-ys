@@ -12,7 +12,7 @@ const UserInfo = React.createClass ({
         <div className="group-info-data">
           <p>{this.props.currentGroup}</p>
           <p>{this.props.currentUser}</p>
-          <p>{this.props.roommate2name}</p>
+          <p>{this.props.partnerUser}</p>
         </div>
       </div>
     )

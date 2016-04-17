@@ -3,20 +3,19 @@ var Button = require('react-bootstrap').Button;
 
 const ScoreBoard = React.createClass ({
   componentWillMount: function() {
-    this.props.retrieveThisWeekScore();
-    console.log("componentWillMount")
+    this.props.updateAllScores()
   },
   render: function() {
     return (
       <div className="pop-up-content">
         <h3>ScoreBoard</h3>
         <div className="roommate-score-info">
-          <p className="scoreboard-roommate">Roomie 1: {this.props.roommate1name}</p>
-          <div>This week's score: {this.props.roommate1scoreThisWeek}</div>
+          <p className="scoreboard-roommate">Roomie 1: {this.props.currentUser}</p>
+          <div>This week's score: {this.props.currentUserThisWeek}</div>
         </div>
         <div className="roommate-score-info">
-          <p className="scoreboard-roommate">Roomie 2: {this.props.roommate2name}</p>
-          <div>This week's score: {this.props.roommate2scoreThisWeek}</div>
+          <p className="scoreboard-roommate">Roomie 2: {this.props.partnerUser}</p>
+          <div>This week's score: {this.props.partnerUserThisWeek}</div>
         </div>
         <div className="roommate-score-info">
           <p className="scoreboard-roommate">Last weeks's winner: PLACEHOLDER</p>

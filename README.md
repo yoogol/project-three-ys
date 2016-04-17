@@ -13,23 +13,26 @@ DONE:
 [x] handle login/register information: get user input and send into a db collection of users (create user group and save users/roomies inside it)
 [x] make data load for appropriate user
 [x] prevent Registering with the same name
-
-TODO:
 [x] save user's score into db (find user, get their score updated)
 [x] update score when the task is checked and when the task is unchecked
-[] grab score for scoreboard by weekly
-[] create ability to join somebody else's team
+[x] grab score for scoreboard by weekly
+[x] create ability to join somebody else's team
+[x] figure out how to add a user to an existing group
+[x] log who completed the task
 
-
+TODO:
+[] merge
+[] fix: when checkbox is pressed, score is counted toward current user
+[] update roommate 1 to something else
+[] determine who won last week and score
 [] create logic for calculating weekly score and update the scoreboard
   [x] add time completed  and week completed
   [x] retrieve user's scores at login
 [] create logic for determining the winner  after one week is up
+[] punishment logic
 [] figure out date format with displaying tasks
 [] figure out date format when editing tasks in a format
-[] figure out how to add a user to an existing group
 [] allow unclaim and check only for the user whose task it is
-[] log who completed the task
 [] replace roomie1 and roomie2 with names
 
 
