@@ -22,7 +22,7 @@ const ClaimedTL = React.createClass ({
           <h3>{this.props.roommate}</h3>
         </div>
         <div className="scrollable-margin">
-          <ScrollArea style={{ maxHeight: 300 }}>
+          <ScrollArea style={{ maxHeight: 300 }} className="scrollbar-zindex">
             <div className="claimed-todos for-all-containers">
               {singleToDo}
             </div>

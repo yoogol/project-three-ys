@@ -181,13 +181,13 @@ hr {
 .group-info-labels {
   font-weight:700;
   text-transform: uppercase;
-  margin-right:15px;
-  text-align:right;
+  margin:0 5px;
+  /*text-align:right;*/
 }
 
 .group-info-data {
-  margin-right:15px;
-  text-align:left;
+  margin:0 10px;
+  /*text-align:left;*/
 }
 
 .instructions-button,
@@ -206,7 +206,7 @@ hr {
   font-size: 1.4rem;
   width: 108px;
   height: 30px;
-  border-radius: 15px;
+  border-radius: 10px;
   cursor: pointer;
   font-weight: normal;
   background-color: #A7003C;
@@ -220,12 +220,15 @@ hr {
 }
 
 .add-button {
-  margin-bottom: 20px;
+  position:absolute;
+  height:43px;
+  right:0;
+  top:0;
   border: 0px;
   font-family: 'Righteous', cursive;
   font-size:20px;
   padding:5px 25px;
-  border-radius: 10px;
+  border-radius: 0 10px 10px 0;
   cursor: pointer;
   color: white;
   background:#333333;
@@ -234,12 +237,15 @@ hr {
 .add-button:hover {
   /*box-shadow: 5px 5px 5px #D20A51;*/
   box-shadow: inset -2px -2px 15px #CCCCCC;
+  /*background:#A7003C;*/
 }
 
-/*.submit-button {
-  background: grey;
-  margin: -20px 10px 10px 10px;
-}*/
+
+.submit-button {
+  /*background: grey;*/
+  /*margin: -20px 10px 10px 10px;*/
+  color:#333333;
+}
 
 /*.user-login-button {
   border: 0px;
@@ -317,6 +323,7 @@ h3 {
 }
 
 .main-todos-container {
+  margin-top:25px;
   display:flex;
   flex-flow: row nowrap;
   justify-content:space-between;
@@ -334,6 +341,10 @@ h3 {
   margin: 0 25px;
 }
 
+.scrollarea{
+  z-index:50;
+}
+
 .scrollable-margin {
   margin:10px 0;
 }
@@ -343,6 +354,8 @@ h3 {
 }
 
 .container-title {
+  height:43px;
+  position:relative;
   padding:5px 0;
   background:#999999;
   color:#fff;

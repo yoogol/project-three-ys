@@ -138,7 +138,7 @@ const AddForm = React.createClass ({
               value={this.state.deadline}
               onChange={this.handleDeadline}
               />*/}
-            <br /><br />
+            <br />
 
             <label className="add-form-label">Est. Time to Complete (mins): </label>
             <br />
@@ -187,7 +187,7 @@ const AddForm = React.createClass ({
             <br />
             <label className="add-form-label larger-font">{this.handlePointsWorth()}</label>
             <br />
-            <button onClick={this.props.closeBtn} className="button submit-button" type="submit">Submit</button>
+            <Button onClick={this.props.closeBtn} className="button submit-button" type="submit">Submit</Button>
           </form>
         </div>
       </div>

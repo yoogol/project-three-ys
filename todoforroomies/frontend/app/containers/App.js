@@ -360,22 +360,25 @@ const App = React.createClass ({
             <UserInfo currentGroup={this.state.currentGroup} currentUser={this.state.currentUser}/>
           </div>
 
-
-
           <ScoreBoardBtn show={this.state.showScoreboardModal}
           handleScoreBoardButton={this.handleScoreBoardButton}/>
           {this.displayScoreBoard()}
         </div>
 
-        <AddButton
-          show={this.state.showAddTaskModal}
-          handleAddButton={this.handleAddButton}
-        />
-        {this.displayForm()}
+        {/* <AddButton
+        //   show={this.state.showAddTaskModal}
+        //   handleAddButton={this.handleAddButton}
+        // />
+        // {this.displayForm()}*/}
 
         <div className="main-todos-container">
           <TodoList
-            data={this.state.incompleteTodos} handleEditButton={this.handleEditButton} handleDeleteButton={this.handleDeleteButton}
+            showForm={this.state.showAddTaskModal}
+            handleAddButton={this.handleAddButton}
+            displayAddForm={this.displayForm}
+            data={this.state.incompleteTodos}
+            handleEditButton={this.handleEditButton}
+            handleDeleteButton={this.handleDeleteButton}
             handleClaimButtonR1={this.handleClaimButtonR1}
             handleClaimButtonR2={this.handleClaimButtonR2}
             handleClaimMenu={this.handleClaimMenu}

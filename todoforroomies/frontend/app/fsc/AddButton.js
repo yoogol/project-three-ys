@@ -5,13 +5,19 @@ require('../style/Styles.css');
 const AddButton = React.createClass ({
   render: function() {
     return (
-      <div>
-        <button className="add-button" onClick={this.props.handleAddButton}>Add Task <FontAwesome
+      <button className="add-button" onClick={this.props.handleAddButton}>
+        <FontAwesome
           name='plus'
-        /></button>
-      </div>
+        />
+      </button>
     )
   }
 })
 
 export default AddButton;
+
+// <div>
+//   <button className="add-button" onClick={this.props.handleAddButton}>Add Task <FontAwesome
+//     name='plus'
+//   /></button>
+// </div>
