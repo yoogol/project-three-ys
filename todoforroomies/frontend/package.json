@@ -20,6 +20,8 @@
     "react-dom": "^0.14.8",
     "react-fontawesome": "^0.3.3",
     "react-router": "^2.0.1",
+    "react-scrollbar": "^0.4.1",
+    "react-scrollbars": "0.0.5",
     "style-loader": "^0.13.1"
   },
   "devDependencies": {

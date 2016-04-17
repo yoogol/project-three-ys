@@ -334,6 +334,14 @@ h3 {
   margin: 0 25px;
 }
 
+.scrollable-margin {
+  margin:10px 0;
+}
+
+.scrollable-margin .for-all-containers {
+  margin:0;
+}
+
 .container-title {
   padding:5px 0;
   background:#999999;

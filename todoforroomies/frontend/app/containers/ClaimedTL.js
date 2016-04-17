@@ -1,5 +1,6 @@
 import React from 'react';
 import OneToDo from "../components/OneToDo";
+var ScrollArea = require('react-scrollbar');
 require('../style/Styles.css');
 
 
@@ -20,9 +21,13 @@ const ClaimedTL = React.createClass ({
         <div className="container-title">
           <h3>{this.props.roommate}</h3>
         </div>
-          <div className="claimed-todos for-all-containers">
-            {singleToDo}
-          </div>
+        <div className="scrollable-margin">
+          <ScrollArea style={{ maxHeight: 300 }}>
+            <div className="claimed-todos for-all-containers">
+              {singleToDo}
+            </div>
+          </ScrollArea>
+        </div>
       </div>
     )
   }
