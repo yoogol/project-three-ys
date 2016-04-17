@@ -47,10 +47,29 @@ hr {
   font-family: 'Libre Baskerville', serif;
   font-size: 15px;
   letter-spacing:1px;
+  box-shadow: 3px 3px 8px #333333;
+}
+
+.tooltip.bottom {
+  padding: 5px 0 0 0;
 }
 
 .tooltip-inner {
-  background-color: #333333;
+  background-color: #CCCCCC;
+  padding: 8px;
+  color:#333333;
+}
+
+.tooltip.bottom .tooltip-arrow {
+  border-bottom-color: #CCCCCC;
+}
+
+.tooltip.bottom-left .tooltip-arrow {
+  border-bottom-color: #CCCCCC;
+}
+
+.tooltip.bottom-right .tooltip-arrow {
+  border-bottom-color: #CCCCCC;
 }
 
 /* POP UP STYLES (overriding bootstrap) */
@@ -146,7 +165,13 @@ hr {
   display:flex;
   flex-flow: row nowrap;
   justify-content:space-around;
-  width:100%;
+  /*width:100%;*/
+  background: rgba(51,51,51,.4);
+  /* opacity: .5; */
+  width: 100vw;
+  position: relative;
+  right: 25px;
+  padding-bottom: 15px;
 }
 
 /* TITLE AND ICON STYLES */
@@ -194,7 +219,7 @@ hr {
 .scoreboard-button {
   width:10%;
   cursor: pointer;
-  margin-top:20px;
+  margin-top:30px;
 }
 
 .instructions-button {
@@ -367,6 +392,13 @@ h3 {
   background:#EFEFEF;
   border-radius:15px;
   margin:10px 0;
+}
+
+.completed-todos .single-item-container {
+    opacity: .7;
+}
+.completed-todos .single-item-container .headline {
+  text-decoration: line-through;
 }
 
 .headline {
