@@ -50,5 +50,11 @@ export default function() {
       res.json(result);
     });
   });
+  api.get('/users/:group', (req, res) => {
+    console.log(req.params);
+    collectionUsers.find({"group": req.params.group}).toArray((err, result) => {
+      res.json(result);
+    });
+  });
   return api;
 }

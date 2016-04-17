@@ -10,7 +10,8 @@ const LoginForm = React.createClass ({
       loginPath: "",
       name: "",
       password: "",
-      group: ""
+      group: "",
+      groupPassword: ""
     }
   },
   //******CHOSING PATH ************//
@@ -45,7 +46,11 @@ const LoginForm = React.createClass ({
       group: e.target.value
     })
   },
-
+  handleGroupPassword: function(e) {
+    this.setState ({
+      groupPassword: e.target.value
+    })
+  },
   //*************HANDLING REGISTRATION**********//
   handleRegisterSubmit: function(e) {
     e.preventDefault();
@@ -54,28 +59,51 @@ const LoginForm = React.createClass ({
       let newUser = {
         name: this.state.name,
         password: this.state.password,
-        group: this.state.group
+        group: this.state.group,
+        groupPassword: this.state.groupPassword
       };
       console.log(newUser);
       console.log("ajax call to add to db (check if unique)");
       AjaxHelpers.getAllUsers().then(function(response) {
         console.log(response.data);
+        //checking if username is taken
         let userExists = response.data.filter(function(user) {
           if (user.name == newUser.name) {
             return true
           }
         });
+        //chekcing if group is taken or password incorrect
         let groupExists = response.data.filter(function(user) {
-          if (user.group == newUser.group) {
+          if (user.group == newUser.group && user.groupPassword != newUser.groupPassword) {
             return true
           }
         });
-        if (userExists.length > 0 || groupExists.length > 0) {
-          console.log("user already exists")
+
+        if (userExists.length > 0) {
+          alert("Sorry, this name is already taken. Try a different one, please!")
+        } else if (groupExists.length > 0) {
+          alert("If you are creating a new group, this group name is already taken. If you are joining an existing group, your group password did not match. Please try again!")
         } else {
           AjaxHelpers.addNewUser(newUser).then(function(response) {
             console.log(response);
-            this.props.handleRegistration(newUser);
+            AjaxHelpers.findUsersByGroup(newUser.group).then(function(response) {
+              console.log(response.data);
+              if (response.data.length > 1) {
+                let partnerUser = response.data.filter(function(user) {
+                  if (user.name != newUser.name) {
+                    return true
+                  }
+                })[0];
+                this.props.handleRegistration(newUser, partnerUser);
+              } else {
+                let partnerUser = {
+                  name: "TBD",
+                  score: 0
+                }
+                this.props.handleRegistration(newUser, partnerUser);
+              };
+            }.bind(this));
+
           }.bind(this))
         }
       }.bind(this));
@@ -96,16 +124,35 @@ const LoginForm = React.createClass ({
       console.log("ajax call to add to db (check if unique)");
       AjaxHelpers.getAllUsers().then(function(response) {
         console.log(response.data);
-        let userIsCorrect = response.data.filter(function(user) {
+        let correctUser = response.data.filter(function(user) {
           if (user.name == lookupUser.name && user.password == lookupUser.password) {
             return true
           }
         });
-        if (userIsCorrect.length > 0) {
+        if (correctUser.length > 0) {
           console.log("user info is correct");
-          this.props.handleRegistration(userIsCorrect[0]);
+          console.log(correctUser[0]);
+          AjaxHelpers.findUsersByGroup(correctUser[0].group).then(function(response) {
+            console.log(response.data);
+            if (response.data.length > 1) {
+              console.log("running if statement")
+              let partnerUser = response.data.filter(function(user) {
+                if (user.name != correctUser[0].name) {
+                  return true
+                }
+              })[0];
+              console.log(partnerUser);
+              this.props.handleRegistration(correctUser[0], partnerUser);
+            } else {
+              let partnerUser = {
+                name: "TBD",
+                score: 0
+              }
+              this.props.handleRegistration(correctUser[0], partnerUser);
+            };
+          }.bind(this));
         } else {
-          console.log("user info incorrect")
+          alert("user info incorrect")
         }
       }.bind(this));
     }
@@ -113,11 +160,16 @@ const LoginForm = React.createClass ({
   handleJustPeekIn: function(e) {
     e.preventDefault();
     this.props.closeBtn();
-    let dummyUser = {
-      name: "Awesome Roommate",
-      group: "Just Trying It Out"
+    let currentUser = {
+      name: "best roomie",
+      group: "TryingItOut",
+      score: 20
     };
-    this.props.handleRegistration(dummyUser);
+    let partnerUser = {
+      name: "other roomie",
+      score: 30
+    }
+    this.props.handleRegistration(currentUser, partnerUser);
   },
   //*********DISPLAYING*********//
   displayLogin: function() {
@@ -163,7 +215,7 @@ const LoginForm = React.createClass ({
         <div>
           <hr></hr>
           <form onSubmit={this.handleRegisterSubmit}>
-            <h2>Please register</h2>
+            <h2>Please register or join a group</h2>
             <input
               type="text"
               placeholder="group name"
@@ -171,6 +223,13 @@ const LoginForm = React.createClass ({
               onChange={this.handleGroupName}
               />
             <br />
+              <input
+                type="text"
+                placeholder="group password"
+                value={this.state.groupPassword}
+                onChange={this.handleGroupPassword}
+                />
+              <br />
             <input
               type="text"
               placeholder="name"
@@ -195,7 +254,7 @@ const LoginForm = React.createClass ({
   render: function() {
     return (
       <div className="pop-up-content">
-        <h2 className="welcome-message">Welcome to Roomies, where dirty plates don't eat relationships</h2>
+        <h2 className="welcome-message">Welcome to Roomies, <br/> an app for happy roommates</h2>
         <hr className="small-hr"></hr>
         <h3 className="login">Please login or proceed as a guest.</h3>
         <br />

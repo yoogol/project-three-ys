@@ -9,9 +9,12 @@ const UserInfo = React.createClass ({
         <p>
           <span className="group-info-labels">Group:</span>
           <span className="group-info-data">{this.props.currentGroup}</span>
-           &nbsp;|&nbsp; 
-          <span className="group-info-labels">Logged In As:</span>
+           &nbsp;|&nbsp;
+          <span className="group-info-labels">Roomie #1:</span>
           <span className="group-info-data">{this.props.currentUser}</span>
+            &nbsp;|&nbsp;
+           <span className="group-info-labels">Roomie #2:</span>
+           <span className="group-info-data">{this.props.partnerUser}</span>
         </p>
       </div>
 

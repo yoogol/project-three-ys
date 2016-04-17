@@ -47,33 +47,14 @@ const OneToDo = React.createClass ({
           onSelect={this.props.handleClaimMenu}
           id={this.props.ToDoItem._id}
         >
-          <MenuItem id={this.props.ToDoItem._id} value="1" eventKey="1">Roomie 1</MenuItem>
-          <MenuItem id={this.props.ToDoItem._id} value="2" eventKey="2">Roomie 2</MenuItem>
+          <MenuItem id={this.props.ToDoItem._id} value="1" eventKey="1">{this.props.currentUser}</MenuItem>
+          <MenuItem id={this.props.ToDoItem._id} value="2" eventKey="2">{this.props.partnerUser}</MenuItem>
         </DropdownButton>
       );
     } else {
       return
     };
   },
-
-  // displayClaimButtonR1: function() {
-  //   if (this.props.parentComponent == 'TodoList') {
-  //     return <button onClick={this.props.handleClaimButtonR1} type="button"
-  //     value={this.props.ToDoItem._id}
-  //       >Claim R1</button>
-  //   } else {
-  //     return
-  //   }
-  // },
-  // displayClaimButtonR2: function() {
-  //   if (this.props.parentComponent == 'TodoList') {
-  //     return <button onClick={this.props.handleClaimButtonR2} type="button"
-  //     value={this.props.ToDoItem._id}
-  //       >Claim R2</button>
-  //   } else {
-  //     return
-  //   }
-  // },
   displayUnClaimButton: function() {
     if (this.props.parentComponent == 'ClaimedTL') {
       return <Button onClick={this.props.handleUnClaimButton} type="button"
@@ -87,7 +68,7 @@ const OneToDo = React.createClass ({
   displayCheckBoxIncomplete: function() {
     if (this.props.parentComponent == 'ClaimedTL') {
       return <input className="todo-checkbox" onClick={this.props.handleCheckBox} type="checkbox"
-      value={this.props.ToDoItem._id}
+      value={this.props.ToDoItem._id} id={this.props.roommate}
 
       />
     } else {

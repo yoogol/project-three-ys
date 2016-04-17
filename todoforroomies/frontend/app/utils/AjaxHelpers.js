@@ -24,6 +24,9 @@ const AjaxHelpers = {
   getAllUsers: function() {
     return axios.get('http://localhost:3000/api/users')
   },
+  findUsersByGroup: function(group) {
+    return axios.get('http://localhost:3000/api/users/' + group)
+  },
   editUserInfo: function(score, name) {
     return axios.put('http://localhost:3000/api/user/' + name, score)
   }

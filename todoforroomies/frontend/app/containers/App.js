@@ -1,6 +1,5 @@
 import React from 'react';
 var Modal = require('react-bootstrap').Modal;
-
 import Title from '../fsc/Title';
 import AddButton from '../fsc/AddButton';
 import AddForm from '../components/AddForm';
@@ -25,25 +24,46 @@ const App = React.createClass ({
 
   getInitialState: function() {
     return {
+      /*user info*/
+      currentGroup: "TryingItOut",
+
+      currentUser: 'best roomie',
+      currentUserTotalScore: 0,
+      currentUserThisWeek: 0,
+      currentUserLastWeek: 0,
+
+      partnerUser: "another roomie",
+      partnerUserTotalScore: 0,
+      partnerUserThisWeek: 0,
+      partnerUserLastWeek: 0,
+
+      /*tasks info*/
       allTasks: [],
       incompleteTodos: [],
       completeTodos: [],
+      completeTodosThisWR1: [],
+      completeTodosLastWR1: [],
+      completeTodosThisWR2: [],
+      completeTodosLastWR1: [],
       claimedTodosR1: [],
       claimedTodosR2: [],
 
+      /*props to retire*/
       roommate1name: "",
       roommate1score: 0,
+      roommate1scoreThisWeek: 0,
+      roommate1scoreLastWeek: 0,
       roommate2name: "",
       roommate2score: 0,
-
+      roommate2scoreThisWeek: 0,
+      roommate2scoreLastWeek: 0,
 
       typeOfFormActivated: "",
 
       oldtodoid: '',
       todoToEdit: '',
       ajaxResponse: '',
-      currentUser: 'Awesome Roommate',
-      currentGroup: "Just Trying It Out",
+
 
       showWelcomeModal: true,
       showInstructionsModal: true,
@@ -87,14 +107,17 @@ const App = React.createClass ({
   },
 
   //*******LOGIN/REGISTRATION*******//
-  handleRegistration: function(user) {
-    console.log("logging user:", user);
+  handleRegistration: function(currentUser, partnerUser) {
+    console.log("logging users:")
+    console.log(currentUser, partnerUser);
     this.setState ({
-      currentUser: user.name,
-      currentGroup: user.group,
-      roommate1name: user.name,
-      roommate2name: "unknown for now"
+      currentGroup: currentUser.group,
+      currentUser: currentUser.name,
+      currentUserTotalScore: currentUser.score,
+      partnerUser: partnerUser.name,
+      partnerUserTotalScore: partnerUser.score,
     });
+    console.log("state was updated");
     this.loadAllTasks()
   },
   //******MAIN SCREEN BUTTONS*******//
@@ -125,7 +148,6 @@ const App = React.createClass ({
   //*********ONE TODO BUTTONS***********//
   handleEditButton: function(e) {
     console.log("edit button clicked");
-    console.log(e.target.value);
     let todoToEdit = this.state.incompleteTodos.filter(function(todo) {
       if (todo._id == e.target.value) {
         return todo
@@ -139,10 +161,9 @@ const App = React.createClass ({
   },
   handleDeleteButton: function(e) {
     console.log("delete button clicked");
-    console.log(e.target.value);
     let todoToDeleteId = e.target.value;
     AjaxHelpers.deleteToDo(todoToDeleteId).then(function(response) {
-      console.log(response);
+      console.log("response from deleteToDo", response);
       this.setState ({
         ajaxResponse: response
       });
@@ -150,36 +171,56 @@ const App = React.createClass ({
     }.bind(this))
 
   },
-  changeScore: function() {
-    let newScore ={
-      score: this.state.roommate1score
+
+  retrieveThisWeekScore: function(weekNum, roomie) {
+    console.log("runnign function");
+    console.log("complted", this.state.completeTodos)
+    let tasks = this.state.completeTodos.filter(function(todo) {
+      if (todo.weekCompleted == weekNum && todo.completedBy == roomie) {
+        return true
+      }
+    });
+    console.log("tasks found", tasks)
+    let NumOfTasks = tasks.length;
+    let scores = 0;
+    for (let i = 0; i < NumOfTasks; i ++) {
+      scores += tasks[i].pointsWorth
     };
-    AjaxHelpers.editUserInfo(newScore, this.state.roommate1name).then(function(response) {
-      console.log(response);
-    })
+    console.log(scores)
+    return scores
   },
   handleCheckBox: function(e) {
     e.preventDefault();
     console.log("checkbox clicked");
     let todoToComplete = e.target.value;
+    console.log("week number stored in db", Moment().format('W'));
+    let roommateThatClaimed = e.target.getAttribute("id");
+    console.log("roommateThatClaimed:", roommateThatClaimed);
     let newTaskProp = {
       completedStatus: true,
       timeCompleted: new Date(),
-      weekCompleted: new Date().format('W')
+      weekCompleted: Moment().format('W'),
+      completedBy: roommateThatClaimed
     };
     AjaxHelpers.editToDo(newTaskProp, todoToComplete).then(function(response) {
-      console.log(response);
+      console.log("response from editToDo (check):", response);
       this.loadAllTasks();
       let pointsEarned = this.state.allTasks.filter(function(todo) {
         if (todoToComplete == todo._id) {
           return true
         }
       })[0].pointsWorth;
-      console.log("Assumes you are roommate 1 all the time");
+      let newScore ={
+        score: this.state.currentUserTotalScore + pointsEarned,
+      };
       this.setState ({
-        roommate1score: this.state.roommate1score + pointsEarned
+        currentUserTotalScore: this.state.currentUserTotalScore + pointsEarned,
+        currentUserThisWeek: this.state.currentUserThisWeek + pointsEarned
       });
-      this.changeScore();
+      console.log("new score after updating the state (check)", newScore);
+      AjaxHelpers.editUserInfo(newScore, this.state.currentUser).then(function(response) {
+        console.log("response from editUserInfo", response);
+      })
     }.bind(this));
   },
   handleUnCheckBox: function(e) {
@@ -187,32 +228,40 @@ const App = React.createClass ({
     console.log("uncheckbox clicked");
     let todoToComplete = e.target.value;
     let newTaskProp = {
-      completedStatus: false
+      completedStatus: false,
+      timeCompleted: '',
+      weekCompleted: '',
+      completedBy: ''
     };
     AjaxHelpers.editToDo(newTaskProp, todoToComplete).then(function(response) {
-      console.log(response);
+      console.log("response from editToDo (uncheck):", response);
       this.loadAllTasks();
       let pointsLost = this.state.allTasks.filter(function(todo) {
         if (todoToComplete == todo._id) {
           return true
         }
       })[0].pointsWorth;
-      console.log("Assumes you are roommate 1 all the time");
+      let newScore ={
+        score: this.state.currentUserTotalScore - pointsLost,
+      };
       this.setState ({
-        roommate1score: this.state.roommate1score - pointsLost
+        currentUserTotalScore: this.state.currentUserTotalScore - pointsLost,
+        currentUserThisWeek: this.state.currentUserThisWeek - pointsLost
       });
-      this.changeScore();
+      console.log("new score after updating the state (uncheck)", newScore);
+      AjaxHelpers.editUserInfo(newScore, this.state.currentUser).then(function(response) {
+        console.log("response from editUserInfo", response);
+      })
     }.bind(this))
   },
   handleUnClaimButton: function(e) {
     console.log("unclaim button clicked");
-    console.log(e.target.value);
     let todoToChange = e.target.value;
     let newTaskProp = {
       roommate: 0
     };
     AjaxHelpers.editToDo(newTaskProp, todoToChange).then(function(response) {
-      console.log(response);
+      console.log("response from editToDo", response);
       this.loadAllTasks();
     }.bind(this))
   },
@@ -226,8 +275,9 @@ const App = React.createClass ({
     let newTaskProp = {
       roommate: eventKey
     };
+    //"roommate reflects which roomie claimed the task"
     AjaxHelpers.editToDo(newTaskProp, todoToChange).then(function(response) {
-      console.log(response);
+      console.log("response from editToDo", response);
       this.loadAllTasks();
     }.bind(this))
   },
@@ -259,9 +309,12 @@ const App = React.createClass ({
         >
           <ScoreBoard
             closeBtn={this.scoreboardClose}
-            roommate1name={this.state.roommate1name}  roommate2name={this.state.roommate2name}
-            roommate1score={this.state.roommate1score}
-            roommate2score={this.state.roommate2score}
+            currentUser={this.state.currentUser}  partnerUser={this.state.partnerUser}
+            currentUserThisWeek={this.state.currentUserThisWeek}
+            currentUserLastWeek={this.state.currentUserLastWeek}
+            partnerUserThisWeek={this.state.partnerUserThisWeek}
+            partnerUserLastWeek={this.state.partnerUserLastWeek}
+            updateAllScores={this.updateAllScores}
           />
         </Modal>
       )
@@ -276,7 +329,7 @@ const App = React.createClass ({
         >
           <FormContainer
             closeBtn={this.addTaskClose}
-            userName={this.state.roommate1}
+            userName={this.state.currentUser}
             typeOfFormActivated={this.state.typeOfFormActivated}
             todoToEdit={this.state.todoToEdit}
             loadAllTasks={this.loadAllTasks}
@@ -288,12 +341,12 @@ const App = React.createClass ({
   },
   //**********RELOADING FROM DB***********//
   loadAllTasks: function() {
-    console.log(this.state.currentGroup);
     AjaxHelpers.getAllToDos(this.state.currentGroup).then(function(response) {
-      console.log("response.data.todos", response.data.todos);
+      console.log("response from get All To Dos", response.data.todos);
       this.setState({
         allTasks: response.data.todos
       });
+
       let incompleteTodos = response.data.todos.filter(function(todo) {
         if (todo.completedStatus == false && todo.roommate == 0) {
           return true
@@ -302,7 +355,7 @@ const App = React.createClass ({
       this.setState({
         incompleteTodos: incompleteTodos
       });
-      console.log("incomplete:", this.state.incompleteTodos)
+
 
       let completeTodos = response.data.todos.filter(function(todo) {
         if (todo.completedStatus === true) {
@@ -312,7 +365,7 @@ const App = React.createClass ({
       this.setState({
         completeTodos: completeTodos
       });
-      console.log("complete:", this.state.completeTodos)
+
 
       let claimedTodosR1 = response.data.todos.filter(function(todo) {
         if (todo.roommate == 1 && todo.completedStatus == false) {
@@ -322,7 +375,6 @@ const App = React.createClass ({
       this.setState({
         claimedTodosR1: claimedTodosR1
       });
-      console.log("claimed1", this.state.claimedTodosR1)
 
       let claimedTodosR2 = response.data.todos.filter(function(todo) {
         if (todo.roommate == 2 && todo.completedStatus == false) {
@@ -332,13 +384,20 @@ const App = React.createClass ({
       this.setState({
         claimedTodosR2: claimedTodosR2
       });
-      console.log("claimed2:", this.state.claimedTodosR2)
 
     }.bind(this));
   },
+  updateAllScores: function(){
+    console.log("running updateAllScores");
+    this.setState({
+      currentUserThisWeek: this.retrieveThisWeekScore(Moment().format('W'), this.state.currentUser),
+      currentUserLastWeek: this.retrieveThisWeekScore((Moment().format('W')-1), this.state.currentUser),
+      partnerUserThisWeek: this.retrieveThisWeekScore(Moment().format('W'), this.state.partnerUser),
+      partnerUserLastWeek: this.retrieveThisWeekScore((Moment().format('W')-1), this.state.partnerUser)
+    })
+  },
   componentDidMount: function() {
     this.loadAllTasks();
-
   },
 
   //*************RENDERING***************//
@@ -359,7 +418,9 @@ const App = React.createClass ({
           <div className="top-middle">
             <Title className="title"/>
 
-            <UserInfo currentGroup={this.state.currentGroup} currentUser={this.state.currentUser}/>
+            <UserInfo currentGroup={this.state.currentGroup} currentUser={this.state.currentUser}
+            partnerUser={this.state.partnerUser}
+              />
           </div>
 
           <ScoreBoardBtn show={this.state.showScoreboardModal}
@@ -385,19 +446,21 @@ const App = React.createClass ({
             handleClaimButtonR2={this.handleClaimButtonR2}
             handleClaimMenu={this.handleClaimMenu}
             handleClickOnClaimMenu={this.handleClickOnClaimMenu}
+            currentUser={this.state.currentUser}
+            partnerUser={this.state.partnerUser}
             />
 
           <div className="roommate-containers">
             <ClaimedTL
               handleCheckBox={this.handleCheckBox}
               data={this.state.claimedTodosR1}
-              roommate={this.state.roommate1name}
+              roommate={this.state.currentUser}
               handleUnClaimButton={this.handleUnClaimButton}
             />
             <ClaimedTL
               handleCheckBox={this.handleCheckBox}
               data={this.state.claimedTodosR2}
-              roommate={this.state.roommate2name}
+              roommate={this.state.partnerUser}
               handleUnClaimButton={this.handleUnClaimButton}
             />
           </div>
