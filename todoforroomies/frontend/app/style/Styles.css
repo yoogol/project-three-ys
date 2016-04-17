@@ -4,6 +4,10 @@
   /*width:100%;*/
 }
 
+button {
+  outline:none;
+}
+
 body {
   background: #A7003C;
   color: white;
@@ -25,6 +29,47 @@ hr {
 
 .small-hr {
   width:50%;
+}
+
+.italic {
+  font-style: italic;
+}
+
+/* DROPDOWN STYLES */
+
+.btn-group>.btn:first-child {
+  margin:0;
+}
+
+/* TOOLTIP STYLES (overriding bootstrap) */
+
+.tooltip {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 15px;
+  letter-spacing:1px;
+  box-shadow: 3px 3px 8px #333333;
+}
+
+.tooltip.bottom {
+  padding: 5px 0 0 0;
+}
+
+.tooltip-inner {
+  background-color: #CCCCCC;
+  padding: 8px;
+  color:#333333;
+}
+
+.tooltip.bottom .tooltip-arrow {
+  border-bottom-color: #CCCCCC;
+}
+
+.tooltip.bottom-left .tooltip-arrow {
+  border-bottom-color: #CCCCCC;
+}
+
+.tooltip.bottom-right .tooltip-arrow {
+  border-bottom-color: #CCCCCC;
 }
 
 /* POP UP STYLES (overriding bootstrap) */
@@ -120,7 +165,13 @@ hr {
   display:flex;
   flex-flow: row nowrap;
   justify-content:space-around;
-  width:100%;
+  /*width:100%;*/
+  background: rgba(51,51,51,.4);
+  /* opacity: .5; */
+  width: 100vw;
+  position: relative;
+  right: 25px;
+  padding-bottom: 15px;
 }
 
 /* TITLE AND ICON STYLES */
@@ -155,20 +206,20 @@ hr {
 .group-info-labels {
   font-weight:700;
   text-transform: uppercase;
-  margin-right:15px;
-  text-align:right;
+  margin:0 5px;
+  /*text-align:right;*/
 }
 
 .group-info-data {
-  margin-right:15px;
-  text-align:left;
+  margin:0 10px;
+  /*text-align:left;*/
 }
 
 .instructions-button,
 .scoreboard-button {
   width:10%;
   cursor: pointer;
-  margin-top:20px;
+  margin-top:30px;
 }
 
 .instructions-button {
@@ -180,7 +231,7 @@ hr {
   font-size: 1.4rem;
   width: 108px;
   height: 30px;
-  border-radius: 15px;
+  border-radius: 10px;
   cursor: pointer;
   font-weight: normal;
   background-color: #A7003C;
@@ -194,12 +245,15 @@ hr {
 }
 
 .add-button {
-  margin-bottom: 20px;
+  position:absolute;
+  height:43px;
+  right:0;
+  top:0;
   border: 0px;
   font-family: 'Righteous', cursive;
   font-size:20px;
   padding:5px 25px;
-  border-radius: 10px;
+  border-radius: 0 10px 10px 0;
   cursor: pointer;
   color: white;
   background:#333333;
@@ -208,13 +262,15 @@ hr {
 .add-button:hover {
   /*box-shadow: 5px 5px 5px #D20A51;*/
   box-shadow: inset -2px -2px 15px #CCCCCC;
-
+  /*background:#A7003C;*/
 }
 
-/*.submit-button {
-  background: grey;
-  margin: -20px 10px 10px 10px;
-}*/
+
+.submit-button {
+  /*background: grey;*/
+  /*margin: -20px 10px 10px 10px;*/
+  color:#333333;
+}
 
 /*.user-login-button {
   border: 0px;
@@ -231,7 +287,8 @@ hr {
   padding:0 30px;
 }
 
-strong {
+
+.larger-font {
   font-size: 2.5rem;
 }
 
@@ -241,7 +298,8 @@ input, select {
   min-height: 25px;
   font-size: 14px;
   color: black;
-  width: 180px;
+  min-width:275px;
+  padding:5px;
 }
 
 /*styling log-in */
@@ -290,6 +348,7 @@ h3 {
 }
 
 .main-todos-container {
+  margin-top:25px;
   display:flex;
   flex-flow: row nowrap;
   justify-content:space-between;
@@ -307,7 +366,21 @@ h3 {
   margin: 0 25px;
 }
 
+.scrollarea{
+  z-index:50;
+}
+
+.scrollable-margin {
+  margin:10px 0;
+}
+
+.scrollable-margin .for-all-containers {
+  margin:0;
+}
+
 .container-title {
+  height:43px;
+  position:relative;
   padding:5px 0;
   background:#999999;
   color:#fff;
@@ -319,6 +392,13 @@ h3 {
   background:#EFEFEF;
   border-radius:15px;
   margin:10px 0;
+}
+
+.completed-todos .single-item-container {
+    opacity: .7;
+}
+.completed-todos .single-item-container .headline {
+  text-decoration: line-through;
 }
 
 .headline {
@@ -365,7 +445,7 @@ h3 {
 }
 
 .todo-buttons * {
-  margin: 0 8px;
+  margin: 0 5px;
 }
 
 .todo-buttons .unclaim-button {
@@ -387,9 +467,15 @@ h3 {
 
 
 /*Date and time styling for deadline*/
+.form-control {
+  width:auto;
+  margin:0 auto;
+}
+
 .rdt {
 	position: relative;
 }
+
 .rdtPicker {
 	display: none;
 	position: absolute;
@@ -401,8 +487,11 @@ h3 {
   box-shadow: 0 1px 3px rgba(0,0,0,.1);
   border: 1px solid #f9f9f9;
 }
+
 .rdtOpen .rdtPicker {
-	display: block;
+	display: inline;
+  margin:0 auto;
+  right: 160px;
 }
 .rdtStatic .rdtPicker {
 	box-shadow: none;

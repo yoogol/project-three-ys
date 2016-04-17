@@ -1,6 +1,8 @@
 import React from 'react';
 var Button = require('react-bootstrap').Button;
+var FontAwesome = require('react-fontawesome');
 import AjaxHelpers from '../utils/AjaxHelpers';
+require('../style/Styles.css');
 
 const LoginForm = React.createClass ({
   getInitialState: function() {
@@ -76,7 +78,7 @@ const LoginForm = React.createClass ({
             return true
           }
         });
-        
+
         if (userExists.length > 0) {
           alert("Sorry, this name is already taken. Try a different one, please!")
         } else if (groupExists.length > 0) {

@@ -30,7 +30,6 @@ const AddForm = React.createClass ({
     this.setState({
       deadline: e.target.value
     }, this.calculatePoints)
-
   },
   handleTimeNeeded: function(e){
     console.log('handleTimeNeeded')
@@ -121,13 +120,15 @@ const AddForm = React.createClass ({
               />
             <br /><br />
 
-            <label className="add-form-label">Need to Be Completed By: </label>
+            <label className="add-form-label">Needs to Be Completed By: </label>
             <br />
 
             <Datetime
-              value={this.state.deadline}
               onChange={this.handleDeadline}
-              isValidDate={ valid } />
+              isValidDate={ valid }
+              onInputChange = {this.handleDeadline}
+              />
+
             {/*<label className="add-form-label">Need to Be Completed By: </label>
             <br /><br />
             <input
@@ -137,7 +138,7 @@ const AddForm = React.createClass ({
               value={this.state.deadline}
               onChange={this.handleDeadline}
               />*/}
-            <br /><br />
+            <br />
 
             <label className="add-form-label">Est. Time to Complete (mins): </label>
             <br />
@@ -166,7 +167,7 @@ const AddForm = React.createClass ({
             </select>
             <br /><br />
             <label className="add-form-label">How yucky is the task from 1 to 5: </label>
-            <br /><br />
+            <br />
             {/*<input
               style={formStyle}
               type='number'
@@ -183,9 +184,10 @@ const AddForm = React.createClass ({
               <option type="number" value="4">4 - I don't want it!</option>
               <option type="number" value="5">5 - Most</option>
             </select>
-            <label className="add-form-label"><strong>{this.handlePointsWorth()}</strong></label>
             <br />
-            <button onClick={this.props.closeBtn} className="button submit-button" type="submit">Submit</button>
+            <label className="add-form-label larger-font">{this.handlePointsWorth()}</label>
+            <br />
+            <Button onClick={this.props.closeBtn} className="button submit-button" type="submit">Submit</Button>
           </form>
         </div>
       </div>

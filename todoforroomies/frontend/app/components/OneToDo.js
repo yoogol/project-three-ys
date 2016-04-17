@@ -1,6 +1,9 @@
 import React from 'react';
 var Button = require('react-bootstrap').Button;
+var DropdownButton = require('react-bootstrap').DropdownButton;
+var MenuItem = require('react-bootstrap').MenuItem;
 import TodoList from '../containers/TodoList';
+require('../style/Styles.css');
 
 // this.props.parentComponent
 
@@ -37,14 +40,14 @@ const OneToDo = React.createClass ({
   displayClaimDropdown: function(){
     if (this.props.parentComponent == "TodoList"){
       return(
-        <select
-          onChange={this.props.handleClaimMenu}
+        <DropdownButton
+          title="Who is going to do this?"
+          onSelect={this.props.handleClaimMenu}
           id={this.props.ToDoItem._id}
         >
-          <option value="">Who is going to do this?</option>
-          <option value="1">{this.props.currentUser}</option>
-          <option value="2">{this.props.partnerUser}</option>
-        </select>
+          <MenuItem id={this.props.ToDoItem._id} value="1" eventKey="1">{this.props.currentUser}</MenuItem>
+          <MenuItem id={this.props.ToDoItem._id} value="2" eventKey="2">{this.props.partnerUser}</MenuItem>
+        </DropdownButton>
       );
     } else {
       return
@@ -102,7 +105,7 @@ const OneToDo = React.createClass ({
 
 
   render: function() {
-    let deadlineFormated = this.props.ToDoItem.deadline;
+    let deadlineFormated = parseInt(this.props.ToDoItem.deadline);
     return (
       <div className="single-item">
         <div className={this.parentComponentStyle()}>
@@ -116,7 +119,7 @@ const OneToDo = React.createClass ({
             <div className="todo-details-container">
               <span className="author todo-details">Created by {this.props.ToDoItem.author}, </span>
               <span className="timeNeeded todo-details">{this.props.ToDoItem.timeNeeded} min, </span>
-              <span className="deadline todo-details">Due: {deadlineFormated[0]} at {deadlineFormated[1]}</span>
+              <span className="deadline todo-details">Due: {deadlineFormated} at {deadlineFormated[1]}</span>
             </div>
           </div>
         </div>

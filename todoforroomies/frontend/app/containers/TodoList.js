@@ -1,5 +1,9 @@
 import React from 'react';
-import OneToDo from "../components/OneToDo"
+import OneToDo from "../components/OneToDo";
+import AddButton from "../fsc/AddButton";
+// var ScrollArea = require('react-scrollbar');
+require('../style/Styles.css');
+
 
 const TodoList = React.createClass ({
   render: function() {
@@ -24,7 +28,15 @@ const TodoList = React.createClass ({
     return (
       <div className="unclaimed-container">
         <div className="container-title">
-          <h3>to do list</h3>
+          <h3>
+            To Do List
+            <AddButton
+              showForm={this.props.showForm}
+              handleAddButton={this.props.handleAddButton}
+              displayAddForm={this.props.displayForm}
+            />
+          {this.props.displayAddForm()}
+          </h3>
         </div>
         <div className="unclaimed-todos for-all-containers">
           {singleToDo}

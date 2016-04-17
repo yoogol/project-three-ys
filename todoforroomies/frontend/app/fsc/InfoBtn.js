@@ -2,6 +2,8 @@ import React from "react";
 var FontAwesome = require('react-fontawesome');
 var Tooltip = require('react-bootstrap').Tooltip;
 var OverlayTrigger = require('react-bootstrap').OverlayTrigger;
+require('../style/Styles.css');
+
 
 function InfoBtn(props){
   const infoTooltip=(

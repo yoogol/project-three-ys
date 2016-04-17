@@ -1,5 +1,7 @@
 import React from 'react';
 import AddForm from '../components/AddForm'
+require('../style/Styles.css');
+
 
 const FormContainer = React.createClass ({
   displayAddForm: function() {
