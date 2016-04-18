@@ -721,7 +721,7 @@ td.rdtYear:hover {
   width:auto;
 }
 
-.unclaim-button-div + .edit-delete-btns {
+.todo-buttons .unclaim-button-div + .edit-delete-btns {
   margin:0;
 }
 
@@ -748,6 +748,14 @@ td.rdtYear:hover {
 .roommate-containers {
   width:100%;
   margin:0;
+}
+
+.todo-buttons {
+  flex-flow:row nowrap;
+}
+
+.todo-buttons .edit-delete-btns {
+  margin-top: 0;
 }
 
 }
