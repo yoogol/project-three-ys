@@ -35,6 +35,10 @@ hr {
   font-style: italic;
 }
 
+.capitalize {
+  text-transform: capitalize;
+}
+
 /* DROPDOWN STYLES */
 
 .btn-group>.btn:first-child {
@@ -101,6 +105,11 @@ hr {
 .score-info-container {
   display:flex;
   flex-flow:row nowrap;
+  background:#CCCCCC;
+  padding:10px 0;
+  width: 600px;
+  position: relative;
+  right: 21px;
 }
 
 .roommate-score-info {
@@ -110,7 +119,7 @@ hr {
 }
 
 .roommate-score-info:first-child {
-  border-right:1px solid #CCCCCC;
+  border-right:1px solid #333333;
 }
 
 .scoreboard-roommate {
@@ -118,6 +127,10 @@ hr {
   font-size:24px;
   text-align:center;
   margin:0;
+}
+
+.this-weeks-leader {
+  margin:20px 0;
 }
 
 .pop-up-content .close-button {
@@ -223,6 +236,7 @@ hr {
 
 .group-info-data {
   margin:0 10px;
+  text-transform: capitalize;
   /*text-align:left;*/
 }
 
@@ -401,6 +415,10 @@ h3 {
   border-radius:15px;
 }
 
+.container-title {
+  text-transform:capitalize;
+}
+
 .for-all-containers {
   /*padding:20px;*/
   background:#EFEFEF;
@@ -460,6 +478,12 @@ h3 {
 
 .todo-buttons * {
   margin: 0 5px;
+}
+
+.todo-buttons .edit-delete-btns {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
 }
 
 .todo-buttons .unclaim-button {
@@ -675,4 +699,55 @@ td.rdtYear:hover {
 	width: 100%;
 	font-size: 1.2em;
 	margin-top: 37px;
+}
+
+
+
+
+
+/* MEDIA QUERIES */
+
+@media (max-width:1180px){
+.todo-buttons {
+  flex-flow:row wrap;
+}
+
+.dropdown {
+  margin: 0 auto;
+}
+
+.todo-buttons .unclaim-button-div {
+  margin: 0 auto;
+  width:auto;
+}
+
+.unclaim-button-div + .edit-delete-btns {
+  margin:0;
+}
+
+.todo-buttons .edit-delete-btns {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  width: auto;
+  margin: 15px auto 0 auto;
+}
+
+}
+
+@media (max-width:750px){
+
+.main-todos-container {
+  display:flex;
+  flex-flow: row wrap;
+  justify-content:space-between;
+}
+
+.unclaimed-container,
+.completed-container,
+.roommate-containers {
+  width:100%;
+  margin:0;
+}
+
 }

@@ -54,7 +54,6 @@ const LoginForm = React.createClass ({
   //*************HANDLING REGISTRATION**********//
   handleRegisterSubmit: function(e) {
     e.preventDefault();
-    this.props.closeBtn();
     if (this.state.name != "") {
       let newUser = {
         name: this.state.name,
@@ -85,6 +84,8 @@ const LoginForm = React.createClass ({
         } else if (groupExists.length > 0) {
           alert("If you are creating a new group, this group name is already taken. If you are joining an existing group, your group password did not match. Please try again!")
         } else {
+          this.props.closeBtn();
+
           AjaxHelpers.addNewUser(newUser).then(function(response) {
             console.log(response);
             AjaxHelpers.findUsersByGroup(newUser.group).then(function(response) {
@@ -112,7 +113,6 @@ const LoginForm = React.createClass ({
   },
   handleLoginSubmit: function(e) {
     e.preventDefault();
-    this.props.closeBtn();
     console.log("check if name is in db");
     console.log("if yes, approve");
     e.preventDefault();
@@ -152,6 +152,9 @@ const LoginForm = React.createClass ({
               this.props.handleRegistration(correctUser[0], partnerUser);
             };
           }.bind(this));
+
+          this.props.closeBtn();
+
         } else {
           alert("user info incorrect")
         }
@@ -190,7 +193,7 @@ const LoginForm = React.createClass ({
             <br />
             <input
               className="logininput"
-              type="text"
+              type="password"
               placeholder="Password"
               value={this.state.password}
               onChange={this.handleLoginPassword}
@@ -219,28 +222,28 @@ const LoginForm = React.createClass ({
             <h2>Please register or join a group</h2>
             <input
               type="text"
-              placeholder="group name"
+              placeholder="Group Name"
               value={this.state.group}
               onChange={this.handleGroupName}
               />
             <br />
               <input
-                type="text"
-                placeholder="group password"
+                type="password"
+                placeholder="Group Password"
                 value={this.state.groupPassword}
                 onChange={this.handleGroupPassword}
                 />
               <br />
             <input
               type="text"
-              placeholder="name"
+              placeholder="Name"
               value={this.state.name}
               onChange={this.handleLoginName}
               />
             <br />
             <input
-              type="text"
-              placeholder="password"
+              type="password"
+              placeholder="Password"
               value={this.state.password}
               onChange={this.handleLoginPassword}
               />
