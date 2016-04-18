@@ -47,39 +47,24 @@ const OneToDo = React.createClass ({
           onSelect={this.props.handleClaimMenu}
           id={this.props.ToDoItem._id}
         >
-          <MenuItem id={this.props.ToDoItem._id} value="1" eventKey="1">Roomie 1</MenuItem>
-          <MenuItem id={this.props.ToDoItem._id} value="2" eventKey="2">Roomie 2</MenuItem>
+          <MenuItem id={this.props.ToDoItem._id} eventKey={["1",this.props.ToDoItem._id]}><span className="capitalize">{this.props.currentUser}</span></MenuItem>
+          <MenuItem id={this.props.ToDoItem._id} eventKey={["2",this.props.ToDoItem._id]}><span className="capitalize">{this.props.partnerUser}</span></MenuItem>
         </DropdownButton>
       );
     } else {
       return
     };
   },
-
-  // displayClaimButtonR1: function() {
-  //   if (this.props.parentComponent == 'TodoList') {
-  //     return <button onClick={this.props.handleClaimButtonR1} type="button"
-  //     value={this.props.ToDoItem._id}
-  //       >Claim R1</button>
-  //   } else {
-  //     return
-  //   }
-  // },
-  // displayClaimButtonR2: function() {
-  //   if (this.props.parentComponent == 'TodoList') {
-  //     return <button onClick={this.props.handleClaimButtonR2} type="button"
-  //     value={this.props.ToDoItem._id}
-  //       >Claim R2</button>
-  //   } else {
-  //     return
-  //   }
-  // },
   displayUnClaimButton: function() {
     if (this.props.parentComponent == 'ClaimedTL') {
-      return <Button onClick={this.props.handleUnClaimButton} type="button"
-      value={this.props.ToDoItem._id}
-      className="unclaim-button"
-        >Unclaim</Button>
+      return (
+        <div className="unclaim-button-div">
+          <Button onClick={this.props.handleUnClaimButton} type="button"
+          value={this.props.ToDoItem._id}
+          className="unclaim-button"
+            >Unclaim</Button>
+        </div>
+      )
     } else {
       return
     }
@@ -87,7 +72,7 @@ const OneToDo = React.createClass ({
   displayCheckBoxIncomplete: function() {
     if (this.props.parentComponent == 'ClaimedTL') {
       return <input className="todo-checkbox" onClick={this.props.handleCheckBox} type="checkbox"
-      value={this.props.ToDoItem._id}
+      value={this.props.ToDoItem._id} id={this.props.roommate}
 
       />
     } else {
@@ -119,7 +104,7 @@ const OneToDo = React.createClass ({
           <div className="todos-right-container">
             <div className="headline" >{this.props.ToDoItem.headline}</div>
             <div className="todo-details-container">
-              <span className="author todo-details">Created by {this.props.ToDoItem.author}, </span>
+              <span className="author todo-details">Created by <span className="capitalize">{this.props.ToDoItem.author}</span>, </span>
               <span className="timeNeeded todo-details">Length: {this.props.ToDoItem.timeNeeded} min, </span>
               <span className="deadline todo-details">Due: {deadlineFormated}</span>
             </div>
@@ -128,8 +113,10 @@ const OneToDo = React.createClass ({
         <div className="todo-buttons">
           {this.displayClaimDropdown()}
           {this.displayUnClaimButton()}
-          {this.displayEditButton()}
-          {this.displayDeleteButton()}
+          <div className="edit-delete-btns">
+            {this.displayEditButton()}
+            {this.displayDeleteButton()}
+          </div>
         </div>
       </div>
     )

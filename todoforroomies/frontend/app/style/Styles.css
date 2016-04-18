@@ -35,6 +35,10 @@ hr {
   font-style: italic;
 }
 
+.capitalize {
+  text-transform: capitalize;
+}
+
 /* DROPDOWN STYLES */
 
 .btn-group>.btn:first-child {
@@ -98,8 +102,24 @@ hr {
   margin: 0 0 10px 0;
 }
 
+.score-info-container {
+  display:flex;
+  flex-flow:row nowrap;
+  background:#CCCCCC;
+  padding:10px 0;
+  width: 600px;
+  position: relative;
+  right: 21px;
+}
+
 .roommate-score-info {
   margin:10px 0;
+  width:50%;
+  padding:0 10px;
+}
+
+.roommate-score-info:first-child {
+  border-right:1px solid #333333;
 }
 
 .scoreboard-roommate {
@@ -107,6 +127,10 @@ hr {
   font-size:24px;
   text-align:center;
   margin:0;
+}
+
+.this-weeks-leader {
+  margin:20px 0;
 }
 
 .pop-up-content .close-button {
@@ -212,6 +236,7 @@ hr {
 
 .group-info-data {
   margin:0 10px;
+  text-transform: capitalize;
   /*text-align:left;*/
 }
 
@@ -247,13 +272,13 @@ hr {
 .add-button {
   position:absolute;
   height:43px;
-  right:0;
+  left:0;
   top:0;
   border: 0px;
   font-family: 'Righteous', cursive;
   font-size:20px;
   padding:5px 25px;
-  border-radius: 0 10px 10px 0;
+  border-radius: 10px 0 0 10px;
   cursor: pointer;
   color: white;
   background:#333333;
@@ -261,8 +286,11 @@ hr {
 
 .add-button:hover {
   /*box-shadow: 5px 5px 5px #D20A51;*/
-  box-shadow: inset -2px -2px 15px #CCCCCC;
-  /*background:#A7003C;*/
+  box-shadow: 1px 1px 5px #fff;
+  background: #008642;
+  transform:scale(1.15);
+  border-radius: 10px;
+
 }
 
 
@@ -387,6 +415,10 @@ h3 {
   border-radius:15px;
 }
 
+.container-title {
+  text-transform:capitalize;
+}
+
 .for-all-containers {
   /*padding:20px;*/
   background:#EFEFEF;
@@ -446,6 +478,12 @@ h3 {
 
 .todo-buttons * {
   margin: 0 5px;
+}
+
+.todo-buttons .edit-delete-btns {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
 }
 
 .todo-buttons .unclaim-button {
@@ -661,4 +699,63 @@ td.rdtYear:hover {
 	width: 100%;
 	font-size: 1.2em;
 	margin-top: 37px;
+}
+
+
+
+
+
+/* MEDIA QUERIES */
+
+@media (max-width:1180px){
+.todo-buttons {
+  flex-flow:row wrap;
+}
+
+.dropdown {
+  margin: 0 auto;
+}
+
+.todo-buttons .unclaim-button-div {
+  margin: 0 auto;
+  width:auto;
+}
+
+.todo-buttons .unclaim-button-div + .edit-delete-btns {
+  margin:0;
+}
+
+.todo-buttons .edit-delete-btns {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  width: auto;
+  margin: 15px auto 0 auto;
+}
+
+}
+
+@media (max-width:750px){
+
+.main-todos-container {
+  display:flex;
+  flex-flow: row wrap;
+  justify-content:space-between;
+}
+
+.unclaimed-container,
+.completed-container,
+.roommate-containers {
+  width:100%;
+  margin:0;
+}
+
+.todo-buttons {
+  flex-flow:row nowrap;
+}
+
+.todo-buttons .edit-delete-btns {
+  margin-top: 0;
+}
+
 }

@@ -11,7 +11,7 @@ const ClaimedTL = React.createClass ({
       return (
         <div key={index} className="single-item-container">
           <OneToDo handleCheckBox={this.props.handleCheckBox} ToDoItem={todo} parentComponent="ClaimedTL"
-          handleUnClaimButton={this.props.handleUnClaimButton}
+          handleUnClaimButton={this.props.handleUnClaimButton} roommate={this.props.roommate}
             />
         </div>
       )
