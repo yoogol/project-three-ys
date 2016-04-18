@@ -267,13 +267,14 @@ const App = React.createClass ({
   },
   handleClaimMenu: function(e,eventKey){
     console.log("dropdown has been changed");
-    // console.log("eventKey",eventKey);
+    console.log("eventKey",eventKey[0]);
+    console.log("eventKey",eventKey[1]);
     // console.log("e.target",e.target);
     // console.log("e.target.getAttribute('value')",e.target.getAttribute("value"));
     // console.log("e.target.getAttribute('id')",e.target.getAttribute("id"));
-    let todoToChange = e.target.getAttribute("id");
+    let todoToChange = eventKey[1];
     let newTaskProp = {
-      roommate: eventKey
+      roommate: eventKey[0]
     };
     //"roommate reflects which roomie claimed the task"
     AjaxHelpers.editToDo(newTaskProp, todoToChange).then(function(response) {

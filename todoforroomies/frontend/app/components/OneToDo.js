@@ -47,8 +47,8 @@ const OneToDo = React.createClass ({
           onSelect={this.props.handleClaimMenu}
           id={this.props.ToDoItem._id}
         >
-          <MenuItem id={this.props.ToDoItem._id} value="1" eventKey="1"><span className="capitalize">{this.props.currentUser}</span></MenuItem>
-          <MenuItem id={this.props.ToDoItem._id} value="2" eventKey="2"><span className="capitalize">{this.props.partnerUser}</span></MenuItem>
+          <MenuItem id={this.props.ToDoItem._id} eventKey={["1",this.props.ToDoItem._id]}><span className="capitalize">{this.props.currentUser}</span></MenuItem>
+          <MenuItem id={this.props.ToDoItem._id} eventKey={["2",this.props.ToDoItem._id]}><span className="capitalize">{this.props.partnerUser}</span></MenuItem>
         </DropdownButton>
       );
     } else {
