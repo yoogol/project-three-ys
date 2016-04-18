@@ -120,7 +120,7 @@ const AddForm = React.createClass ({
             <br />
             <input
               type='text'
-              placeholder="do laundry, wash dishes etc."
+              placeholder="Do laundry, wash dishes, etc."
               value={this.state.headline}
               onChange={this.handleHeadline}
               />

@@ -11,34 +11,32 @@ const ScoreBoard = React.createClass ({
     if (this.props.currentUserLastWeek > this.props.partnerUserLastWeek) {
       return (
         <div>
-        <div className="roommate-score-info">
-          <p className="scoreboard-roommate"> Based on last week's score the winner is: {this.props.currentUser.toUpperCase()}</p>
-          <div>who won with the score of: {this.props.currentUserLastWeek}</div>
-        </div>
-        <div className="roommate-score-info">
-          <p className="scoreboard-roommate">Last weeks's loser: {this.props.partnerUser.toUpperCase()}</p>
-          <div>lost with the score of: {this.props.partnerUserLastWeek}</div>
-        </div>
+          <div className="roommate-score-info">
+            <p className="scoreboard-roommate"> Based on last week's score, the winner was: {this.props.currentUser.toUpperCase()}
+            with the score of: {this.props.currentUserLastWeek}</p>
+            <p>Last weeks's loser: {this.props.partnerUser.toUpperCase()}
+            with the score of: {this.props.partnerUserLastWeek}</p>
+          </div>
         </div>
       )
     } else if (this.props.partnerUserLastWeek > this.props.currentUserLastWeek) {
       return (
         <div>
-        <div className="roommate-score-info">
-          <p className="scoreboard-roommate"> Based on last week's score the winner is: {this.props.partnerUser.toUpperCase()}</p>
-          <div>who won with the score of: {this.props.partnerUserLastWeek}</div>
-        </div>
-        <div className="roommate-score-info">
-          <p className="scoreboard-roommate">Last weeks's loser: {this.props.currentUser.toUpperCase()}</p>
-          <div>lost with the score of: {this.props.currentUserLastWeek}</div>
-        </div>
+          <div className="roommate-score-info">
+            <p className="scoreboard-roommate"> Based on last week's score, the winner was: {this.props.partnerUser.toUpperCase()}
+            with the score of: {this.props.partnerUserLastWeek}
+            </p>
+            <p>Last weeks's loser: {this.props.currentUser.toUpperCase()}
+            with the score of: {this.props.currentUserLastWeek}
+            </p>
+          </div>
         </div>
       )
     } else {
       return (
         <div>
-        <h3>it's a tie!</h3>
-        <p>Based on last week's score both {this.props.currentUser.toUpperCase()} and {this.props.partnerUser.toUpperCase()} have gained {this.props.currentUserLastWeek} points</p>
+        <p className="scoreboard-roommate">it's a tie!</p>
+        <p className="last-week-results">Based on last week's score, both {this.props.currentUser.toUpperCase()} and {this.props.partnerUser.toUpperCase()} have earned {this.props.currentUserLastWeek} points</p>
         </div>
       )
     }
@@ -46,8 +44,9 @@ const ScoreBoard = React.createClass ({
   determineLeadThisWeek: function() {
     if (this.props.currentUserThisWeek > this.props.partnerUserThisWeek) {
       return (
-        <div>
-          <h3>{this.props.currentUser.toUpperCase()} is currently leading. <br></br>But {this.props.partnerUser.toUpperCase()} still has a chance!</h3>
+        <div className="this-weeks-leader">
+          <h3>{this.props.currentUser.toUpperCase()} is currently leading.</h3>
+          <h4>But {this.props.partnerUser.toUpperCase()} still has a chance!</h4>
         </div>
       )
     } else if (this.props.partnerUserLastWeek > this.props.currentUserLastWeek) {
@@ -72,19 +71,26 @@ const ScoreBoard = React.createClass ({
         <h5>{this.determineLeadThisWeek()}</h5>
         <div className="score-info-container">
           <div className="roommate-score-info">
-            <p className="scoreboard-roommate">Roomie 1: {this.props.currentUser}</p>
+            <p className="scoreboard-roommate">Roomie 1: <br />
+            <span className="capitalize">{this.props.currentUser}</span></p>
             <div>This week's score:  {this.props.currentUserThisWeek}</div>
           </div>
           <div className="roommate-score-info">
-            <p className="scoreboard-roommate">Roomie 2: {this.props.partnerUser}</p>
+            <p className="scoreboard-roommate">Roomie 2: <br />
+            <span className="capitalize">{this.props.partnerUser}</span></p>
             <div>This week's score: {this.props.partnerUserThisWeek}</div>
           </div>
         </div>
         <br></br>
         <h3>And the winner is...</h3>
         {this.determineWinner()}
+        <div className="punishment">
+          <hr className="small-hr"></hr>
+          <p className="scoreboard-roommate">This week's punishment is:</p>
+          <p>Walking into a McDonalds and singing the national anthem at the top of your voice</p>
+        </div>
 
-        <Button onClick={this.props.closeBtn}>Close</Button>
+        <Button onClick={this.props.closeBtn} className="close-button">Close</Button>
       </div>
     )
   }
