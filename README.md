@@ -2,7 +2,7 @@ Welcome to the README file of Roomies: An app for roommates to turn their weekly
 
 ## This app was created as part of General Assembly's Web Development Immersive course by:
 * @kaushalpatel922 (focus: points algorithm, add/edit form and css styling)
-* @kristynlyncheski (focus: design, css styling, visual effects)
+* @kristynlyncheski (focus: react bootstrap, design, css styling and responsiveness, visual effects)
 * @yoogol (focus: user interaction functionality)
 
 
