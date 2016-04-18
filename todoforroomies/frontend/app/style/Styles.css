@@ -1,0 +1,761 @@
+* {
+  box-sizing: border-box;
+  outline: none;
+  /*width:100%;*/
+}
+
+button {
+  outline:none;
+}
+
+body {
+  background: #A7003C;
+  color: white;
+  justify-content: center;
+  display: flex;
+  font-family: 'Libre Baskerville', serif;
+  font-weight:400;
+  font-size:16px;
+  margin: 0px 25px;
+}
+
+#app {
+  width:100%;
+}
+
+hr {
+  border-top: 1px solid #999999;
+}
+
+.small-hr {
+  width:50%;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+/* DROPDOWN STYLES */
+
+.btn-group>.btn:first-child {
+  margin:0;
+}
+
+/* TOOLTIP STYLES (overriding bootstrap) */
+
+.tooltip {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 15px;
+  letter-spacing:1px;
+  box-shadow: 3px 3px 8px #333333;
+}
+
+.tooltip.bottom {
+  padding: 5px 0 0 0;
+}
+
+.tooltip-inner {
+  background-color: #CCCCCC;
+  padding: 8px;
+  color:#333333;
+}
+
+.tooltip.bottom .tooltip-arrow {
+  border-bottom-color: #CCCCCC;
+}
+
+.tooltip.bottom-left .tooltip-arrow {
+  border-bottom-color: #CCCCCC;
+}
+
+.tooltip.bottom-right .tooltip-arrow {
+  border-bottom-color: #CCCCCC;
+}
+
+/* POP UP STYLES (overriding bootstrap) */
+
+.modal-dialog {
+  margin-top: 60px;
+}
+
+.modal-content {
+  background:#EFEFEF;
+  color:#333333;
+  min-height:300px;
+  display:flex;
+  flex-flow:row nowrap;
+  align-items: center;
+  text-align:center;
+}
+
+.pop-up-content {
+  width:100%;
+  margin:0 auto;
+  padding:20px;
+}
+
+.pop-up-content h3 {
+  margin: 0 0 10px 0;
+}
+
+.score-info-container {
+  display:flex;
+  flex-flow:row nowrap;
+  background:#CCCCCC;
+  padding:10px 0;
+  width: 600px;
+  position: relative;
+  right: 21px;
+}
+
+.roommate-score-info {
+  margin:10px 0;
+  width:50%;
+  padding:0 10px;
+}
+
+.roommate-score-info:first-child {
+  border-right:1px solid #333333;
+}
+
+.scoreboard-roommate {
+  font-family: 'Righteous', cursive;
+  font-size:24px;
+  text-align:center;
+  margin:0;
+}
+
+.this-weeks-leader {
+  margin:20px 0;
+}
+
+.pop-up-content .close-button {
+  margin: 10px 0 0 0;
+}
+
+/* BUTTON STYLES (overriding bootstrap) */
+
+.btn-default {
+  margin: 0 auto;
+  background-image: -webkit-linear-gradient(top,#EFEFEF 0,#CCCCCC 100%);
+  background-image: -o-linear-gradient(top,#EFEFEF 0,#CCCCCC 100%);
+  background-image: -webkit-gradient(linear,left top,left bottom,from(#EFEFEF),to(#CCCCCC));
+  background-image: linear-gradient(to bottom,#EFEFEF 0,#CCCCCC 100%);
+}
+
+.btn {
+  font-size:12px;
+}
+
+.btn-default.main-start-button {
+  text-shadow: 0 1px 0 #333333;
+  background-image: -webkit-linear-gradient(top,#880030 0,#A7003C 100%);
+  background-image: -o-linear-gradient(top,#880030 0,#A7003C 100%);
+  background-image: -webkit-gradient(linear,left top,left bottom,from(#880030),to(#A7003C));
+  background-image: linear-gradient(to bottom,#880030 0,#A7003C 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#880030', endColorstr='#A7003C', GradientType=0);
+
+}
+
+.btn.main-start-button {
+  font-size:14px;
+}
+
+.main-start-button.btn-default:hover,
+.main-start-button.btn-default:focus {
+  color:#fff;
+  background-color: #B40041;
+  background-position: 0 -15px;
+}
+.main-start-button.btn-default:active,
+.main-start-button.btn-default.active {
+  background-color: #B40041;
+  border-color: #dbdbdb;
+}
+
+.unclaim-button {
+  font-size:14px;
+}
+
+
+
+/* TOP ROW FLEX BOX */
+
+.top-row {
+  display:flex;
+  flex-flow: row nowrap;
+  justify-content:space-around;
+  /*width:100%;*/
+  background: rgba(51,51,51,.4);
+  /* opacity: .5; */
+  width: 100vw;
+  position: relative;
+  right: 25px;
+  padding-bottom: 15px;
+}
+
+/* TITLE AND ICON STYLES */
+
+.top-middle {
+  width:80%;
+  /*display:flex;
+  flex-flow:row nowrap;
+  justify-content: space-around;*/
+}
+
+.title {
+  margin:5px 0 0 0;
+  font-size: 75px;
+  color: #fff;
+  text-align:center;
+  font-family: 'Righteous', cursive;
+}
+
+.user-group-info {
+  color:#EFEFEF;
+  margin:0 auto;
+  display:flex;
+  flex-flow:row nowrap;
+  justify-content: center;
+}
+
+.user-group-info p {
+  margin:5px 0;
+}
+
+.group-info-labels {
+  font-weight:700;
+  text-transform: uppercase;
+  margin:0 5px;
+  /*text-align:right;*/
+}
+
+.group-info-data {
+  margin:0 10px;
+  text-transform: capitalize;
+  /*text-align:left;*/
+}
+
+.instructions-button,
+.scoreboard-button {
+  width:10%;
+  cursor: pointer;
+  margin-top:30px;
+}
+
+.instructions-button {
+  text-align:right;
+}
+
+.button {
+  border: 0px;
+  font-size: 1.4rem;
+  width: 108px;
+  height: 30px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: normal;
+  background-color: #A7003C;
+  color: white;
+}
+
+/*Register, LogIn and peekin styles*/
+.main-start-button {
+  margin-right: 10px;
+  border-radius: 5px;
+}
+
+.add-button {
+  position:absolute;
+  height:43px;
+  left:0;
+  top:0;
+  border: 0px;
+  font-family: 'Righteous', cursive;
+  font-size:20px;
+  padding:5px 25px;
+  border-radius: 10px 0 0 10px;
+  cursor: pointer;
+  color: white;
+  background:#333333;
+}
+
+.add-button:hover {
+  /*box-shadow: 5px 5px 5px #D20A51;*/
+  box-shadow: 1px 1px 5px #fff;
+  background: #008642;
+  transform:scale(1.15);
+  border-radius: 10px;
+
+}
+
+
+.submit-button {
+  /*background: grey;*/
+  /*margin: -20px 10px 10px 10px;*/
+  color:#333333;
+}
+
+/*.user-login-button {
+  border: 0px;
+  font-size: 1rem;
+  width: 108px;
+  height: 30px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: normal;
+  margin-top: 8px;
+}*/
+
+.guest-message {
+  padding:0 30px;
+}
+
+
+.larger-font {
+  font-size: 2.5rem;
+}
+
+input, select {
+  /*margin-left: 3%;*/
+  margin-bottom:5px;
+  min-height: 25px;
+  font-size: 14px;
+  color: black;
+  min-width:275px;
+  padding:5px;
+}
+
+/*styling log-in */
+
+/*.logininput {
+  width: 210px;
+  font-family: helvetica;
+  display: block;
+  box-shadow: none;
+  border: 0;
+  background: transparent;
+  border-radius: 0;
+  border-bottom: 3px solid #999999;
+  margin: 8px auto;
+}*/
+
+.add-form-container {
+  width:100%;
+}
+.form {
+  /*margin:0 auto;
+  width:100%;*/
+  /*background-color: blue;*/
+  /*border-radius: 10px;*/
+  /*margin: 5px 0px 10px 5px;*/
+}
+
+.welcome-message {
+  font-size: 30px;
+  padding-bottom: 12px;
+}
+
+.login {
+  font-size:20px;
+  color:#999999;
+  padding-bottom: 8px;
+}
+
+/* CONTAINER STYLES */
+
+h3 {
+  font-family: 'Righteous', cursive;
+  font-size:30px;
+  text-align:center;
+  margin:0;
+}
+
+.main-todos-container {
+  margin-top:25px;
+  display:flex;
+  flex-flow: row nowrap;
+  justify-content:space-between;
+  width:100%;
+  color:#333333;
+}
+
+.unclaimed-container,
+.completed-container {
+  width: 35%;
+}
+
+.roommate-containers {
+  width:30%;
+  margin: 0 25px;
+}
+
+.scrollarea{
+  z-index:50;
+}
+
+.scrollable-margin {
+  margin:10px 0;
+}
+
+.scrollable-margin .for-all-containers {
+  margin:0;
+}
+
+.container-title {
+  height:43px;
+  position:relative;
+  padding:5px 0;
+  background:#999999;
+  color:#fff;
+  border-radius:15px;
+}
+
+.container-title {
+  text-transform:capitalize;
+}
+
+.for-all-containers {
+  /*padding:20px;*/
+  background:#EFEFEF;
+  border-radius:15px;
+  margin:10px 0;
+}
+
+.completed-todos .single-item-container {
+    opacity: .7;
+}
+.completed-todos .single-item-container .headline {
+  text-decoration: line-through;
+}
+
+.headline {
+  font-family: 'Righteous', cursive;
+  font-size:18px;
+  text-transform: capitalize;
+}
+
+.todo-details-container {
+  font-size:14px;
+}
+
+.claimed-list-style .points span,
+.completed-list-style .points span {
+  font-size:14px;
+}
+
+.todo-details-container {
+  color:#999999;
+}
+
+.claimed-list-style .author {
+  display:none;
+}
+
+.single-item-container {
+  border-bottom:1px solid #999;
+  padding: 20px;
+}
+
+.single-item-container:last-child {
+  border-bottom:none;
+}
+
+.todos-flex-container,
+.todo-buttons {
+  display:flex;
+  flex-flow:row nowrap;
+  justify-content:space-between;
+}
+
+.todo-buttons {
+  margin-top:15px;
+}
+
+.todo-buttons * {
+  margin: 0 5px;
+}
+
+.todo-buttons .edit-delete-btns {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+
+.todo-buttons .unclaim-button {
+  margin: 0 auto;
+}
+
+.todos-left-container {
+  width:25%;
+}
+
+.todos-right-container {
+  width:75%;
+  margin: 0 0 0 10px;
+}
+
+.todos-left-container {
+  margin-top:5px;
+}
+
+
+/*Date and time styling for deadline*/
+.form-control {
+  width:auto;
+  margin:0 auto;
+}
+
+.rdt {
+	position: relative;
+}
+
+.rdtPicker {
+	display: none;
+	position: absolute;
+  width: 250px;
+  padding: 4px;
+  margin-top: 1px;
+  z-index: 99999 !important;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,.1);
+  border: 1px solid #f9f9f9;
+}
+
+.rdtOpen .rdtPicker {
+	display: inline;
+  margin:0 auto;
+  right: 160px;
+}
+.rdtStatic .rdtPicker {
+	box-shadow: none;
+	position: static;
+}
+
+.rdtPicker .rdtTimeToggle {
+	text-align: center;
+}
+
+.rdtPicker table {
+  width: 100%;
+  margin: 0;
+}
+.rdtPicker td,
+.rdtPicker th {
+  text-align: center;
+  height: 28px;
+}
+.rdtPicker td.rdtToday:hover,
+.rdtPicker td.rdtHour:hover,
+.rdtPicker td.rdtMinute:hover,
+.rdtPicker td.rdtSecond:hover,
+.rdtPicker .rdtTimeToggle:hover {
+  background: #eeeeee;
+  cursor: pointer;
+}
+.rdtPicker td.rdtOld,
+.rdtPicker td.rdtNew {
+  color: #999999;
+}
+.rdtPicker td.rdtToday {
+  position: relative;
+}
+.rdtPicker td.rdtToday:before {
+  content: '';
+  display: inline-block;
+  border-left: 7px solid transparent;
+  border-bottom: 7px solid #428bca;
+  border-top-color: rgba(0, 0, 0, 0.2);
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+}
+.rdtPicker td.rdtActive,
+.rdtPicker td.rdtActive:hover {
+  background-color: #428bca;
+  color: #fff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+.rdtPicker td.rdtActive.rdtToday:before {
+  border-bottom-color: #fff;
+}
+.rdtPicker td.rdtDisabled,
+.rdtPicker td.rdtDisabled:hover {
+  background: none;
+  color: #999999;
+  cursor: not-allowed;
+}
+
+.rdtPicker td span.rdtOld {
+  color: #999999;
+}
+.rdtPicker td span.rdtDisabled,
+.rdtPicker td span.rdtDisabled:hover {
+  background: none;
+  color: #999999;
+  cursor: not-allowed;
+}
+.rdtPicker th {
+	border-bottom: 1px solid #f9f9f9;
+}
+.rdtPicker .dow {
+  width: 14.2857%;
+  border-bottom: none;
+}
+.rdtPicker th.rdtSwitch {
+  width: 100px;
+}
+.rdtPicker th.rdtNext,
+.rdtPicker th.rdtPrev {
+  font-size: 21px;
+  vertical-align: top;
+}
+.rdtPicker th.rdtDisabled,
+.rdtPicker th.rdtDisabled:hover {
+  background: none;
+  color: #999999;
+  cursor: not-allowed;
+}
+.rdtPicker thead tr:first-child th {
+  cursor: pointer;
+}
+.rdtPicker thead tr:first-child th:hover {
+  background: #eeeeee;
+}
+
+.rdtPicker tfoot{
+	border-top: 1px solid #f9f9f9;
+}
+
+.rdtPicker button {
+	border: none;
+	background: none;
+	cursor: pointer;
+}
+.rdtPicker button:hover {
+	background-color: #eee;
+}
+
+.rdtPicker thead button {
+	width: 100%;
+	height: 100%;
+}
+
+td.rdtMonth,
+td.rdtYear {
+	height: 50px;
+	width: 25%;
+	cursor: pointer;
+}
+td.rdtMonth:hover,
+td.rdtYear:hover {
+	background: #eee;
+}
+
+.rdtCounters {
+	display: inline-block;
+}
+
+.rdtCounters > div{
+	float: left;
+}
+
+.rdtCounter {
+	height: 100px;
+}
+
+.rdtCounter {
+	width: 40px;
+}
+
+.rdtCounterSeparator {
+	line-height: 100px;
+}
+
+.rdtCounter .rdtBtn {
+	height: 40%;
+  	line-height: 40px;
+  	cursor: pointer;
+}
+.rdtCounter .rdtBtn:hover {
+	background: #eee;
+}
+.rdtCounter .rdtCount {
+	height: 20%;
+	font-size: 1.2em;
+}
+
+.rdtMilli {
+	vertical-align: middle;
+	padding-left: 8px;
+	width: 48px;
+}
+
+.rdtMilli input {
+	width: 100%;
+	font-size: 1.2em;
+	margin-top: 37px;
+}
+
+
+
+
+
+/* MEDIA QUERIES */
+
+@media (max-width:1180px){
+.todo-buttons {
+  flex-flow:row wrap;
+}
+
+.dropdown {
+  margin: 0 auto;
+}
+
+.todo-buttons .unclaim-button-div {
+  margin: 0 auto;
+  width:auto;
+}
+
+.todo-buttons .unclaim-button-div + .edit-delete-btns {
+  margin:0;
+}
+
+.todo-buttons .edit-delete-btns {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  width: auto;
+  margin: 15px auto 0 auto;
+}
+
+}
+
+@media (max-width:750px){
+
+.main-todos-container {
+  display:flex;
+  flex-flow: row wrap;
+  justify-content:space-between;
+}
+
+.unclaimed-container,
+.completed-container,
+.roommate-containers {
+  width:100%;
+  margin:0;
+}
+
+.todo-buttons {
+  flex-flow:row nowrap;
+}
+
+.todo-buttons .edit-delete-btns {
+  margin-top: 0;
+}
+
+}
