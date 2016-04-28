@@ -1,8 +1,8 @@
 Transferring app to rails: Order of actions
 
 Problems:
-1. Need to redesign now todos are loaded: currently loading all todos and then looking for specific group/user
-2. Need to redesign not group and user are matched: currently loading all users and looking for the one that is needed
+1. Need to redesign how todos are loaded: currently loading all todos and then looking for specific group/user
+2. Need to redesign how group and user are matched: currently loading all users and looking for the one that is needed
 
 
 
