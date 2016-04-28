@@ -2,6 +2,30 @@
 
 use todoforroomies
 
+rails g model Todo headline:string author:string lastChangedBy:string group:references deadline:datetime timeNeeded:integer yuckiness:integer roommate:string claimedStatus:boolean completedStatus:boolean timeCompleted:datetime
+
+rails g model Group group_name:string active:boolean current_punishment:text num_members:integer
+
+
+headline: this.state.headline,
+author: this.props.currentUser,
+lastChangedBy: this.props.currentUser,
+group: this.props.currentGroup,
+deadline: this.state.deadline,
+timeNeeded: this.state.timeNeeded,
+yuckiness: this.state.yuckiness,
+roommate: "0",
+claimedStatus: false,
+completedStatus: false,
+timeCompleted: '',
+
+pointsWorth: this.state.pointsWorth,
+
+
+timeCreated: new Date(),
+
+
+
 db.todos.insert({"headline" : "create todoforoomies app", "author" : "kykass", "deadline" : ISODate("2016-04-17T17:57:24.736Z"), "timeNeeded" : 2400, "yuckiness" : 0, "roommate" : 1, "claimedStatus" : true, "completedStatus" : false, "timeCompleted" : "", "tymeCreated" : ISODate("2016-04-13T17:59:20.688Z"), "pointsWorth" : 3000 })
 
 db.todos.insert({"headline" : "wash dishes", "author" : "roomie1", "deadline" : ISODate("2016-04-15T17:57:24.736Z"), "timeNeeded" : 40, "yuckiness" : 2, "roommate" : 2, "claimedStatus" : true, "completedStatus" : false, "timeCompleted" : "", "tymeCreated" : new Date(), "pointsWorth" : 2000 })

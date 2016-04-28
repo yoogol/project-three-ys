@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  group_name: MyString
+  active: false
+  current_punishment: MyText
+  num_members: 1
+
+two:
+  group_name: MyString
+  active: false
+  current_punishment: MyText
+  num_members: 1

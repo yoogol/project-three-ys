@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  headline: MyString
+  author: MyString
+  lastChangedBy: MyString
+  group_id: 
+  deadline: 2016-04-27 15:11:36
+  timeNeeded: 1
+  yuckiness: 1
+  roommate: MyString
+  claimedStatus: false
+  completedStatus: false
+  timeCompleted: 2016-04-27 15:11:36
+
+two:
+  headline: MyString
+  author: MyString
+  lastChangedBy: MyString
+  group_id: 
+  deadline: 2016-04-27 15:11:36
+  timeNeeded: 1
+  yuckiness: 1
+  roommate: MyString
+  claimedStatus: false
+  completedStatus: false
+  timeCompleted: 2016-04-27 15:11:36
